@@ -57,6 +57,101 @@ Lhydra-Flask/
 └── setup.py                    # Package installation
 ```
 
+## System Architecture
+
+```mermaid
+graph TB
+    subgraph Data_Processing["Data Processing Layer"]
+        D1[o3_data Dataset] --> PRE[Data Preprocessor]
+        PRE --> FE[Feature Engineering]
+        FE --> |User Features| DS1[User Dataset]
+        FE --> |Item Features| DS2[Item Dataset]
+        FE --> |Audio Features| DS3[Audio Dataset]
+        FE --> |Temporal Data| DS4[Temporal Dataset]
+    end
+
+    subgraph Neural_Network["Two-Tower Neural Network"]
+        subgraph User_Tower["User Tower"]
+            UE[User Embedding Layer]
+            UD1[Dense Layer 1]
+            UD2[Dense Layer 2]
+            UBN[Batch Normalization]
+
+            UE --> UD1
+            UD1 --> UD2
+            UD2 --> UBN
+        end
+
+        subgraph Item_Tower["Item Tower"]
+            IE[Music Embedding]
+            AE[Artist Embedding]
+            GE[Genre Embedding]
+            AF[Audio Feature Processing]
+            TF[Temporal Feature Integration]
+
+            IE --> IC[Concatenation]
+            AE --> IC
+            GE --> IC
+            AF --> IC
+            TF --> IC
+            IC --> ID[Dense Layers]
+        end
+
+        UBN --> CON[Vector Concatenation]
+        ID --> CON
+        CON --> PL[Prediction Layer]
+        PL --> OUT[Output Predictions]
+    end
+
+    subgraph Training_System["Training System"]
+        TR[Trainer]
+        VAL[Validation]
+        CP[Checkpointing]
+        ES[Early Stopping]
+        LRS[LR Scheduler]
+
+        TR --> VAL
+        VAL --> ES
+        ES --> CP
+        TR --> LRS
+    end
+
+    subgraph Evaluation["Evaluation System"]
+        ME[Model Evaluation]
+        NDCG[NDCG Metrics]
+        AUC[AUC-ROC]
+        CA[Cohort Analysis]
+        EXP[Model Explainability]
+
+        ME --> NDCG
+        ME --> AUC
+        ME --> CA
+        ME --> EXP
+    end
+
+    subgraph Search_System["Search System"]
+        HNSW[HNSW Index]
+        BI[Batch Indexing]
+        NNS[Nearest Neighbor Search]
+
+        HNSW --> BI
+        BI --> NNS
+    end
+
+    Data_Processing --> Neural_Network
+    Neural_Network --> Training_System
+    Neural_Network --> Evaluation
+    Neural_Network --> Search_System
+
+    classDef primary fill:#f9f,stroke:#333,stroke-width:2px
+    classDef secondary fill:#bbf,stroke:#333,stroke-width:2px
+    classDef tertiary fill:#dfd,stroke:#333,stroke-width:2px
+
+    class Neural_Network primary
+    class Data_Processing secondary
+    class Training_System,Evaluation,Search_System tertiary
+```
+
 ## Features
 
 - Hybrid recommendation approach combining:
@@ -92,12 +187,14 @@ Lhydra-Flask/
 ## Setup and Installation
 
 1. Create a conda environment:
+
 ```bash
 conda create -n Lhydra python=3.10
 conda activate Lhydra
 ```
 
 2. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -105,6 +202,7 @@ pip install -r requirements.txt
 ## Data Preparation
 
 The system uses the `o3_data` dataset which contains:
+
 - User information
 - Item (music) features
 - Artist information
@@ -113,11 +211,13 @@ The system uses the `o3_data` dataset which contains:
 - Temporal patterns
 
 To prepare the data:
+
 ```bash
 python prepare_data.py
 ```
 
 This script will:
+
 1. Load data from o3_data
 2. Perform feature engineering
 3. Create train/validation splits
@@ -126,11 +226,13 @@ This script will:
 ## Model Training
 
 To train the model:
+
 ```bash
 python train.py
 ```
 
 The training process includes:
+
 - Mixed precision training
 - Gradient accumulation
 - Early stopping
@@ -140,18 +242,22 @@ The training process includes:
 ## Implementation Details
 
 ### Data Preprocessing
+
 - Feature normalization
 - Temporal feature extraction
 - One-hot encoding for categorical variables
 - Missing value handling
 
 ### Model Architecture
+
 1. User Tower:
+
    - User embedding layer
    - Age and gender processing
    - Multiple dense layers with batch normalization
 
 2. Item Tower:
+
    - Item embedding layer
    - Artist and genre embeddings
    - Audio feature processing
