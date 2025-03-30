@@ -1,0 +1,94 @@
+# Lhydra Hybrid Music Recommender Training Configuration
+
+# Model configuration
+model:
+  embedding_dim: 32 # Dimension of embedding vectors
+  hidden_dims: [128, 64] # Hidden layer dimensions for towers
+  prediction_dims: [64, 32] # Hidden layer dimensions for prediction layers
+  dropout: 0.2 # Dropout rate
+
+# Training configuration
+training:
+  learning_rate: 0.001 # Initial learning rate
+  weight_decay: 1e-5 # Weight decay for regularization
+  num_epochs: 100 # Maximum number of epochs
+  patience: 10 # Early stopping patience
+  batch_size: 64 # Batch size
+  num_workers: 4 # Number of workers for data loading
+  checkpoint_dir: "models/checkpoints" # Directory to save checkpoints
+  log_dir: "logs" # Directory to save logs
+
+# Data configuration
+data:
+  target_column: "high_engagement" # Target column name
+
+  # User features
+  user_demographic_features: # User demographic features
+    - "age"
+    - "gender"
+    - "country"
+  user_listening_features: # User listening behavior features
+    - "monthly_hours"
+    - "genre_diversity"
+    - "top_genre"
+  user_audio_preferences: # User audio preferences
+    - "avg_danceability"
+    - "avg_energy"
+    - "avg_key"
+    - "avg_loudness"
+    - "avg_mode"
+    - "avg_speechiness"
+    - "avg_acousticness"
+    - "avg_instrumentalness"
+    - "avg_liveness"
+    - "avg_valence"
+    - "avg_tempo"
+    - "avg_time_signature"
+
+  # Track features
+  track_metadata_features: # Track metadata features
+    - "artist"
+    - "main_genre"
+    - "year"
+    - "duration_ms"
+  track_audio_features: # Track audio features
+    - "danceability"
+    - "energy"
+    - "key"
+    - "loudness"
+    - "mode"
+    - "speechiness"
+    - "acousticness"
+    - "instrumentalness"
+    - "liveness"
+    - "valence"
+    - "tempo"
+    - "time_signature"
+
+  # For backward compatibility
+  categorical_features: # Categorical feature columns
+    - "gender"
+    - "country"
+    - "top_genre"
+    - "main_genre"
+    - "artist"
+  numerical_features: # Numerical feature columns
+    - "age"
+    - "monthly_hours"
+    - "genre_diversity"
+    - "year"
+    - "duration_ms"
+
+  # Data processing configuration
+  target_threshold: 5 # Threshold for high engagement
+  test_size: 0.2 # Test set size
+  validation_size: 0.1 # Validation set size
+  random_state: 42 # Random seed
+  embedding_dim: 32 # Dimension for embedding layers
+
+# Evaluation configuration
+evaluation:
+  k_values: [5, 10, 20] # k values for ranking metrics
+  save_predictions: true # Whether to save predictions
+  save_metrics: true # Whether to save metrics
+  cohort_analysis: true # Whether to perform cohort analysis

@@ -10,275 +10,216 @@ Lhydra-Flask/
 ├── data/                       # Data-related modules
 │   ├── __init__.py
 │   ├── dataset.py              # PyTorch Dataset implementation
-│   ├── dataloader.py           # Data loading utilities
-│   ├── preprocessor.py         # Data cleaning and feature engineering
-│   └── encoders.py             # Feature encoding (simplified)
+│   ├── preprocessor.py         # Data preprocessing and feature engineering
+│   └── preprocessed/           # Directory for preprocessed data
 │
 ├── models/                     # Model implementations
 │   ├── __init__.py
-│   ├── base_model.py           # Abstract base class for models
 │   ├── hybrid_model.py         # Main hybrid recommender model
-│   └── components/             # Model components
-│       ├── __init__.py
-│       ├── embedding.py        # Embedding layers
-│       └── attention.py        # Attention mechanisms
+│   └── checkpoints/            # Model checkpoints
 │
 ├── training/                   # Training-related code
 │   ├── __init__.py
 │   ├── trainer.py              # Model training logic
 │   ├── metrics.py              # Evaluation metrics
-│   └── loss.py                 # Loss functions
+│   └── configs/                # Training configurations
+│       └── training_config.yaml # Default training configuration
 │
 ├── inference/                  # Inference-related code
-│   ├── __init__.py
-│   ├── recommender.py          # Recommendation generation
-│   └── evaluation.py           # Model evaluation
+│   └── __init__.py
 │
 ├── utils/                      # Utility functions
 │   ├── __init__.py
-│   ├── config.py               # Configuration handling
-│   ├── feature_engineering.py  # Feature engineering helpers
-│   ├── logging.py              # Logging utilities
-│   └── io.py                   # File I/O helpers
+│   └── logger.py               # Comprehensive logging utilities
 │
 ├── scripts/                    # Executable scripts
-│   ├── prepare_data.py         # Data preparation script
 │   ├── train_model.py          # Model training script
 │   ├── evaluate_model.py       # Model evaluation script
-│   └── generate_recommendations.py  # Generate recommendations
+│   └── generate_recommendations.py # Generate recommendations
 │
-├── configs/                    # Configuration files
-│   ├── default.yaml            # Default configuration
-│   ├── training.yaml           # Training configuration
-│   └── preprocessing.yaml      # Preprocessing configuration
+├── notebooks/                  # Jupyter notebooks
+│   └── spotify_sample_data.csv # Sample data
+│
+├── logs/                       # Log files
+├── evaluation/                 # Evaluation results
+├── recommendations/            # Generated recommendations
 │
 ├── README.md                   # Project documentation
-├── requirements.txt            # Project dependencies
-└── setup.py                    # Package installation
-```
-
-## System Architecture
-
-```mermaid
-graph TB
-    subgraph Data_Processing["Data Processing Layer"]
-        D1[o3_data Dataset] --> PRE[Data Preprocessor]
-        PRE --> FE[Feature Engineering]
-        FE --> |User Features| DS1[User Dataset]
-        FE --> |Item Features| DS2[Item Dataset]
-        FE --> |Audio Features| DS3[Audio Dataset]
-        FE --> |Temporal Data| DS4[Temporal Dataset]
-    end
-
-    subgraph Neural_Network["Two-Tower Neural Network"]
-        subgraph User_Tower["User Tower"]
-            UE[User Embedding Layer]
-            UD1[Dense Layer 1]
-            UD2[Dense Layer 2]
-            UBN[Batch Normalization]
-
-            UE --> UD1
-            UD1 --> UD2
-            UD2 --> UBN
-        end
-
-        subgraph Item_Tower["Item Tower"]
-            IE[Music Embedding]
-            AE[Artist Embedding]
-            GE[Genre Embedding]
-            AF[Audio Feature Processing]
-            TF[Temporal Feature Integration]
-
-            IE --> IC[Concatenation]
-            AE --> IC
-            GE --> IC
-            AF --> IC
-            TF --> IC
-            IC --> ID[Dense Layers]
-        end
-
-        UBN --> CON[Vector Concatenation]
-        ID --> CON
-        CON --> PL[Prediction Layer]
-        PL --> OUT[Output Predictions]
-    end
-
-    subgraph Training_System["Training System"]
-        TR[Trainer]
-        VAL[Validation]
-        CP[Checkpointing]
-        ES[Early Stopping]
-        LRS[LR Scheduler]
-
-        TR --> VAL
-        VAL --> ES
-        ES --> CP
-        TR --> LRS
-    end
-
-    subgraph Evaluation["Evaluation System"]
-        ME[Model Evaluation]
-        NDCG[NDCG Metrics]
-        AUC[AUC-ROC]
-        CA[Cohort Analysis]
-        EXP[Model Explainability]
-
-        ME --> NDCG
-        ME --> AUC
-        ME --> CA
-        ME --> EXP
-    end
-
-    subgraph Search_System["Search System"]
-        HNSW[HNSW Index]
-        BI[Batch Indexing]
-        NNS[Nearest Neighbor Search]
-
-        HNSW --> BI
-        BI --> NNS
-    end
-
-    Data_Processing --> Neural_Network
-    Neural_Network --> Training_System
-    Neural_Network --> Evaluation
-    Neural_Network --> Search_System
-
-    classDef primary fill:#f9f,stroke:#333,stroke-width:2px
-    classDef secondary fill:#bbf,stroke:#333,stroke-width:2px
-    classDef tertiary fill:#dfd,stroke:#333,stroke-width:2px
-
-    class Neural_Network primary
-    class Data_Processing secondary
-    class Training_System,Evaluation,Search_System tertiary
+└── requirements.txt            # Project dependencies
 ```
 
 ## Features
 
-- Hybrid recommendation approach combining:
+This implementation includes:
+
+- **Hybrid recommendation approach** combining:
   - Collaborative filtering
   - Content-based features
   - Temporal patterns
-- Two-tower neural network architecture
-- Support for both classification and regression tasks
-- Efficient batch prediction with caching
-- ONNX export support for production deployment
-- Comprehensive test suite
-- Distributed training support
-- Robust Training and Validation:
-  - K-fold cross validation
-  - Real-time validation metrics tracking
-  - Early stopping with model checkpointing
-  - Progress bars with live metric updates
-- Advanced Model Evaluation:
-  - Comprehensive metrics (NDCG, AUC-ROC, etc.)
-  - Cohort analysis for user segments
-  - Model explainability with Captum
-  - Automated evaluation reports
-- High-Performance Search:
-  - HNSW-based similarity search
-  - Efficient batch indexing
-  - Memory-optimized persistence
-  - Fast nearest neighbor lookup
-- Robust Text Processing:
-  - Advanced typo correction
-  - Fuzzy string matching with sequence matcher
-  - Case-insensitive handling
+- **Two-tower neural network architecture**:
+  - User tower with demographics and audio preferences
+  - Item tower with music features and metadata
+- **Comprehensive feature engineering**:
+  - Audio feature processing
+  - Demographic feature integration
+  - Temporal data processing
+- **Advanced evaluation metrics**:
+  - Standard classification metrics (accuracy, precision, recall, F1)
+  - Ranking metrics (NDCG, MAP, Hit Rate)
+  - Cohort analysis
+- **Detailed logging and monitoring**:
+  - Comprehensive logging system
+  - Function-level logging
+  - Execution time tracking
+- **Production-ready design**:
+  - Modular implementation
+  - Configuration-driven architecture
+  - Robust error handling
 
 ## Setup and Installation
 
-1. Create a conda environment:
+1. Clone the repository:
 
 ```bash
-conda create -n Lhydra python=3.10
-conda activate Lhydra
+git clone https://github.com/yourusername/lhydra-hybrid.git
+cd lhydra-hybrid
 ```
 
-2. Install dependencies:
+2. Create a conda environment:
+
+```bash
+conda create -n lhydra python=3.10
+conda activate lhydra
+```
+
+3. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Data Preparation
-
-The system uses the `o3_data` dataset which contains:
-
-- User information
-- Item (music) features
-- Artist information
-- Genre information
-- Audio features
-- Temporal patterns
-
-To prepare the data:
-
-```bash
-python prepare_data.py
-```
-
-This script will:
-
-1. Load data from o3_data
-2. Perform feature engineering
-3. Create train/validation splits
-4. Save processed datasets
-
-## Model Training
-
-To train the model:
-
-```bash
-python train.py
-```
-
-The training process includes:
-
-- Mixed precision training
-- Gradient accumulation
-- Early stopping
-- Model checkpointing
-- Learning rate scheduling
-
-## Implementation Details
+## Usage
 
 ### Data Preprocessing
 
-- Feature normalization
-- Temporal feature extraction
-- One-hot encoding for categorical variables
-- Missing value handling
+Process the data using the preprocessor:
 
-### Model Architecture
+```bash
+python scripts/preprocess_data.py --input notebooks/spotify_sample_data.csv --output data/preprocessed --config training/configs/training_config.yaml
+```
 
-1. User Tower:
+### Model Training
+
+Train the hybrid recommender model:
+
+```bash
+python scripts/train_model.py --input data/preprocessed/train_data.csv --config training/configs/training_config.yaml
+```
+
+To resume training from a checkpoint:
+
+```bash
+python scripts/train_model.py --input data/preprocessed/train_data.csv --config training/configs/training_config.yaml --resume models/checkpoints/best_model.pt
+```
+
+### Model Evaluation
+
+Evaluate a trained model:
+
+```bash
+python scripts/evaluate_model.py --model models/checkpoints/best_model.pt --data data/preprocessed/test_data.csv --config training/configs/training_config.yaml
+```
+
+### Generating Recommendations
+
+Generate recommendations for specific users:
+
+```bash
+python scripts/generate_recommendations.py --model models/checkpoints/best_model.pt --data data/preprocessed/test_data.csv --preprocessor data/preprocessed/preprocessor.joblib --user-ids 1,2,3 --top-n 10
+```
+
+For all users:
+
+```bash
+python scripts/generate_recommendations.py --model models/checkpoints/best_model.pt --data data/preprocessed/test_data.csv --preprocessor data/preprocessed/preprocessor.joblib --user-ids all --top-n 10
+```
+
+## Model Architecture
+
+The system uses a two-tower neural network architecture:
+
+1. **User Tower**:
 
    - User embedding layer
-   - Age and gender processing
+   - Demographics processing
+   - Audio profile processing (user's average audio preferences)
    - Multiple dense layers with batch normalization
 
-2. Item Tower:
+2. **Item Tower**:
 
-   - Item embedding layer
-   - Artist and genre embeddings
+   - Track embedding layer
+   - Artist embedding layer
+   - Genre processing
    - Audio feature processing
    - Temporal feature integration
+   - Multiple dense layers with batch normalization
 
-3. Prediction Layer:
-   - Concatenation of user and item vectors
+3. **Prediction Layer**:
+   - Concatenation of user and item representations
    - Dense layers with dropout
    - Sigmoid activation for final prediction
 
-## Contributing
+## Feature Engineering
 
-1. Follow PEP 8 style guide
-2. Add tests for new features
-3. Update documentation
-4. Create detailed pull requests
+The system performs extensive feature engineering:
+
+1. **User Features**:
+
+   - Demographics (age, gender, region, country)
+   - Listen history patterns
+   - Audio preference profile
+
+2. **Item Features**:
+
+   - Audio characteristics (danceability, energy, tempo, etc.)
+   - Genre information
+   - Artist embeddings
+   - Release year and recency
+   - Duration features
+
+3. **Engineered Features**:
+   - Energy-valence quadrants for mood categorization
+   - Preference-track differences (comparing user's average preferences with track features)
+   - Age-genre interactions
+   - Geographic patterns
+
+## Training Process
+
+The training process includes:
+
+- Early stopping based on validation loss
+- Learning rate scheduling
+- Model checkpointing
+- Comprehensive metrics logging
+- Cross-validation options
+
+## Evaluation
+
+The system offers comprehensive evaluation capabilities:
+
+- **Classification Metrics**: Accuracy, precision, recall, F1 score
+- **Ranking Metrics**: NDCG@k, MAP@k, Hit Rate@k
+- **Analysis Tools**: Error analysis, cohort analysis, feature importance
+- **Visualization**: ROC curves, precision-recall curves, confusion matrices
+
+## Contributors
+
+- Your Name
 
 ## License
 
-[Insert License Information]
+[License Information]
 
 ## Contact
 
-[Insert Contact Information]
+[Contact Information]

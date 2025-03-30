@@ -1,0 +1,59 @@
+# Lhydra Hybrid Music Recommender System Configuration
+
+# Data settings
+data:
+  train_path: "data/train.csv"
+  validation_path: "data/validation.csv"
+  test_path: "data/test.csv"
+  user_features_path: "data/user_features.csv"
+  item_features_path: "data/item_features.csv"
+  playcount_threshold: 5 # Threshold to determine positive engagement
+  random_seed: 42
+
+# Model architecture
+model:
+  name: "two_tower_hybrid"
+  user_tower:
+    hidden_layers: [128, 64, 32]
+    activation: "relu"
+    dropout: 0.2
+  item_tower:
+    hidden_layers: [128, 64, 32]
+    activation: "relu"
+    dropout: 0.2
+  embedding_dim: 32
+  final_layer_size: 16
+
+# Training parameters
+training:
+  batch_size: 128
+  epochs: 50
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  early_stopping_patience: 5
+  lr_scheduler:
+    use: true
+    factor: 0.5
+    patience: 3
+  loss_function: "binary_cross_entropy"
+  optimizer: "adam"
+  class_weights: [0.3, 0.7] # [negative_weight, positive_weight]
+
+# Evaluation metrics
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1", "auc", "map", "ndcg"]
+  k_values: [5, 10, 20, 50, 100]
+
+# Logging
+logging:
+  tensorboard: true
+  log_dir: "logs/"
+  model_checkpoint_dir: "models/checkpoints/"
+  save_best_only: true
+  log_frequency: 100 # How often to log metrics (in batches)
+
+# Inference
+inference:
+  top_k_recommendations: 10
+  batch_size: 256
+  output_dir: "recommendations/"
