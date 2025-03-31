@@ -1,0 +1,414 @@
+2025-03-31 11:45:37,797 - root - INFO - Logging setup complete. Log file: logs\training_20250331-114537.log
+2025-03-31 11:45:37,797 - root - INFO - ================================================================================
+2025-03-31 11:45:37,797 - root - INFO - Starting Hybrid Music Recommender training at 2025-03-31 11:45:37
+2025-03-31 11:45:37,797 - root - INFO - ================================================================================
+2025-03-31 11:45:37,797 - root - INFO - ==================================================
+2025-03-31 11:45:37,797 - root - INFO - TRAINING CONFIGURATION
+2025-03-31 11:45:37,797 - root - INFO - ==================================================
+2025-03-31 11:45:37,797 - root - INFO - Model Architecture:
+2025-03-31 11:45:37,797 - root - INFO -   embedding_dim: 32
+2025-03-31 11:45:37,812 - root - INFO -   hidden_dims: [128, 64]
+2025-03-31 11:45:37,812 - root - INFO -   prediction_dims: [64, 32]
+2025-03-31 11:45:37,812 - root - INFO -   dropout: 0.2
+2025-03-31 11:45:37,812 - root - INFO -   final_layer_size: 16
+2025-03-31 11:45:37,812 - root - INFO -   user_tower:
+2025-03-31 11:45:37,812 - root - INFO -     hidden_layers: [128, 64]
+2025-03-31 11:45:37,812 - root - INFO -     dropout: 0.2
+2025-03-31 11:45:37,812 - root - INFO -     activation: relu
+2025-03-31 11:45:37,812 - root - INFO -   item_tower:
+2025-03-31 11:45:37,812 - root - INFO -     hidden_layers: [128, 64]
+2025-03-31 11:45:37,812 - root - INFO -     dropout: 0.2
+2025-03-31 11:45:37,812 - root - INFO -     activation: relu
+2025-03-31 11:45:37,812 - root - INFO - Training Parameters:
+2025-03-31 11:45:37,812 - root - INFO -   learning_rate: 0.001
+2025-03-31 11:45:37,812 - root - INFO -   weight_decay: 1e-4
+2025-03-31 11:45:37,812 - root - INFO -   num_epochs: 200
+2025-03-31 11:45:37,812 - root - INFO -   patience: 50
+2025-03-31 11:45:37,812 - root - INFO -   batch_size: 64
+2025-03-31 11:45:37,812 - root - INFO -   num_workers: 4
+2025-03-31 11:45:37,812 - root - INFO -   checkpoint_dir: models/checkpoints
+2025-03-31 11:45:37,812 - root - INFO -   log_dir: logs
+2025-03-31 11:45:37,812 - root - INFO -   optimizer: adam
+2025-03-31 11:45:37,812 - root - INFO -   loss_function: binary_cross_entropy
+2025-03-31 11:45:37,812 - root - INFO -   lr_scheduler:
+2025-03-31 11:45:37,812 - root - INFO -     use: True
+2025-03-31 11:45:37,812 - root - INFO -     factor: 0.5
+2025-03-31 11:45:37,812 - root - INFO -     patience: 50
+2025-03-31 11:45:37,812 - root - INFO -   early_stopping_patience: 50
+2025-03-31 11:45:37,812 - root - INFO - Evaluation Metrics:
+2025-03-31 11:45:37,812 - root - INFO -   k_values: [5, 10, 20]
+2025-03-31 11:45:37,812 - root - INFO -   save_predictions: True
+2025-03-31 11:45:37,812 - root - INFO -   save_metrics: True
+2025-03-31 11:45:37,812 - root - INFO -   cohort_analysis: True
+2025-03-31 11:45:37,812 - root - INFO -   metrics_dir: evaluation/metrics
+2025-03-31 11:45:37,812 - root - INFO -   predictions_dir: evaluation/predictions
+2025-03-31 11:45:37,812 - root - INFO - ==================================================
+2025-03-31 11:45:37,812 - root - INFO - Using device: cpu
+2025-03-31 11:45:37,812 - root - INFO - Using preprocessed data from notebooks/ship_test_1k_data
+2025-03-31 11:45:37,941 - utils.data_utils - INFO - Loaded preprocessor from notebooks/ship_test_1k_data\preprocessor.joblib
+2025-03-31 11:45:37,943 - utils.data_utils - INFO - Loaded preprocessed data: train=700, val=100, test=200
+2025-03-31 11:45:37,945 - utils.data_utils - INFO - Found 903 unique users in interactions
+2025-03-31 11:45:37,950 - utils.data_utils - INFO - Created user features dataframe with 903 users and 57 features
+2025-03-31 11:45:37,950 - utils.data_utils - INFO - Found 57 unique items in interactions
+2025-03-31 11:45:37,952 - utils.data_utils - INFO - Created item features dataframe with 57 items and 26 features
+2025-03-31 11:45:37,955 - utils.data_utils - INFO - Copied 'high_engagement' column to 'engagement' for compatibility
+2025-03-31 11:45:37,955 - root - INFO - Data split: train=700, val=100, test=200
+2025-03-31 11:45:37,958 - utils.data_utils - INFO - Created dataset with 700 interactions
+2025-03-31 11:45:37,958 - utils.data_utils - INFO - User features: (903, 56), Item features: (57, 25)
+2025-03-31 11:45:37,958 - utils.data_utils - INFO - Created dataset with 100 interactions
+2025-03-31 11:45:37,958 - utils.data_utils - INFO - User features: (903, 56), Item features: (57, 25)
+2025-03-31 11:45:37,961 - utils.data_utils - INFO - Created dataset with 200 interactions
+2025-03-31 11:45:37,961 - utils.data_utils - INFO - User features: (903, 56), Item features: (57, 25)
+2025-03-31 11:45:37,963 - utils.data_utils - INFO - Created data loaders with batch size 64
+2025-03-31 11:45:37,963 - root - INFO - Initializing model...
+2025-03-31 11:45:37,963 - root - INFO - Feature dimensions: user=56, item=25
+2025-03-31 11:45:37,963 - models.two_tower_model - INFO - Initialized weights
+2025-03-31 11:45:37,973 - models.two_tower_model - INFO - Initialized Two-Tower model with user input dim: 56, item input dim: 25, embedding dim: 32
+2025-03-31 11:45:40,608 - root - INFO - Tensorboard logging setup complete. Log directory: logs\tensorboard\20250331-114540
+2025-03-31 11:45:40,608 - training.trainer - INFO - Trainer initialized on device: cpu
+2025-03-31 11:45:40,608 - root - INFO - Starting training...
+2025-03-31 11:45:40,624 - training.trainer - INFO - Starting training for 200 epochs
+2025-03-31 11:45:42,659 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:42,665 - training.trainer - INFO - Epoch 1 Results:
+2025-03-31 11:45:42,665 - training.trainer - INFO - Training: accuracy=0.8857 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5261 tn=620.0000 fp=7.0000 fn=73.0000 tp=0.0000 loss=0.4309 epoch_time=0.5182 
+2025-03-31 11:45:42,666 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.4333 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3128 
+2025-03-31 11:45:42,690 - models.two_tower_model - INFO - Model saved to models/checkpoints\model_epoch_1.pt
+2025-03-31 11:45:42,694 - models.two_tower_model - INFO - Model saved to models/checkpoints\best_model.pt
+2025-03-31 11:45:42,694 - training.trainer - INFO - Saved new best model with validation loss: 0.3128
+2025-03-31 11:45:44,216 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:44,231 - training.trainer - INFO - Epoch 2 Results:
+2025-03-31 11:45:44,233 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.4775 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.3709 epoch_time=0.3838 
+2025-03-31 11:45:44,233 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.4467 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3067 
+2025-03-31 11:45:44,249 - models.two_tower_model - INFO - Model saved to models/checkpoints\model_epoch_2.pt
+2025-03-31 11:45:44,251 - models.two_tower_model - INFO - Model saved to models/checkpoints\best_model.pt
+2025-03-31 11:45:44,251 - training.trainer - INFO - Saved new best model with validation loss: 0.3067
+2025-03-31 11:45:46,049 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:46,049 - training.trainer - INFO - Epoch 3 Results:
+2025-03-31 11:45:46,049 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6009 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.3374 epoch_time=0.3647 
+2025-03-31 11:45:46,049 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.4600 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3077 
+2025-03-31 11:45:46,065 - training.trainer - INFO - Early stopping counter: 1/50
+2025-03-31 11:45:47,769 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:47,770 - training.trainer - INFO - Epoch 4 Results:
+2025-03-31 11:45:47,770 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6384 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.3272 epoch_time=0.4047 
+2025-03-31 11:45:47,770 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.4933 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3090 
+2025-03-31 11:45:47,781 - training.trainer - INFO - Early stopping counter: 2/50
+2025-03-31 11:45:49,066 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:49,066 - training.trainer - INFO - Epoch 5 Results:
+2025-03-31 11:45:49,066 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6052 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.3392 epoch_time=0.3690 
+2025-03-31 11:45:49,066 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.4900 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3061 
+2025-03-31 11:45:49,081 - models.two_tower_model - INFO - Model saved to models/checkpoints\model_epoch_5.pt
+2025-03-31 11:45:49,097 - models.two_tower_model - INFO - Model saved to models/checkpoints\best_model.pt
+2025-03-31 11:45:49,097 - training.trainer - INFO - Saved new best model with validation loss: 0.3061
+2025-03-31 11:45:50,434 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:50,434 - training.trainer - INFO - Epoch 6 Results:
+2025-03-31 11:45:50,434 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6179 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.3309 epoch_time=0.3931 
+2025-03-31 11:45:50,434 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5022 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3023 
+2025-03-31 11:45:50,450 - models.two_tower_model - INFO - Model saved to models/checkpoints\model_epoch_6.pt
+2025-03-31 11:45:50,450 - models.two_tower_model - INFO - Model saved to models/checkpoints\best_model.pt
+2025-03-31 11:45:50,450 - training.trainer - INFO - Saved new best model with validation loss: 0.3023
+2025-03-31 11:45:51,839 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:51,841 - training.trainer - INFO - Epoch 7 Results:
+2025-03-31 11:45:51,841 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.7060 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.3109 epoch_time=0.3613 
+2025-03-31 11:45:51,841 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5089 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3042 
+2025-03-31 11:45:51,850 - training.trainer - INFO - Early stopping counter: 1/50
+2025-03-31 11:45:53,388 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:53,388 - training.trainer - INFO - Epoch 8 Results:
+2025-03-31 11:45:53,389 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6964 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.3143 epoch_time=0.3926 
+2025-03-31 11:45:53,389 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5133 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3023 
+2025-03-31 11:45:53,406 - models.two_tower_model - INFO - Model saved to models/checkpoints\model_epoch_8.pt
+2025-03-31 11:45:53,410 - models.two_tower_model - INFO - Model saved to models/checkpoints\best_model.pt
+2025-03-31 11:45:53,410 - training.trainer - INFO - Saved new best model with validation loss: 0.3023
+2025-03-31 11:45:54,684 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:54,684 - training.trainer - INFO - Epoch 9 Results:
+2025-03-31 11:45:54,684 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.7291 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.3038 epoch_time=0.3848 
+2025-03-31 11:45:54,684 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5044 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3056 
+2025-03-31 11:45:54,707 - training.trainer - INFO - Early stopping counter: 1/50
+2025-03-31 11:45:56,122 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:56,128 - training.trainer - INFO - Epoch 10 Results:
+2025-03-31 11:45:56,128 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.7479 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.2995 epoch_time=0.3671 
+2025-03-31 11:45:56,128 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5244 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3058 
+2025-03-31 11:45:56,141 - training.trainer - INFO - Early stopping counter: 2/50
+2025-03-31 11:45:58,222 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:58,222 - training.trainer - INFO - Epoch 11 Results:
+2025-03-31 11:45:58,222 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.7283 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.3004 epoch_time=0.5190 
+2025-03-31 11:45:58,224 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5278 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3079 
+2025-03-31 11:45:58,238 - training.trainer - INFO - Early stopping counter: 3/50
+2025-03-31 11:45:59,952 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:45:59,959 - training.trainer - INFO - Epoch 12 Results:
+2025-03-31 11:45:59,960 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.7516 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.2933 epoch_time=0.4540 
+2025-03-31 11:45:59,960 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5500 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3043 
+2025-03-31 11:45:59,975 - training.trainer - INFO - Early stopping counter: 4/50
+2025-03-31 11:46:01,817 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:01,817 - training.trainer - INFO - Epoch 13 Results:
+2025-03-31 11:46:01,818 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.8066 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.2761 epoch_time=0.4650 
+2025-03-31 11:46:01,818 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5844 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3049 
+2025-03-31 11:46:01,836 - training.trainer - INFO - Early stopping counter: 5/50
+2025-03-31 11:46:03,721 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:03,724 - training.trainer - INFO - Epoch 14 Results:
+2025-03-31 11:46:03,724 - training.trainer - INFO - Training: accuracy=0.8957 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.7805 tn=627.0000 fp=0.0000 fn=73.0000 tp=0.0000 loss=0.2816 epoch_time=0.5240 
+2025-03-31 11:46:03,725 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5811 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3037 
+2025-03-31 11:46:03,740 - training.trainer - INFO - Early stopping counter: 6/50
+2025-03-31 11:46:05,184 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:05,184 - training.trainer - INFO - Epoch 15 Results:
+2025-03-31 11:46:05,184 - training.trainer - INFO - Training: accuracy=0.8986 precision=1.0000 recall=0.0274 f1=0.0533 auc=0.8219 tn=627.0000 fp=0.0000 fn=71.0000 tp=2.0000 loss=0.2661 epoch_time=0.4596 
+2025-03-31 11:46:05,184 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5689 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3103 
+2025-03-31 11:46:05,202 - training.trainer - INFO - Early stopping counter: 7/50
+2025-03-31 11:46:06,687 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:06,687 - training.trainer - INFO - Epoch 16 Results:
+2025-03-31 11:46:06,687 - training.trainer - INFO - Training: accuracy=0.9000 precision=1.0000 recall=0.0411 f1=0.0789 auc=0.8618 tn=627.0000 fp=0.0000 fn=70.0000 tp=3.0000 loss=0.2456 epoch_time=0.3877 
+2025-03-31 11:46:06,687 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5644 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3179 
+2025-03-31 11:46:06,712 - training.trainer - INFO - Early stopping counter: 8/50
+2025-03-31 11:46:08,015 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:08,015 - training.trainer - INFO - Epoch 17 Results:
+2025-03-31 11:46:08,015 - training.trainer - INFO - Training: accuracy=0.9043 precision=0.8750 recall=0.0959 f1=0.1728 auc=0.8509 tn=626.0000 fp=1.0000 fn=66.0000 tp=7.0000 loss=0.2473 epoch_time=0.4172 
+2025-03-31 11:46:08,015 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5633 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3253 
+2025-03-31 11:46:08,031 - training.trainer - INFO - Early stopping counter: 9/50
+2025-03-31 11:46:09,317 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:09,317 - training.trainer - INFO - Epoch 18 Results:
+2025-03-31 11:46:09,317 - training.trainer - INFO - Training: accuracy=0.9086 precision=0.7368 recall=0.1918 f1=0.3043 auc=0.8681 tn=622.0000 fp=5.0000 fn=59.0000 tp=14.0000 loss=0.2396 epoch_time=0.3908 
+2025-03-31 11:46:09,317 - training.trainer - INFO - Validation: accuracy=0.8900 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6033 tn=89.0000 fp=1.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3242 
+2025-03-31 11:46:09,333 - training.trainer - INFO - Early stopping counter: 10/50
+2025-03-31 11:46:10,701 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:10,701 - training.trainer - INFO - Epoch 19 Results:
+2025-03-31 11:46:10,701 - training.trainer - INFO - Training: accuracy=0.9100 precision=0.8125 recall=0.1781 f1=0.2921 auc=0.8862 tn=624.0000 fp=3.0000 fn=60.0000 tp=13.0000 loss=0.2266 epoch_time=0.3632 
+2025-03-31 11:46:10,701 - training.trainer - INFO - Validation: accuracy=0.9000 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5744 tn=90.0000 fp=0.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3407 
+2025-03-31 11:46:10,724 - training.trainer - INFO - Early stopping counter: 11/50
+2025-03-31 11:46:12,065 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:12,065 - training.trainer - INFO - Epoch 20 Results:
+2025-03-31 11:46:12,065 - training.trainer - INFO - Training: accuracy=0.9029 precision=0.6190 recall=0.1781 f1=0.2766 auc=0.8661 tn=619.0000 fp=8.0000 fn=60.0000 tp=13.0000 loss=0.2388 epoch_time=0.4018 
+2025-03-31 11:46:12,065 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6011 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3391 
+2025-03-31 11:46:12,079 - training.trainer - INFO - Early stopping counter: 12/50
+2025-03-31 11:46:13,575 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:13,577 - training.trainer - INFO - Epoch 21 Results:
+2025-03-31 11:46:13,577 - training.trainer - INFO - Training: accuracy=0.9200 precision=0.7576 recall=0.3425 f1=0.4717 auc=0.8977 tn=619.0000 fp=8.0000 fn=48.0000 tp=25.0000 loss=0.2210 epoch_time=0.3819 
+2025-03-31 11:46:13,577 - training.trainer - INFO - Validation: accuracy=0.8900 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5967 tn=89.0000 fp=1.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3422 
+2025-03-31 11:46:13,608 - training.trainer - INFO - Early stopping counter: 13/50
+2025-03-31 11:46:14,960 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:14,960 - training.trainer - INFO - Epoch 22 Results:
+2025-03-31 11:46:14,960 - training.trainer - INFO - Training: accuracy=0.9129 precision=0.9286 recall=0.1781 f1=0.2989 auc=0.9048 tn=626.0000 fp=1.0000 fn=60.0000 tp=13.0000 loss=0.2150 epoch_time=0.4047 
+2025-03-31 11:46:14,960 - training.trainer - INFO - Validation: accuracy=0.8900 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6089 tn=89.0000 fp=1.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3433 
+2025-03-31 11:46:14,979 - training.trainer - INFO - Early stopping counter: 14/50
+2025-03-31 11:46:16,284 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:16,284 - training.trainer - INFO - Epoch 23 Results:
+2025-03-31 11:46:16,284 - training.trainer - INFO - Training: accuracy=0.9157 precision=0.6842 recall=0.3562 f1=0.4685 auc=0.9194 tn=615.0000 fp=12.0000 fn=47.0000 tp=26.0000 loss=0.2071 epoch_time=0.3756 
+2025-03-31 11:46:16,284 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6278 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3459 
+2025-03-31 11:46:16,293 - training.trainer - INFO - Early stopping counter: 15/50
+2025-03-31 11:46:17,587 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:17,587 - training.trainer - INFO - Epoch 24 Results:
+2025-03-31 11:46:17,587 - training.trainer - INFO - Training: accuracy=0.9257 precision=0.8889 recall=0.3288 f1=0.4800 auc=0.8924 tn=624.0000 fp=3.0000 fn=49.0000 tp=24.0000 loss=0.2125 epoch_time=0.3767 
+2025-03-31 11:46:17,587 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5922 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3650 
+2025-03-31 11:46:17,605 - training.trainer - INFO - Early stopping counter: 16/50
+2025-03-31 11:46:19,053 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:19,053 - training.trainer - INFO - Epoch 25 Results:
+2025-03-31 11:46:19,053 - training.trainer - INFO - Training: accuracy=0.9300 precision=0.8529 recall=0.3973 f1=0.5421 auc=0.9388 tn=622.0000 fp=5.0000 fn=44.0000 tp=29.0000 loss=0.1813 epoch_time=0.3599 
+2025-03-31 11:46:19,053 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5989 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3571 
+2025-03-31 11:46:19,069 - training.trainer - INFO - Early stopping counter: 17/50
+2025-03-31 11:46:20,351 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:20,351 - training.trainer - INFO - Epoch 26 Results:
+2025-03-31 11:46:20,351 - training.trainer - INFO - Training: accuracy=0.9314 precision=0.8378 recall=0.4247 f1=0.5636 auc=0.9071 tn=621.0000 fp=6.0000 fn=42.0000 tp=31.0000 loss=0.2005 epoch_time=0.3951 
+2025-03-31 11:46:20,351 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5756 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3811 
+2025-03-31 11:46:20,369 - training.trainer - INFO - Early stopping counter: 18/50
+2025-03-31 11:46:21,681 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:21,685 - training.trainer - INFO - Epoch 27 Results:
+2025-03-31 11:46:21,685 - training.trainer - INFO - Training: accuracy=0.9314 precision=0.8049 recall=0.4521 f1=0.5789 auc=0.9516 tn=619.0000 fp=8.0000 fn=40.0000 tp=33.0000 loss=0.1649 epoch_time=0.3554 
+2025-03-31 11:46:21,685 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5789 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3860 
+2025-03-31 11:46:21,696 - training.trainer - INFO - Early stopping counter: 19/50
+2025-03-31 11:46:22,970 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:22,970 - training.trainer - INFO - Epoch 28 Results:
+2025-03-31 11:46:22,970 - training.trainer - INFO - Training: accuracy=0.9271 precision=0.7750 recall=0.4247 f1=0.5487 auc=0.9256 tn=618.0000 fp=9.0000 fn=42.0000 tp=31.0000 loss=0.1893 epoch_time=0.3910 
+2025-03-31 11:46:22,970 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5756 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.3852 
+2025-03-31 11:46:22,989 - training.trainer - INFO - Early stopping counter: 20/50
+2025-03-31 11:46:24,363 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:24,363 - training.trainer - INFO - Epoch 29 Results:
+2025-03-31 11:46:24,363 - training.trainer - INFO - Training: accuracy=0.9357 precision=0.8333 recall=0.4795 f1=0.6087 auc=0.9552 tn=620.0000 fp=7.0000 fn=38.0000 tp=35.0000 loss=0.1576 epoch_time=0.4573 
+2025-03-31 11:46:24,363 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5578 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4070 
+2025-03-31 11:46:24,379 - training.trainer - INFO - Early stopping counter: 21/50
+2025-03-31 11:46:25,685 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:25,685 - training.trainer - INFO - Epoch 30 Results:
+2025-03-31 11:46:25,685 - training.trainer - INFO - Training: accuracy=0.9414 precision=0.8478 recall=0.5342 f1=0.6555 auc=0.9607 tn=620.0000 fp=7.0000 fn=34.0000 tp=39.0000 loss=0.1460 epoch_time=0.3658 
+2025-03-31 11:46:25,685 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5633 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4067 
+2025-03-31 11:46:25,701 - training.trainer - INFO - Early stopping counter: 22/50
+2025-03-31 11:46:26,968 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:26,984 - training.trainer - INFO - Epoch 31 Results:
+2025-03-31 11:46:26,984 - training.trainer - INFO - Training: accuracy=0.9357 precision=0.7917 recall=0.5205 f1=0.6281 auc=0.9578 tn=617.0000 fp=10.0000 fn=35.0000 tp=38.0000 loss=0.1551 epoch_time=0.3600 
+2025-03-31 11:46:26,984 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5689 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4164 
+2025-03-31 11:46:26,987 - training.trainer - INFO - Early stopping counter: 23/50
+2025-03-31 11:46:28,234 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:28,236 - training.trainer - INFO - Epoch 32 Results:
+2025-03-31 11:46:28,236 - training.trainer - INFO - Training: accuracy=0.9243 precision=0.7381 recall=0.4247 f1=0.5391 auc=0.9374 tn=616.0000 fp=11.0000 fn=42.0000 tp=31.0000 loss=0.1769 epoch_time=0.3139 
+2025-03-31 11:46:28,236 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5744 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4184 
+2025-03-31 11:46:28,236 - training.trainer - INFO - Early stopping counter: 24/50
+2025-03-31 11:46:29,681 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:29,681 - training.trainer - INFO - Epoch 33 Results:
+2025-03-31 11:46:29,681 - training.trainer - INFO - Training: accuracy=0.9414 precision=0.7667 recall=0.6301 f1=0.6917 auc=0.9597 tn=613.0000 fp=14.0000 fn=27.0000 tp=46.0000 loss=0.1479 epoch_time=0.4188 
+2025-03-31 11:46:29,681 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5911 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4221 
+2025-03-31 11:46:29,701 - training.trainer - INFO - Early stopping counter: 25/50
+2025-03-31 11:46:31,265 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:31,266 - training.trainer - INFO - Epoch 34 Results:
+2025-03-31 11:46:31,266 - training.trainer - INFO - Training: accuracy=0.9486 precision=0.8776 recall=0.5890 f1=0.7049 auc=0.9696 tn=621.0000 fp=6.0000 fn=30.0000 tp=43.0000 loss=0.1338 epoch_time=0.3561 
+2025-03-31 11:46:31,267 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5856 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4142 
+2025-03-31 11:46:31,279 - training.trainer - INFO - Early stopping counter: 26/50
+2025-03-31 11:46:32,861 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:32,861 - training.trainer - INFO - Epoch 35 Results:
+2025-03-31 11:46:32,861 - training.trainer - INFO - Training: accuracy=0.9443 precision=0.8696 recall=0.5479 f1=0.6723 auc=0.9555 tn=621.0000 fp=6.0000 fn=33.0000 tp=40.0000 loss=0.1464 epoch_time=0.5060 
+2025-03-31 11:46:32,861 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5711 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4400 
+2025-03-31 11:46:32,879 - training.trainer - INFO - Early stopping counter: 27/50
+2025-03-31 11:46:34,396 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:34,396 - training.trainer - INFO - Epoch 36 Results:
+2025-03-31 11:46:34,396 - training.trainer - INFO - Training: accuracy=0.9471 precision=0.7903 recall=0.6712 f1=0.7259 auc=0.9533 tn=614.0000 fp=13.0000 fn=24.0000 tp=49.0000 loss=0.1472 epoch_time=0.4080 
+2025-03-31 11:46:34,396 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5811 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4360 
+2025-03-31 11:46:34,408 - training.trainer - INFO - Early stopping counter: 28/50
+2025-03-31 11:46:36,082 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:36,082 - training.trainer - INFO - Epoch 37 Results:
+2025-03-31 11:46:36,082 - training.trainer - INFO - Training: accuracy=0.9371 precision=0.8085 recall=0.5205 f1=0.6333 auc=0.9574 tn=618.0000 fp=9.0000 fn=35.0000 tp=38.0000 loss=0.1463 epoch_time=0.4602 
+2025-03-31 11:46:36,082 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5689 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4436 
+2025-03-31 11:46:36,111 - training.trainer - INFO - Early stopping counter: 29/50
+2025-03-31 11:46:37,625 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:37,629 - training.trainer - INFO - Epoch 38 Results:
+2025-03-31 11:46:37,629 - training.trainer - INFO - Training: accuracy=0.9514 precision=0.7910 recall=0.7260 f1=0.7571 auc=0.9744 tn=613.0000 fp=14.0000 fn=20.0000 tp=53.0000 loss=0.1290 epoch_time=0.4416 
+2025-03-31 11:46:37,629 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5867 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4356 
+2025-03-31 11:46:37,645 - training.trainer - INFO - Early stopping counter: 30/50
+2025-03-31 11:46:39,246 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:39,246 - training.trainer - INFO - Epoch 39 Results:
+2025-03-31 11:46:39,246 - training.trainer - INFO - Training: accuracy=0.9557 precision=0.8750 recall=0.6712 f1=0.7597 auc=0.9760 tn=620.0000 fp=7.0000 fn=24.0000 tp=49.0000 loss=0.1153 epoch_time=0.4970 
+2025-03-31 11:46:39,246 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6033 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4432 
+2025-03-31 11:46:39,262 - training.trainer - INFO - Early stopping counter: 31/50
+2025-03-31 11:46:40,841 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:40,841 - training.trainer - INFO - Epoch 40 Results:
+2025-03-31 11:46:40,841 - training.trainer - INFO - Training: accuracy=0.9414 precision=0.8200 recall=0.5616 f1=0.6667 auc=0.9628 tn=618.0000 fp=9.0000 fn=32.0000 tp=41.0000 loss=0.1381 epoch_time=0.4502 
+2025-03-31 11:46:40,841 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6033 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4313 
+2025-03-31 11:46:40,865 - training.trainer - INFO - Early stopping counter: 32/50
+2025-03-31 11:46:42,722 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:42,739 - training.trainer - INFO - Epoch 41 Results:
+2025-03-31 11:46:42,739 - training.trainer - INFO - Training: accuracy=0.9500 precision=0.7879 recall=0.7123 f1=0.7482 auc=0.9771 tn=613.0000 fp=14.0000 fn=21.0000 tp=52.0000 loss=0.1198 epoch_time=0.4756 
+2025-03-31 11:46:42,739 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5767 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4493 
+2025-03-31 11:46:42,753 - training.trainer - INFO - Early stopping counter: 33/50
+2025-03-31 11:46:44,606 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:44,606 - training.trainer - INFO - Epoch 42 Results:
+2025-03-31 11:46:44,606 - training.trainer - INFO - Training: accuracy=0.9586 precision=0.9231 recall=0.6575 f1=0.7680 auc=0.9815 tn=623.0000 fp=4.0000 fn=25.0000 tp=48.0000 loss=0.1082 epoch_time=0.4393 
+2025-03-31 11:46:44,607 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5967 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4922 
+2025-03-31 11:46:44,610 - training.trainer - INFO - Early stopping counter: 34/50
+2025-03-31 11:46:46,899 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:46,909 - training.trainer - INFO - Epoch 43 Results:
+2025-03-31 11:46:46,909 - training.trainer - INFO - Training: accuracy=0.9643 precision=0.8529 recall=0.7945 f1=0.8227 auc=0.9802 tn=617.0000 fp=10.0000 fn=15.0000 tp=58.0000 loss=0.1013 epoch_time=0.6898 
+2025-03-31 11:46:46,909 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5922 tn=88.0000 fp=2.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4739 
+2025-03-31 11:46:46,927 - training.trainer - INFO - Early stopping counter: 35/50
+2025-03-31 11:46:48,796 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:48,813 - training.trainer - INFO - Epoch 44 Results:
+2025-03-31 11:46:48,813 - training.trainer - INFO - Training: accuracy=0.9529 precision=0.8125 recall=0.7123 f1=0.7591 auc=0.9781 tn=615.0000 fp=12.0000 fn=21.0000 tp=52.0000 loss=0.1093 epoch_time=0.4909 
+2025-03-31 11:46:48,813 - training.trainer - INFO - Validation: accuracy=0.8500 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6067 tn=85.0000 fp=5.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4644 
+2025-03-31 11:46:48,830 - training.trainer - INFO - Early stopping counter: 36/50
+2025-03-31 11:46:50,751 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:50,753 - training.trainer - INFO - Epoch 45 Results:
+2025-03-31 11:46:50,753 - training.trainer - INFO - Training: accuracy=0.9614 precision=0.8382 recall=0.7808 f1=0.8085 auc=0.9751 tn=616.0000 fp=11.0000 fn=16.0000 tp=57.0000 loss=0.1119 epoch_time=0.5150 
+2025-03-31 11:46:50,753 - training.trainer - INFO - Validation: accuracy=0.8900 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.6056 tn=89.0000 fp=1.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4833 
+2025-03-31 11:46:50,767 - training.trainer - INFO - Early stopping counter: 37/50
+2025-03-31 11:46:52,697 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:52,697 - training.trainer - INFO - Epoch 46 Results:
+2025-03-31 11:46:52,697 - training.trainer - INFO - Training: accuracy=0.9571 precision=0.8525 recall=0.7123 f1=0.7761 auc=0.9835 tn=618.0000 fp=9.0000 fn=21.0000 tp=52.0000 loss=0.1020 epoch_time=0.5496 
+2025-03-31 11:46:52,697 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5811 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.4682 
+2025-03-31 11:46:52,719 - training.trainer - INFO - Early stopping counter: 38/50
+2025-03-31 11:46:54,793 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:54,793 - training.trainer - INFO - Epoch 47 Results:
+2025-03-31 11:46:54,793 - training.trainer - INFO - Training: accuracy=0.9600 precision=0.8462 recall=0.7534 f1=0.7971 auc=0.9841 tn=617.0000 fp=10.0000 fn=18.0000 tp=55.0000 loss=0.0989 epoch_time=0.6689 
+2025-03-31 11:46:54,793 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5522 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.5152 
+2025-03-31 11:46:54,819 - training.trainer - INFO - Early stopping counter: 39/50
+2025-03-31 11:46:56,693 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:56,707 - training.trainer - INFO - Epoch 48 Results:
+2025-03-31 11:46:56,707 - training.trainer - INFO - Training: accuracy=0.9629 precision=0.8730 recall=0.7534 f1=0.8088 auc=0.9818 tn=619.0000 fp=8.0000 fn=18.0000 tp=55.0000 loss=0.0963 epoch_time=0.5396 
+2025-03-31 11:46:56,707 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5622 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.5492 
+2025-03-31 11:46:56,722 - training.trainer - INFO - Early stopping counter: 40/50
+2025-03-31 11:46:58,950 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:46:58,952 - training.trainer - INFO - Epoch 49 Results:
+2025-03-31 11:46:58,952 - training.trainer - INFO - Training: accuracy=0.9629 precision=0.8852 recall=0.7397 f1=0.8060 auc=0.9886 tn=620.0000 fp=7.0000 fn=19.0000 tp=54.0000 loss=0.0878 epoch_time=0.6905 
+2025-03-31 11:46:58,952 - training.trainer - INFO - Validation: accuracy=0.8600 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5678 tn=86.0000 fp=4.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.5684 
+2025-03-31 11:46:58,966 - training.trainer - INFO - Early stopping counter: 41/50
+2025-03-31 11:47:01,053 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:47:01,053 - training.trainer - INFO - Epoch 50 Results:
+2025-03-31 11:47:01,053 - training.trainer - INFO - Training: accuracy=0.9743 precision=0.9365 recall=0.8082 f1=0.8676 auc=0.9886 tn=623.0000 fp=4.0000 fn=14.0000 tp=59.0000 loss=0.0824 epoch_time=0.5652 
+2025-03-31 11:47:01,053 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5589 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.5758 
+2025-03-31 11:47:01,069 - training.trainer - INFO - Early stopping counter: 42/50
+2025-03-31 11:47:03,185 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:47:03,185 - training.trainer - INFO - Epoch 51 Results:
+2025-03-31 11:47:03,185 - training.trainer - INFO - Training: accuracy=0.9614 precision=0.8382 recall=0.7808 f1=0.8085 auc=0.9889 tn=616.0000 fp=11.0000 fn=16.0000 tp=57.0000 loss=0.0853 epoch_time=0.4615 
+2025-03-31 11:47:03,185 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5433 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.5883 
+2025-03-31 11:47:03,209 - training.trainer - INFO - Early stopping counter: 43/50
+2025-03-31 11:47:04,983 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:47:04,983 - training.trainer - INFO - Epoch 52 Results:
+2025-03-31 11:47:04,983 - training.trainer - INFO - Training: accuracy=0.9700 precision=0.8939 recall=0.8082 f1=0.8489 auc=0.9930 tn=620.0000 fp=7.0000 fn=14.0000 tp=59.0000 loss=0.0703 epoch_time=0.4289 
+2025-03-31 11:47:04,983 - training.trainer - INFO - Validation: accuracy=0.8600 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5411 tn=86.0000 fp=4.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.6128 
+2025-03-31 11:47:04,998 - training.trainer - INFO - Early stopping counter: 44/50
+2025-03-31 11:47:06,985 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:47:06,985 - training.trainer - INFO - Epoch 53 Results:
+2025-03-31 11:47:06,985 - training.trainer - INFO - Training: accuracy=0.9657 precision=0.8451 recall=0.8219 f1=0.8333 auc=0.9920 tn=616.0000 fp=11.0000 fn=13.0000 tp=60.0000 loss=0.0751 epoch_time=0.5083 
+2025-03-31 11:47:06,985 - training.trainer - INFO - Validation: accuracy=0.8600 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5500 tn=86.0000 fp=4.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.5949 
+2025-03-31 11:47:06,990 - training.trainer - INFO - Early stopping counter: 45/50
+2025-03-31 11:47:08,810 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:47:08,810 - training.trainer - INFO - Epoch 54 Results:
+2025-03-31 11:47:08,810 - training.trainer - INFO - Training: accuracy=0.9714 precision=0.8732 recall=0.8493 f1=0.8611 auc=0.9882 tn=618.0000 fp=9.0000 fn=11.0000 tp=62.0000 loss=0.0801 epoch_time=0.5165 
+2025-03-31 11:47:08,810 - training.trainer - INFO - Validation: accuracy=0.8600 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5644 tn=86.0000 fp=4.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.5876 
+2025-03-31 11:47:08,825 - training.trainer - INFO - Early stopping counter: 46/50
+2025-03-31 11:47:10,344 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:47:10,344 - training.trainer - INFO - Epoch 55 Results:
+2025-03-31 11:47:10,344 - training.trainer - INFO - Training: accuracy=0.9614 precision=0.8194 recall=0.8082 f1=0.8138 auc=0.9899 tn=614.0000 fp=13.0000 fn=14.0000 tp=59.0000 loss=0.0810 epoch_time=0.4595 
+2025-03-31 11:47:10,344 - training.trainer - INFO - Validation: accuracy=0.8600 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5556 tn=86.0000 fp=4.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.6108 
+2025-03-31 11:47:10,365 - training.trainer - INFO - Early stopping counter: 47/50
+2025-03-31 11:47:11,817 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:47:11,817 - training.trainer - INFO - Epoch 56 Results:
+2025-03-31 11:47:11,817 - training.trainer - INFO - Training: accuracy=0.9729 precision=0.9091 recall=0.8219 f1=0.8633 auc=0.9841 tn=621.0000 fp=6.0000 fn=13.0000 tp=60.0000 loss=0.0812 epoch_time=0.4137 
+2025-03-31 11:47:11,817 - training.trainer - INFO - Validation: accuracy=0.8600 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5411 tn=86.0000 fp=4.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.6545 
+2025-03-31 11:47:11,833 - training.trainer - INFO - Early stopping counter: 48/50
+2025-03-31 11:47:13,299 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:47:13,300 - training.trainer - INFO - Epoch 57 Results:
+2025-03-31 11:47:13,300 - training.trainer - INFO - Training: accuracy=0.9643 precision=0.8636 recall=0.7808 f1=0.8201 auc=0.9892 tn=618.0000 fp=9.0000 fn=16.0000 tp=57.0000 loss=0.0830 epoch_time=0.3691 
+2025-03-31 11:47:13,300 - training.trainer - INFO - Validation: accuracy=0.8700 precision=0.0000 recall=0.0000 f1=0.0000 auc=0.5489 tn=87.0000 fp=3.0000 fn=10.0000 tp=0.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.6174 
+2025-03-31 11:47:13,305 - training.trainer - INFO - Early stopping counter: 49/50
+2025-03-31 11:47:14,749 - training.trainer - INFO - --------------------------------------------------
+2025-03-31 11:47:14,750 - training.trainer - INFO - Epoch 58 Results:
+2025-03-31 11:47:14,751 - training.trainer - INFO - Training: accuracy=0.9657 precision=0.8889 recall=0.7671 f1=0.8235 auc=0.9858 tn=620.0000 fp=7.0000 fn=17.0000 tp=56.0000 loss=0.0834 epoch_time=0.3633 
+2025-03-31 11:47:14,751 - training.trainer - INFO - Validation: accuracy=0.8800 precision=0.2500 recall=0.1000 f1=0.1429 auc=0.5567 tn=87.0000 fp=3.0000 fn=9.0000 tp=1.0000 ndcg@5=0.1010 ndcg@10=0.1010 ndcg@20=0.1010 map@5=0.1010 map@10=0.1010 map@20=0.1010 loss=0.5862 
+2025-03-31 11:47:14,751 - training.trainer - INFO - Early stopping counter: 50/50
+2025-03-31 11:47:14,765 - training.trainer - INFO - Early stopping triggered after 58 epochs
+2025-03-31 11:47:14,765 - training.trainer - INFO - Training completed
+2025-03-31 11:47:14,765 - root - INFO - Training history saved to logs\training_history.csv
+2025-03-31 11:47:14,765 - root - INFO - Evaluating model on test set...
+2025-03-31 11:47:14,765 - training.trainer - INFO - Evaluating model on test set
+2025-03-31 11:47:14,952 - training.trainer - INFO - Test Results:
+2025-03-31 11:47:14,952 - training.trainer - INFO -   accuracy: 0.8500
+2025-03-31 11:47:14,952 - training.trainer - INFO -   precision: 0.2000
+2025-03-31 11:47:14,952 - training.trainer - INFO -   recall: 0.1429
+2025-03-31 11:47:14,967 - training.trainer - INFO -   f1: 0.1667
+2025-03-31 11:47:14,967 - training.trainer - INFO -   auc: 0.6414
+2025-03-31 11:47:14,967 - training.trainer - INFO -   tn: 167.0000
+2025-03-31 11:47:14,967 - training.trainer - INFO -   fp: 12.0000
+2025-03-31 11:47:14,967 - training.trainer - INFO -   fn: 18.0000
+2025-03-31 11:47:14,967 - training.trainer - INFO -   tp: 3.0000
+2025-03-31 11:47:14,967 - training.trainer - INFO -   ndcg@5: 0.1053
+2025-03-31 11:47:14,967 - training.trainer - INFO -   ndcg@10: 0.1053
+2025-03-31 11:47:14,967 - training.trainer - INFO -   ndcg@20: 0.1053
+2025-03-31 11:47:14,967 - training.trainer - INFO -   map@5: 0.1046
+2025-03-31 11:47:14,971 - training.trainer - INFO -   map@10: 0.1046
+2025-03-31 11:47:14,971 - training.trainer - INFO -   map@20: 0.1046
+2025-03-31 11:47:14,971 - training.trainer - INFO -   loss: 0.7629
+2025-03-31 11:47:14,976 - training.trainer - INFO - Saved test results to logs\test_results.csv
+2025-03-31 11:47:14,977 - root - INFO - Test Set Metrics:
+2025-03-31 11:47:14,977 - root - INFO - accuracy: 0.8500
+2025-03-31 11:47:14,977 - root - INFO - precision: 0.2000
+2025-03-31 11:47:14,977 - root - INFO - recall: 0.1429
+2025-03-31 11:47:14,978 - root - INFO - f1: 0.1667
+2025-03-31 11:47:14,978 - root - INFO - auc: 0.6414
+2025-03-31 11:47:14,978 - root - INFO - tn: 167.0000
+2025-03-31 11:47:14,978 - root - INFO - fp: 12.0000
+2025-03-31 11:47:14,979 - root - INFO - fn: 18.0000
+2025-03-31 11:47:14,979 - root - INFO - tp: 3.0000
+2025-03-31 11:47:14,979 - root - INFO - ndcg@5: 0.1053
+2025-03-31 11:47:14,979 - root - INFO - ndcg@10: 0.1053
+2025-03-31 11:47:14,979 - root - INFO - ndcg@20: 0.1053
+2025-03-31 11:47:14,979 - root - INFO - map@5: 0.1046
+2025-03-31 11:47:14,980 - root - INFO - map@10: 0.1046
+2025-03-31 11:47:14,980 - root - INFO - map@20: 0.1046
+2025-03-31 11:47:14,980 - root - INFO - loss: 0.7629
+2025-03-31 11:47:14,983 - root - INFO - Test metrics saved to evaluation/metrics\test_metrics.csv
+2025-03-31 11:47:14,983 - root - INFO - ================================================================================
+2025-03-31 11:47:14,983 - root - INFO - Training completed at 2025-03-31 11:47:14
+2025-03-31 11:47:14,984 - root - INFO - ================================================================================
