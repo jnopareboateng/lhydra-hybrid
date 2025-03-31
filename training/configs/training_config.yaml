@@ -6,21 +6,43 @@ model:
   hidden_dims: [128, 64] # Hidden layer dimensions for towers
   prediction_dims: [64, 32] # Hidden layer dimensions for prediction layers
   dropout: 0.2 # Dropout rate
+  final_layer_size: 16 # Size of final layer before prediction
+  user_tower:
+    hidden_layers: [128, 64] # Hidden layer dimensions for user tower
+    dropout: 0.2 # Dropout rate for user tower
+    activation: "relu" # Activation function for user tower
+  item_tower:
+    hidden_layers: [128, 64] # Hidden layer dimensions for item tower
+    dropout: 0.2 # Dropout rate for item tower
+    activation: "relu" # Activation function for item tower
 
 # Training configuration
 training:
   learning_rate: 0.001 # Initial learning rate
-  weight_decay: 1e-5 # Weight decay for regularization
-  num_epochs: 100 # Maximum number of epochs
-  patience: 10 # Early stopping patience
+  weight_decay: 1e-4 # Weight decay for regularization
+  num_epochs: 200 # Maximum number of epochs
+  patience: 50 # Early stopping patience
   batch_size: 64 # Batch size
   num_workers: 4 # Number of workers for data loading
   checkpoint_dir: "models/checkpoints" # Directory to save checkpoints
   log_dir: "logs" # Directory to save logs
+  optimizer: "adam" # Optimizer to use
+  loss_function: "binary_cross_entropy" # Loss function to use
+  lr_scheduler:
+    use: true # Whether to use learning rate scheduler
+    factor: 0.5 # Factor to decrease learning rate by
+    patience: 50 # Patience for lr scheduler
+  early_stopping_patience: 50 # Patience for early stopping
 
 # Data configuration
 data:
   target_column: "high_engagement" # Target column name
+
+  # Data paths (can be overridden by command line args)
+  train_path: "data/interactions.csv" # Path to interactions file
+  preprocessed_data_dir: "data/preprocessed" # Directory containing preprocessed data
+  user_features_path: "data/user_features.csv" # Path to user features file (optional)
+  item_features_path: "data/item_features.csv" # Path to item features file (optional)
 
   # User features
   user_demographic_features: # User demographic features
@@ -83,7 +105,7 @@ data:
   target_threshold: 5 # Threshold for high engagement
   test_size: 0.2 # Test set size
   validation_size: 0.1 # Validation set size
-  random_state: 42 # Random seed
+  random_seed: 42 # Random seed
   embedding_dim: 32 # Dimension for embedding layers
 
 # Evaluation configuration
@@ -92,3 +114,13 @@ evaluation:
   save_predictions: true # Whether to save predictions
   save_metrics: true # Whether to save metrics
   cohort_analysis: true # Whether to perform cohort analysis
+  metrics_dir: "evaluation/metrics" # Directory to save metrics
+  predictions_dir: "evaluation/predictions" # Directory to save predictions
+
+# Logging configuration
+logging:
+  log_dir: "logs" # Directory to save logs
+  tensorboard: true # Whether to use tensorboard
+  log_frequency: 100 # Frequency of logging
+  model_checkpoint_dir: "models/checkpoints" # Directory to save model checkpoints
+  save_best_only: true # Whether to save only the best model
