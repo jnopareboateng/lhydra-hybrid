@@ -20,8 +20,8 @@ model:
 training:
   learning_rate: 0.001 # Initial learning rate
   weight_decay: 1e-4 # Weight decay for regularization
-  num_epochs: 200 # Maximum number of epochs
-  patience: 50 # Early stopping patience
+  num_epochs: 100 # Maximum number of epochs
+  patience: 10 # Early stopping patience
   batch_size: 64 # Batch size
   num_workers: 4 # Number of workers for data loading
   checkpoint_dir: "models/checkpoints" # Directory to save checkpoints
@@ -31,18 +31,20 @@ training:
   lr_scheduler:
     use: true # Whether to use learning rate scheduler
     factor: 0.5 # Factor to decrease learning rate by
-    patience: 50 # Patience for lr scheduler
-  early_stopping_patience: 50 # Patience for early stopping
+    patience: 5 # Patience for lr scheduler
+  early_stopping_patience: 10 # Patience for early stopping
 
 # Data configuration
 data:
   target_column: "high_engagement" # Target column name
 
   # Data paths (can be overridden by command line args)
-  train_path: "data/interactions.csv" # Path to interactions file
-  preprocessed_data_dir: "data/preprocessed" # Directory containing preprocessed data
-  user_features_path: "data/user_features.csv" # Path to user features file (optional)
-  item_features_path: "data/item_features.csv" # Path to item features file (optional)
+  train_path: "notebooks/shipping_10k_data/train_data.csv" # Path to interactions file
+  preprocessed_data_dir: "notebooks/shipping_10k_data" # Directory containing preprocessed data
+  user_features_path: "notebooks/shipping_10k_data/features/user_features.csv" # Path to user features file (optional)
+  item_features_path: "notebooks/shipping_10k_data/features/item_features.csv" # Path to item features file (optional)
+  feature_manifest_path: "notebooks/shipping_10k_data/feature_manifest.yaml" # Path to feature manifest file (optional)
+  output_dir: "notebooks/shipping_10k_data" # Directory to save features
 
   # User features
   user_demographic_features: # User demographic features

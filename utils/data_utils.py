@@ -147,10 +147,39 @@ def preprocess_item_features(item_features_df, normalize=True):
     logger.info(f"Preprocessed item features, shape: {df.shape}")
     return df, metadata
 
+def save_features_to_csv(user_features_df, item_features_df, output_dir):
+    """
+    Save user and item features to CSV files
+    
+    Args:
+        user_features_df (pandas.DataFrame): User features DataFrame
+        item_features_df (pandas.DataFrame): Item features DataFrame
+        output_dir (str): Directory to save the CSV files
+        
+    Returns:
+        tuple: (user_features_path, item_features_path)
+    """
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Save user features
+    user_features_path = os.path.join(output_dir, "user_features.csv")
+    user_features_df.to_csv(user_features_path, index=False)
+    logger.info(f"Saved user features to {user_features_path}")
+    
+    # Save item features
+    item_features_path = os.path.join(output_dir, "item_features.csv")
+    item_features_df.to_csv(item_features_path, index=False)
+    logger.info(f"Saved item features to {item_features_path}")
+    
+    return user_features_path, item_features_path
+
 def prepare_user_item_data(
     interactions_df: pd.DataFrame,
     config: Dict,
-    use_high_engagement: bool = True
+    use_high_engagement: bool = True,
+    save_features: bool = False,
+    output_dir: str = None
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
     Prepare user and item data frames from the interactions dataframe for model training
@@ -159,6 +188,8 @@ def prepare_user_item_data(
         interactions_df (pandas.DataFrame): DataFrame with user-item interactions
         config (dict): Configuration with feature definitions
         use_high_engagement (bool): Whether to use high_engagement or engagement column
+        save_features (bool): Whether to save user and item features to CSV files
+        output_dir (str): Directory to save feature CSV files if save_features is True
         
     Returns:
         tuple: (interactions_df, user_features_df, item_features_df)
@@ -223,6 +254,15 @@ def prepare_user_item_data(
         if 'engagement' not in interactions_df.columns:
             interactions_df['engagement'] = interactions_df['high_engagement']
             logger.info("Copied 'high_engagement' column to 'engagement' for compatibility")
+    
+    # Save features to CSV if requested
+    if save_features and output_dir:
+        user_features_path, item_features_path = save_features_to_csv(
+            user_features_df,
+            item_features_df,
+            output_dir
+        )
+        logger.info(f"Saved feature files to {output_dir}")
     
     return interactions_df, user_features_df, item_features_df
 

@@ -661,7 +661,10 @@ class MusicDataPreprocessor:
         # 5. Split data
         train_df, val_df, test_df = self.split_data(df_encoded)
         
-        # 6. Save processed data if save_dir is provided
+        # 6. Create feature manifest
+        manifest = self.create_feature_manifest(train_df)
+        
+        # 7. Save processed data if save_dir is provided
         if save_dir:
             os.makedirs(save_dir, exist_ok=True)
             self.logger.info(f"Saving processed data to {save_dir}")
@@ -680,16 +683,32 @@ class MusicDataPreprocessor:
             preprocessor_path = os.path.join(save_dir, "preprocessor.joblib")
             joblib.dump(self, preprocessor_path)
             
+            # Save feature manifest
+            manifest_path = self.save_feature_manifest(save_dir)
+            
             self.logger.log_file_access(train_path, "write")
             self.logger.log_file_access(val_path, "write")
             self.logger.log_file_access(test_path, "write")
             self.logger.log_file_access(preprocessor_path, "write")
+            self.logger.log_file_access(manifest_path, "write")
+        
+        # Check compatibility of validation and test sets
+        val_report = self.check_feature_compatibility(val_df, manifest)
+        test_report = self.check_feature_compatibility(test_df, manifest)
+        
+        # Log any compatibility warnings
+        if not val_report["is_compatible"]:
+            self.logger.warning(f"Validation set is not fully compatible with manifest: {val_report['issues']}")
+        if not test_report["is_compatible"]:
+            self.logger.warning(f"Test set is not fully compatible with manifest: {test_report['issues']}")
         
         self.logger.log_experiment_end("Data Preprocessing", {
             "train_size": len(train_df),
             "val_size": len(val_df),
             "test_size": len(test_df),
-            "num_features": len(train_df.columns) - 2  # Excluding ID and target columns
+            "user_features_count": manifest["user_features"]["dimension"],
+            "item_features_count": manifest["item_features"]["dimension"],
+            "total_features": len(train_df.columns) - len(manifest["ids"]["columns"]) - 1  # Excluding ID and target columns
         })
         
         return train_df, val_df, test_df
@@ -731,6 +750,257 @@ class MusicDataPreprocessor:
                 self.logger.debug(f"Set embedding dimension for {col}: {embedding_dims[col]}")
         
         return embedding_dims
+    
+    @log_function()
+    def create_feature_manifest(self, df=None):
+        """
+        Create a manifest of features to ensure consistency between training and evaluation.
+        
+        Args:
+            df (pd.DataFrame, optional): DataFrame to analyze. If None, uses self.train_data.
+            
+        Returns:
+            dict: Manifest containing feature information.
+        """
+        if df is None:
+            df = self.train_data
+            
+        if df is None:
+            self.logger.error("No data available for creating feature manifest")
+            raise ValueError("No data available for creating feature manifest")
+            
+        self.logger.info("Creating feature manifest")
+        
+        # Initialize manifest
+        manifest = {
+            "user_features": {
+                "columns": [],
+                "dimension": 0,
+                "types": {}
+            },
+            "item_features": {
+                "columns": [],
+                "dimension": 0,
+                "types": {}
+            },
+            "ids": {
+                "columns": [],
+                "cardinalities": {}
+            },
+            "target": {
+                "column": self.config.get('target_column', 'playcount'),
+                "high_engagement_column": "high_engagement",
+                "threshold": self.config.get('target_threshold', 5)
+            },
+            "metadata": {
+                "creation_timestamp": datetime.now().isoformat(),
+                "original_columns_count": len(df.columns),
+                "version": "1.0"
+            }
+        }
+        
+        # Group columns by type
+        user_features = []
+        item_features = []
+        id_columns = []
+        
+        # User feature groups
+        demographic_cols = [col for col in df.columns if col.startswith(('gender_', 'age_', 'region_', 'country_'))]
+        user_features.extend(demographic_cols)
+        
+        listening_cols = [col for col in df.columns if col.startswith(('monthly_hours', 'genre_diversity', 'top_genre_'))]
+        user_features.extend(listening_cols)
+        
+        audio_profile_cols = [col for col in df.columns if col.startswith('avg_')]
+        user_features.extend(audio_profile_cols)
+        
+        user_engineered_cols = [col for col in df.columns 
+                            if any(x in col for x in ['listening_depth', 'age_group_'])]
+        user_features.extend(user_engineered_cols)
+        
+        # Item feature groups
+        audio_cols = [col for col in df.columns 
+                    if col in ['danceability', 'energy', 'key', 'loudness', 'mode',
+                            'speechiness', 'acousticness', 'instrumentalness',
+                            'liveness', 'valence', 'tempo', 'time_signature']]
+        item_features.extend(audio_cols)
+        
+        genre_cols = [col for col in df.columns if col.startswith('main_genre_')]
+        item_features.extend(genre_cols)
+        
+        temporal_cols = [col for col in df.columns 
+                        if col in ['year', 'song_age', 'is_recent']]
+        item_features.extend(temporal_cols)
+        
+        item_engineered_cols = [col for col in df.columns 
+                            if any(x in col for x in ['duration_', 'mood_category', 'energy_loudness', 
+                                                    'valence_danceability', '_diff', '_abs_diff'])]
+        item_features.extend(item_engineered_cols)
+        
+        # ID columns
+        for col in ['user_id', 'track_id', 'artist']:
+            if col in df.columns:
+                id_columns.append(col)
+                if col in self.label_encoders:
+                    manifest["ids"]["cardinalities"][col] = len(self.label_encoders[col].classes_)
+                else:
+                    manifest["ids"]["cardinalities"][col] = df[col].nunique()
+        
+        # Remove duplicates while preserving order
+        user_features = list(dict.fromkeys(user_features))
+        item_features = list(dict.fromkeys(item_features))
+        
+        # Store in manifest
+        manifest["user_features"]["columns"] = user_features
+        manifest["user_features"]["dimension"] = len(user_features)
+        manifest["item_features"]["columns"] = item_features
+        manifest["item_features"]["dimension"] = len(item_features)
+        manifest["ids"]["columns"] = id_columns
+        
+        # Store data types for each column
+        for col in user_features:
+            manifest["user_features"]["types"][col] = str(df[col].dtype)
+        
+        for col in item_features:
+            manifest["item_features"]["types"][col] = str(df[col].dtype)
+        
+        # Add combined feature counts for model input dimensions
+        manifest["model_dimensions"] = {
+            "user_input_dim": len(user_features),
+            "item_input_dim": len(item_features)
+        }
+        
+        # Add scaler info if available
+        if hasattr(self, 'scalers') and self.scalers:
+            manifest["scaling"] = {
+                "numerical_features_scaled": 'numerical' in self.scalers,
+                "scaler_type": "StandardScaler"
+            }
+        
+        # Add encoding info if available
+        if hasattr(self, 'encoders') and self.encoders:
+            manifest["encoding"] = {
+                "categorical_features_encoded": list(self.encoders.keys()),
+                "encoder_type": "OneHotEncoder"
+            }
+        
+        self.logger.info(f"Created feature manifest with {len(user_features)} user features and {len(item_features)} item features")
+        self.feature_manifest = manifest
+        
+        return manifest
+    
+    @log_function()
+    def save_feature_manifest(self, output_dir):
+        """
+        Save the feature manifest to a file.
+        
+        Args:
+            output_dir (str): Directory to save the manifest file.
+            
+        Returns:
+            str: Path to the saved manifest file.
+        """
+        if not hasattr(self, 'feature_manifest'):
+            self.logger.warning("Feature manifest not created yet. Creating now.")
+            self.create_feature_manifest()
+        
+        os.makedirs(output_dir, exist_ok=True)
+        manifest_path = os.path.join(output_dir, "feature_manifest.yaml")
+        
+        with open(manifest_path, 'w') as f:
+            yaml.dump(self.feature_manifest, f, default_flow_style=False)
+        
+        self.logger.info(f"Saved feature manifest to {manifest_path}")
+        
+        return manifest_path
+        
+    @log_function()
+    def check_feature_compatibility(self, df, manifest=None):
+        """
+        Check if a dataframe is compatible with the feature manifest.
+        
+        Args:
+            df (pd.DataFrame): DataFrame to check.
+            manifest (dict, optional): Feature manifest to check against. If None, uses self.feature_manifest.
+            
+        Returns:
+            dict: Compatibility report with any issues found.
+        """
+        if manifest is None:
+            if not hasattr(self, 'feature_manifest'):
+                self.logger.warning("Feature manifest not created yet. Creating now.")
+                self.create_feature_manifest()
+            manifest = self.feature_manifest
+        
+        self.logger.info("Checking feature compatibility")
+        
+        report = {
+            "is_compatible": True,
+            "issues": [],
+            "missing_user_features": [],
+            "missing_item_features": [],
+            "extra_user_features": [],
+            "extra_item_features": [],
+            "dimension_mismatch": {
+                "user": False,
+                "item": False
+            }
+        }
+        
+        # Check user features
+        expected_user_features = set(manifest["user_features"]["columns"])
+        actual_user_features = set(col for col in df.columns if col in expected_user_features)
+        
+        report["missing_user_features"] = list(expected_user_features - actual_user_features)
+        
+        # Check item features
+        expected_item_features = set(manifest["item_features"]["columns"])
+        actual_item_features = set(col for col in df.columns if col in expected_item_features)
+        
+        report["missing_item_features"] = list(expected_item_features - actual_item_features)
+        
+        # Check for extra features (not in the manifest)
+        all_expected_features = expected_user_features | expected_item_features | set(manifest["ids"]["columns"])
+        all_expected_features.add(manifest["target"]["high_engagement_column"])
+        
+        extra_features = set(df.columns) - all_expected_features
+        
+        # Categorize extra features
+        for feature in extra_features:
+            if any(feature.startswith(prefix) for prefix in ['gender_', 'age_', 'region_', 'country_', 'monthly_hours', 'genre_diversity', 'top_genre_', 'avg_', 'listening_depth']):
+                report["extra_user_features"].append(feature)
+            elif any(feature.startswith(prefix) for prefix in ['main_genre_', 'duration_', 'mood_category', 'energy_loudness', 'valence_danceability']):
+                report["extra_item_features"].append(feature)
+        
+        # Check dimension compatibility
+        if len(actual_user_features) != manifest["user_features"]["dimension"]:
+            report["dimension_mismatch"]["user"] = True
+            report["issues"].append(f"User feature dimension mismatch: expected {manifest['user_features']['dimension']}, got {len(actual_user_features)}")
+            report["is_compatible"] = False
+        
+        if len(actual_item_features) != manifest["item_features"]["dimension"]:
+            report["dimension_mismatch"]["item"] = True
+            report["issues"].append(f"Item feature dimension mismatch: expected {manifest['item_features']['dimension']}, got {len(actual_item_features)}")
+            report["is_compatible"] = False
+        
+        # Check if target column exists
+        if manifest["target"]["high_engagement_column"] not in df.columns:
+            report["issues"].append(f"Target column '{manifest['target']['high_engagement_column']}' not found")
+            report["is_compatible"] = False
+        
+        # Check if ID columns exist
+        for id_col in manifest["ids"]["columns"]:
+            if id_col not in df.columns:
+                report["issues"].append(f"ID column '{id_col}' not found")
+                report["is_compatible"] = False
+        
+        # Log report
+        if report["is_compatible"]:
+            self.logger.info("Data is compatible with feature manifest")
+        else:
+            self.logger.warning(f"Data is not compatible with feature manifest. Issues: {report['issues']}")
+        
+        return report
 
 
 if __name__ == "__main__":

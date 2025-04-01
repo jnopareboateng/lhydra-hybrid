@@ -56,7 +56,7 @@ cover/
 *.pot
 
 # Django stuff:
-*.log
+# *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -175,3 +175,14 @@ cython_debug/
 
 # 
 data/kaagle
+
+
+# Ignore all files in the data directory
+training/metrics.py
+models/hybrid_model.py
+scripts/evaluate_model.py
+scripts/generate_sample_data.py
+data/dataset.py
+evaluation_old/
+logs_old/
+

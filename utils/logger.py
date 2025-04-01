@@ -192,6 +192,10 @@ class LhydraLogger:
             self.logger.critical(message, exc_info=exc_info)
         else:
             self.logger.critical(message)
+            
+    def isEnabledFor(self, level):
+        """Check if a specific log level is enabled"""
+        return self.logger.isEnabledFor(level)
 
 # Function decorator for logging function calls
 def log_function(logger=None):

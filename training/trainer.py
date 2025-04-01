@@ -362,6 +362,7 @@ class HybridModelTrainer:
         test_loss = 0.0
         all_targets = []
         all_predictions = []
+        all_probabilities = []
         all_user_ids = []
         
         # with torch.no_grad():
@@ -384,19 +385,21 @@ class HybridModelTrainer:
                 
                 # Store predictions and targets for metrics calculation
                 all_targets.extend(targets.cpu().numpy())
-                all_predictions.extend(outputs.cpu().numpy())
+                all_predictions.extend((outputs > 0.5).float().cpu().numpy())
+                all_probabilities.extend(outputs.cpu().numpy())
                 all_user_ids.extend(user_ids)
         
         # Convert to numpy arrays
         all_targets = np.array(all_targets)
         all_predictions = np.array(all_predictions)
+        all_probabilities = np.array(all_probabilities)
         all_user_ids = np.array(all_user_ids)
         
         # Calculate metrics
         metrics = calculate_all_metrics(
             all_targets, 
             all_predictions, 
-            all_predictions, 
+            all_probabilities, 
             user_ids=all_user_ids,
             k_values=self.config['evaluation']['k_values']
         )
@@ -412,4 +415,128 @@ class HybridModelTrainer:
         pd.DataFrame([metrics]).to_csv(results_file, index=False)
         logger.info(f"Saved test results to {results_file}")
         
-        return metrics 
+        # Generate and save evaluation plots
+        plots_dir = os.path.join(self.config['logging']['log_dir'], 'evaluation_plots')
+        os.makedirs(plots_dir, exist_ok=True)
+        self.generate_evaluation_plots(all_targets, all_predictions, all_probabilities, plots_dir)
+        
+        return metrics
+    
+    def generate_evaluation_plots(self, targets, predictions, probabilities, output_dir):
+        """
+        Generate and save evaluation plots
+        
+        Args:
+            targets (np.ndarray): Ground truth labels
+            predictions (np.ndarray): Predicted binary labels
+            probabilities (np.ndarray): Predicted probabilities
+            output_dir (str): Directory to save plots
+        """
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        from sklearn.metrics import roc_curve, precision_recall_curve, auc, confusion_matrix
+        
+        logger.info("Generating evaluation plots")
+        
+        # Plot confusion matrix
+        cm = confusion_matrix(targets, predictions)
+        
+        plt.figure(figsize=(8, 6))
+        sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
+                   xticklabels=['Low Engagement', 'High Engagement'],
+                   yticklabels=['Low Engagement', 'High Engagement'])
+        plt.xlabel('Predicted')
+        plt.ylabel('Actual')
+        plt.title('Confusion Matrix')
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, "confusion_matrix.png"))
+        plt.close()
+        
+        # Plot ROC curve
+        fpr, tpr, _ = roc_curve(targets, probabilities)
+        roc_auc = auc(fpr, tpr)
+        
+        plt.figure(figsize=(8, 6))
+        plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (AUC = {roc_auc:.3f})')
+        plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.title('Receiver Operating Characteristic (ROC) Curve')
+        plt.legend(loc="lower right")
+        plt.grid(True)
+        plt.savefig(os.path.join(output_dir, "roc_curve.png"))
+        plt.close()
+        
+        # Plot Precision-Recall curve
+        precision, recall, _ = precision_recall_curve(targets, probabilities)
+        pr_auc = auc(recall, precision)
+        
+        plt.figure(figsize=(8, 6))
+        plt.plot(recall, precision, color='darkred', lw=2, label=f'PR curve (AUC = {pr_auc:.3f})')
+        plt.fill_between(recall, precision, alpha=0.2, color='lightcoral')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('Recall')
+        plt.ylabel('Precision')
+        plt.title('Precision-Recall Curve')
+        plt.legend(loc="upper right")
+        plt.grid(True)
+        plt.savefig(os.path.join(output_dir, "precision_recall_curve.png"))
+        plt.close()
+        
+        # Plot probability distribution
+        plt.figure(figsize=(10, 6))
+        plt.hist(probabilities[targets == 0], bins=20, alpha=0.5, label='Low Engagement', color='blue')
+        plt.hist(probabilities[targets == 1], bins=20, alpha=0.5, label='High Engagement', color='red')
+        plt.xlabel('Predicted Probability')
+        plt.ylabel('Count')
+        plt.title('Probability Distribution')
+        plt.legend()
+        plt.grid(True)
+        plt.savefig(os.path.join(output_dir, "probability_distribution.png"))
+        plt.close()
+        
+        # Plot prediction distribution over time (if enough samples)
+        if len(targets) > 100:
+            window_size = min(100, len(targets) // 10)
+            rolling_accuracy = np.convolve(predictions == targets, 
+                                          np.ones(window_size)/window_size, 
+                                          mode='valid')
+            
+            plt.figure(figsize=(10, 6))
+            plt.plot(rolling_accuracy, color='green')
+            plt.axhline(y=np.mean(predictions == targets), color='red', linestyle='--', 
+                       label=f'Overall Accuracy: {np.mean(predictions == targets):.3f}')
+            plt.xlabel('Sample Index')
+            plt.ylabel(f'Accuracy (Rolling Window Size: {window_size})')
+            plt.title('Prediction Accuracy Over Samples')
+            plt.legend()
+            plt.grid(True)
+            plt.savefig(os.path.join(output_dir, "accuracy_trend.png"))
+            plt.close()
+        
+        # Plot calibration curve (reliability diagram)
+        from sklearn.calibration import calibration_curve
+        
+        plt.figure(figsize=(10, 6))
+        
+        # Use around 10 bins
+        n_bins = min(10, len(np.unique(probabilities)))
+        if n_bins >= 5:  # Only if we have enough unique probability values
+            fraction_of_positives, mean_predicted_value = calibration_curve(
+                targets, probabilities, n_bins=n_bins)
+            
+            plt.plot(mean_predicted_value, fraction_of_positives, "s-", label="Model")
+            plt.plot([0, 1], [0, 1], "k:", label="Perfectly calibrated")
+            
+            plt.xlabel("Mean predicted probability")
+            plt.ylabel("Fraction of positives")
+            plt.title("Calibration Curve (Reliability Diagram)")
+            plt.legend()
+            plt.grid(True)
+            plt.savefig(os.path.join(output_dir, "calibration_curve.png"))
+        plt.close()
+        
+        logger.info(f"Evaluation plots saved to {output_dir}") 

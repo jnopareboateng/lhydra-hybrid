@@ -53,34 +53,26 @@ def train_model(config, args=None):
     
     Args:
         config (dict): Configuration dictionary
-        args (argparse.Namespace, optional): Command line arguments. If None, uses defaults.
+        args (argparse.Namespace, optional): Command line arguments
     
     Returns:
         dict: Dictionary containing training history and test metrics
     """
-    # Set random seed
-    seed = args.seed if args else config['data'].get('random_seed', 42)
-    torch.manual_seed(seed)
-    np.random.seed(seed)
-    
     # Setup logging
-    log_level = logging.DEBUG if (args and args.debug) else logging.INFO
-    logger = setup_logging(config['training']['log_dir'], log_level)
+    logger = setup_logging(config['logging']['log_dir'])
     
-    # Log the start of training
-    logger.info("=" * 80)
-    logger.info(f"Starting Hybrid Music Recommender training at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    logger.info("=" * 80)
-    
-    # Log configuration
-    log_training_info(config)
+    # Set random seeds
+    torch.manual_seed(config['data']['random_seed'])
+    np.random.seed(config['data']['random_seed'])
     
     # Set device
-    device = torch.device('cuda' if torch.cuda.is_available() and (args and args.gpu) else 'cpu')
+    use_gpu = args.gpu if args else False
+    device = torch.device('cuda' if torch.cuda.is_available() and use_gpu else 'cpu')
     logger.info(f"Using device: {device}")
     
-    # Prepare dataloaders based on preprocessing status
+    # Load preprocessed data if specified
     preprocessed_data = args.preprocessed_data if args else None
+    
     if preprocessed_data:
         # Use preprocessed data
         logger.info(f"Using preprocessed data from {preprocessed_data}")
@@ -91,7 +83,9 @@ def train_model(config, args=None):
         interactions_df, user_features_df, item_features_df = prepare_user_item_data(
             interactions_df, 
             config['data'],
-            use_high_engagement=True
+            use_high_engagement=True,
+            save_features=True,
+            output_dir=os.path.join(config['data']['output_dir'], 'features')
         )
     else:
         # Load and preprocess data
@@ -117,7 +111,9 @@ def train_model(config, args=None):
                 # Extract features from interactions dataframe
                 interactions_df, user_features_df, item_features_df = prepare_user_item_data(
                     interactions_df,
-                    config['data']
+                    config['data'],
+                    save_features=True,
+                    output_dir=os.path.join(config['data']['output_dir'], 'features')
                 )
             
             # Preprocess user and item features

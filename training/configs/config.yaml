@@ -46,6 +46,7 @@ data:
   preprocessed_data_dir: "../notebooks/ship_test_1k_data/preprocessed" # Directory containing preprocessed data
   user_features_path: "data/user_features.csv" # Path to user features file (optional)
   item_features_path: "data/item_features.csv" # Path to item features file (optional)
+  output_dir: "notebooks/ship_test_1k_data" # Directory to save features
 
   # User features
   user_demographic_features: # User demographic features
