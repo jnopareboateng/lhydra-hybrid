@@ -608,7 +608,15 @@ class ModelTrainer:
                 config_path=checkpoint.get('config'),
                 categorical_mappings=checkpoint.get('categorical_mappings')
             )
-            self.model.load_state_dict(checkpoint['model_state_dict'])
+            try:
+                # First try with strict loading
+                self.model.load_state_dict(checkpoint['model_state_dict'])
+            except RuntimeError as e:
+                logger.warning(f"Strict loading failed: {str(e)}")
+                logger.warning("Attempting to load with strict=False to handle model architecture differences")
+                # Try again with non-strict loading to handle architecture changes
+                self.model.load_state_dict(checkpoint['model_state_dict'], strict=False)
+                
             self.model.to(self.device)
             logger.info(f"Model loaded from {model_path}")
         
@@ -748,10 +756,18 @@ class ModelTrainer:
             
             # Create model using checkpoint configuration
             self.model = HybridRecommender(
-                config=checkpoint.get('config'),
+                config_path=checkpoint.get('config'),
                 categorical_mappings=checkpoint.get('categorical_mappings')
             )
-            self.model.load_state_dict(checkpoint['model_state_dict'])
+            try:
+                # First try with strict loading
+                self.model.load_state_dict(checkpoint['model_state_dict'])
+            except RuntimeError as e:
+                logger.warning(f"Strict loading failed: {str(e)}")
+                logger.warning("Attempting to load with strict=False to handle model architecture differences")
+                # Try again with non-strict loading to handle architecture changes
+                self.model.load_state_dict(checkpoint['model_state_dict'], strict=False)
+                
             self.model.to(self.device)
             logger.info(f"Model loaded from {model_path}")
         

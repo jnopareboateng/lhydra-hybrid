@@ -1,0 +1,13 @@
+2025-04-01 22:30:07,699 - visualize - INFO - Using device: cpu
+2025-04-01 22:30:07,721 - recommender.models.user_tower - INFO - Created embedding layer for gender with vocab size 3
+2025-04-01 22:30:07,721 - recommender.models.user_tower - INFO - Created embedding layer for country with vocab size 22
+2025-04-01 22:30:07,724 - recommender.models.user_tower - INFO - Created embedding layer for top_genre with vocab size 20
+2025-04-01 22:30:07,727 - recommender.models.item_tower - INFO - Created embedding layer for artist with vocab size 43
+2025-04-01 22:30:07,730 - recommender.models.item_tower - INFO - Created embedding layer for main_genre with vocab size 20
+2025-04-01 22:30:07,732 - recommender.models.item_tower - INFO - Created embedding layer for year_bin with vocab size 9
+2025-04-01 22:30:07,733 - recommender.models.recommender - INFO - Initialized HybridRecommender with combine method: concatenate
+2025-04-01 22:30:07,738 - visualize - WARNING - Strict loading failed: Error(s) in loading state_dict for HybridRecommender:
+	Unexpected key(s) in state_dict: "prediction_layers.0.weight", "prediction_layers.0.bias", "prediction_layers.3.weight", "prediction_layers.3.bias", "prediction_layers.6.weight", "prediction_layers.6.bias", "user_tower.layers.0.weight", "user_tower.layers.0.bias", "user_tower.layers.2.weight", "user_tower.layers.2.bias", "user_tower.layers.2.running_mean", "user_tower.layers.2.running_var", "user_tower.layers.2.num_batches_tracked", "user_tower.layers.3.weight", "user_tower.layers.3.bias", "user_tower.layers.5.weight", "user_tower.layers.5.bias", "user_tower.layers.5.running_mean", "user_tower.layers.5.running_var", "user_tower.layers.5.num_batches_tracked", "item_tower.layers.0.weight", "item_tower.layers.0.bias", "item_tower.layers.2.weight", "item_tower.layers.2.bias", "item_tower.layers.2.running_mean", "item_tower.layers.2.running_var", "item_tower.layers.2.num_batches_tracked", "item_tower.layers.3.weight", "item_tower.layers.3.bias", "item_tower.layers.5.weight", "item_tower.layers.5.bias", "item_tower.layers.5.running_mean", "item_tower.layers.5.running_var", "item_tower.layers.5.num_batches_tracked". 
+2025-04-01 22:30:07,738 - visualize - WARNING - Attempting to load with strict=False to handle model architecture differences
+2025-04-01 22:30:07,740 - visualize - INFO - Successfully loaded model from checkpoints/best_model.pt
+2025-04-01 22:30:07,744 - visualize - ERROR - Failed to create data loader: 'feature_sets'

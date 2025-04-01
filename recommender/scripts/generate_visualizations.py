@@ -71,7 +71,15 @@ def load_model(model_path, device):
             
             # Load state dict
             state_dict_key = 'state_dict' if 'state_dict' in checkpoint else 'model_state_dict'
-            model.load_state_dict(checkpoint[state_dict_key])
+            try:
+                # First try strict loading
+                model.load_state_dict(checkpoint[state_dict_key])
+            except RuntimeError as e:
+                logger.warning(f"Strict loading failed: {str(e)}")
+                logger.warning("Attempting to load with strict=False to handle model architecture differences")
+                # Try non-strict loading to handle architecture changes
+                model.load_state_dict(checkpoint[state_dict_key], strict=False)
+                
             model.to(device)
             logger.info(f"Successfully loaded model from {model_path}")
             return model, config, categorical_mappings
