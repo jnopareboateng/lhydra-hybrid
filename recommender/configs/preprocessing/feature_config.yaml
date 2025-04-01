@@ -1,0 +1,224 @@
+# Feature Selection and Preprocessing Configuration
+
+# User features to include in the model
+user_features:
+  # Demographic features
+  demographics:
+    - name: "age"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+        outlier_treatment: "cap_3std"
+    - name: "gender"
+      type: "categorical"
+      preprocessing:
+        encoding: "one_hot"
+    - name: "country"
+      type: "categorical"
+      preprocessing:
+        encoding: "entity_embedding"
+        min_frequency: 5
+        max_categories: 50
+
+  # Listening behavior features
+  listening_behavior:
+    - name: "monthly_hours"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+        log_transform: true
+    - name: "genre_diversity"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "top_genre"
+      type: "categorical"
+      preprocessing:
+        encoding: "one_hot"
+        min_frequency: 10
+
+  # Audio preference features (user averages)
+  audio_preferences:
+    - name: "avg_danceability"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "avg_energy"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "avg_key"
+      type: "categorical"
+      preprocessing:
+        encoding: "one_hot"
+    - name: "avg_loudness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "avg_mode"
+      type: "categorical"
+      preprocessing:
+        encoding: "one_hot"
+    - name: "avg_speechiness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "avg_acousticness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "avg_instrumentalness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "avg_liveness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "avg_valence"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "avg_tempo"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "avg_time_signature"
+      type: "categorical"
+      preprocessing:
+        encoding: "one_hot"
+
+# Track features to include in the model
+track_features:
+  # Metadata features
+  metadata:
+    - name: "artist"
+      type: "categorical"
+      preprocessing:
+        encoding: "entity_embedding"
+        embedding_dim: 32
+        min_frequency: 2
+    - name: "main_genre"
+      type: "categorical"
+      preprocessing:
+        encoding: "one_hot"
+    - name: "year"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+        binning:
+          enabled: true
+          bins: [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2030]
+    - name: "duration_ms"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+        log_transform: true
+
+  # Audio features
+  audio_features:
+    - name: "danceability"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "energy"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "key"
+      type: "categorical"
+      preprocessing:
+        encoding: "one_hot"
+    - name: "loudness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "mode"
+      type: "categorical"
+      preprocessing:
+        encoding: "one_hot"
+    - name: "speechiness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "acousticness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "instrumentalness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "liveness"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "valence"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "tempo"
+      type: "numerical"
+      preprocessing:
+        normalize: true
+    - name: "time_signature"
+      type: "categorical"
+      preprocessing:
+        encoding: "one_hot"
+
+# Feature engineering settings
+feature_engineering:
+  # User-track compatibility features
+  compatibility_features:
+    enabled: true
+    features:
+      - feature_pair: ["avg_danceability", "danceability"]
+        method: "absolute_difference"
+      - feature_pair: ["avg_energy", "energy"]
+        method: "absolute_difference"
+      - feature_pair: ["avg_valence", "valence"]
+        method: "absolute_difference"
+      - feature_pair: ["avg_acousticness", "acousticness"]
+        method: "absolute_difference"
+      - feature_pair: ["avg_tempo", "tempo"]
+        method: "absolute_difference"
+
+  # Temporal features
+  temporal_features:
+    enabled: true
+    features:
+      - name: "recency"
+        based_on: "year"
+        method: "current_year_minus_release_year"
+      - name: "is_new_release"
+        based_on: "year"
+        method: "binary_threshold"
+        threshold: 2 # Last 2 years
+
+  # Interaction features
+  interaction_features:
+    enabled: true
+    features:
+      - name: "age_genre_interaction"
+        feature_pair: ["age", "main_genre"]
+        method: "group_statistics"
+
+# Missing value handling
+missing_value_handling:
+  numerical:
+    method: "median"
+  categorical:
+    method: "unknown_category"
+
+# Outlier treatment
+outlier_treatment:
+  method: "cap"
+  cap_threshold: 3 # Standard deviations
+
+# Train-validation-test split
+data_split:
+  train_ratio: 0.7
+  validation_ratio: 0.15
+  test_ratio: 0.15
+  splitting_method: "user_stratified" # Ensures users are represented in all splits
+  random_seed: 42

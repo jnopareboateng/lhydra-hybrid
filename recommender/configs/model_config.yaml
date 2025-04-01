@@ -1,0 +1,128 @@
+# Model Architecture Configuration
+
+# General model settings
+model:
+  name: "hybrid_recommender"
+  embedding_dim: 64 # Common embedding dimension across the model
+  dropout_rate: 0.3 # Dropout rate for regularization
+  l2_regularization: 0.0001 # L2 regularization coefficient
+
+# User tower configuration
+user_tower:
+  # Layer architecture
+  layers:
+    - units: 128
+      activation: "relu"
+      batch_norm: true
+    - units: 64
+      activation: "relu"
+      batch_norm: true
+      # i can stack more layers here if needed
+
+  # Embedding dimensions for categorical features
+  embeddings:
+    gender:
+      vocab_size: 3 # male, female, unknown
+      embedding_dim: 4
+    country:
+      vocab_size: 50 # Based on preprocessing config max_categories
+      embedding_dim: 16
+    top_genre:
+      vocab_size: 20 # Based on preprocessing min_frequency
+      embedding_dim: 8
+
+# Item tower configuration
+item_tower:
+  # Layer architecture
+  layers:
+    - units: 128
+      activation: "relu"
+      batch_norm: true
+    - units: 64
+      activation: "relu"
+      batch_norm: true
+      # i can stack more layers here if needed
+
+  # Embedding dimensions for categorical features
+  embeddings:
+    artist:
+      vocab_size: 1000 # Will be updated based on actual data
+      embedding_dim: 32
+    main_genre:
+      vocab_size: 20
+      embedding_dim: 8
+    year_bin:
+      vocab_size: 9 # Corresponds to bins in preprocessing
+      embedding_dim: 4
+
+# Prediction layers configuration
+prediction_layers:
+  combine_method: "concatenate" # Options: "concatenate", "dot_product"
+  layers:
+    - units: 64
+      activation: "relu"
+      dropout: 0.3
+    - units: 32
+      activation: "relu"
+      dropout: 0.3
+    - units: 1
+      activation: "sigmoid" # Final activation for binary classification
+
+# Training configuration
+training:
+  batch_size: 512
+  learning_rate: 0.001
+  early_stopping_patience: 5
+  reduce_lr_patience: 3
+  reduce_lr_factor: 0.5
+  epochs: 50
+
+# Feature sets
+features:
+  # List of user features to be used by the model
+  user_features:
+    numerical:
+      - "age"
+      - "monthly_hours"
+      - "genre_diversity"
+      - "avg_danceability"
+      - "avg_energy"
+      - "avg_loudness"
+      - "avg_speechiness"
+      - "avg_acousticness"
+      - "avg_instrumentalness"
+      - "avg_liveness"
+      - "avg_valence"
+      - "avg_tempo"
+    categorical:
+      - "gender"
+      - "country"
+      - "top_genre"
+
+  # List of track features to be used by the model
+  track_features:
+    numerical:
+      - "danceability"
+      - "energy"
+      - "loudness"
+      - "speechiness"
+      - "acousticness"
+      - "instrumentalness"
+      - "liveness"
+      - "valence"
+      - "tempo"
+      - "duration_ms"
+      - "recency" # Engineered feature
+    categorical:
+      - "artist_id" # Created during preprocessing
+      - "main_genre"
+      - "year_bin" # Created during preprocessing
+
+  # Engineered features
+  engineered_features:
+    - "danceability_compatibility"
+    - "energy_compatibility"
+    - "valence_compatibility"
+    - "acousticness_compatibility"
+    - "tempo_compatibility"
+    - "is_new_release"

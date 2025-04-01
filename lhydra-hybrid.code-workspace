@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"name": "lhydra-hybrid",
+		"path": "."
+	},
+	{
+		"name": "recommender",
+		"path": "../../Music/recommender"
+	}
+],
+  "settings": {}
+}

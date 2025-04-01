@@ -1,0 +1,78 @@
+2025-04-01 15:37:38,985 - root - INFO - Logging initialized. Log file: logs\preprocessing_20250401_153738.log
+2025-04-01 15:37:38,985 - __main__ - INFO - Starting preprocessing pipeline
+2025-04-01 15:37:38,985 - __main__ - INFO - Input data: data/spotify_10k_sample_data.csv
+2025-04-01 15:37:38,985 - __main__ - INFO - Output directory: data/spotify_10k_preprocessed
+2025-04-01 15:37:38,985 - __main__ - INFO - Configuration: configs/preprocessing/feature_config.yaml
+2025-04-01 15:37:39,017 - data.preprocessor - INFO - Successfully loaded configuration from configs/preprocessing/feature_config.yaml
+2025-04-01 15:37:39,017 - data.preprocessor - INFO - Initialized FeaturePreprocessor with config from configs/preprocessing/feature_config.yaml
+2025-04-01 15:37:39,017 - data.preprocessor - INFO - Starting preprocessing pipeline for data/spotify_10k_sample_data.csv
+2025-04-01 15:37:39,095 - data.preprocessor - INFO - Successfully loaded data from data/spotify_10k_sample_data.csv: 10000 rows, 43 columns
+2025-04-01 15:37:39,095 - data.preprocessor - INFO - Handling missing values
+2025-04-01 15:37:39,111 - data.preprocessor - INFO - Completed missing value handling
+2025-04-01 15:37:39,111 - data.preprocessor - INFO - Treating outliers in numerical features
+2025-04-01 15:37:39,111 - data.preprocessor - INFO - Capped outliers for age: [-8.961664379909273, 84.70766437990926]
+2025-04-01 15:37:39,111 - data.preprocessor - INFO - Completed outlier treatment
+2025-04-01 15:37:39,111 - data.preprocessor - INFO - Fitting and applying normalization to numerical features
+2025-04-01 15:37:39,127 - data.preprocessor - INFO - Normalized feature: age
+2025-04-01 15:37:39,127 - data.preprocessor - INFO - Applied log transform to monthly_hours
+2025-04-01 15:37:39,127 - data.preprocessor - INFO - Normalized feature: monthly_hours
+2025-04-01 15:37:39,127 - data.preprocessor - INFO - Normalized feature: genre_diversity
+2025-04-01 15:37:39,127 - data.preprocessor - INFO - Normalized feature: avg_danceability
+2025-04-01 15:37:39,127 - data.preprocessor - INFO - Normalized feature: avg_energy
+2025-04-01 15:37:39,127 - data.preprocessor - INFO - Normalized feature: avg_loudness
+2025-04-01 15:37:39,143 - data.preprocessor - INFO - Normalized feature: avg_speechiness
+2025-04-01 15:37:39,143 - data.preprocessor - INFO - Normalized feature: avg_acousticness
+2025-04-01 15:37:39,143 - data.preprocessor - INFO - Normalized feature: avg_instrumentalness
+2025-04-01 15:37:39,143 - data.preprocessor - INFO - Normalized feature: avg_liveness
+2025-04-01 15:37:39,143 - data.preprocessor - INFO - Normalized feature: avg_valence
+2025-04-01 15:37:39,143 - data.preprocessor - INFO - Normalized feature: avg_tempo
+2025-04-01 15:37:39,143 - data.preprocessor - INFO - Normalized feature: year
+2025-04-01 15:37:39,143 - data.preprocessor - INFO - Applied log transform to duration_ms
+2025-04-01 15:37:39,159 - data.preprocessor - INFO - Normalized feature: duration_ms
+2025-04-01 15:37:39,159 - data.preprocessor - INFO - Normalized feature: danceability
+2025-04-01 15:37:39,159 - data.preprocessor - INFO - Normalized feature: energy
+2025-04-01 15:37:39,159 - data.preprocessor - INFO - Normalized feature: loudness
+2025-04-01 15:37:39,159 - data.preprocessor - INFO - Normalized feature: speechiness
+2025-04-01 15:37:39,159 - data.preprocessor - INFO - Normalized feature: acousticness
+2025-04-01 15:37:39,159 - data.preprocessor - INFO - Normalized feature: instrumentalness
+2025-04-01 15:37:39,159 - data.preprocessor - INFO - Normalized feature: liveness
+2025-04-01 15:37:39,175 - data.preprocessor - INFO - Normalized feature: valence
+2025-04-01 15:37:39,175 - data.preprocessor - INFO - Normalized feature: tempo
+2025-04-01 15:37:39,175 - data.preprocessor - INFO - Completed numerical feature normalization
+2025-04-01 15:37:39,175 - data.preprocessor - INFO - Fitting and applying encoding to categorical features
+2025-04-01 15:37:39,188 - data.preprocessor - INFO - One-hot encoded gender into 2 categories
+2025-04-01 15:37:39,191 - data.preprocessor - INFO - Created entity mapping for country with 21 categories
+2025-04-01 15:37:39,191 - data.preprocessor - INFO - Applied entity mapping to country
+2025-04-01 15:37:39,207 - data.preprocessor - INFO - One-hot encoded top_genre into 12 categories
+2025-04-01 15:37:39,493 - data.preprocessor - INFO - One-hot encoded avg_key into 2328 categories
+2025-04-01 15:37:40,013 - data.preprocessor - INFO - One-hot encoded avg_mode into 1190 categories
+2025-04-01 15:37:40,587 - data.preprocessor - INFO - One-hot encoded avg_time_signature into 895 categories
+2025-04-01 15:37:40,587 - data.preprocessor - INFO - Created entity mapping for artist with 709 categories
+2025-04-01 15:37:40,601 - data.preprocessor - INFO - Applied entity mapping to artist
+2025-04-01 15:37:41,171 - data.preprocessor - INFO - One-hot encoded main_genre into 12 categories
+2025-04-01 15:37:41,718 - data.preprocessor - INFO - One-hot encoded key into 12 categories
+2025-04-01 15:37:42,270 - data.preprocessor - INFO - One-hot encoded mode into 2 categories
+2025-04-01 15:37:42,705 - data.preprocessor - INFO - One-hot encoded time_signature into 4 categories
+2025-04-01 15:37:42,705 - data.preprocessor - INFO - Completed categorical feature encoding
+2025-04-01 15:37:42,705 - data.preprocessor - INFO - Applying feature engineering
+2025-04-01 15:37:42,705 - data.preprocessor - INFO - Created compatibility feature: danceability_compatibility
+2025-04-01 15:37:42,705 - data.preprocessor - INFO - Created compatibility feature: energy_compatibility
+2025-04-01 15:37:42,705 - data.preprocessor - INFO - Created compatibility feature: valence_compatibility
+2025-04-01 15:37:42,721 - data.preprocessor - INFO - Created compatibility feature: acousticness_compatibility
+2025-04-01 15:37:42,721 - data.preprocessor - INFO - Created compatibility feature: tempo_compatibility
+2025-04-01 15:37:42,721 - data.preprocessor - INFO - Created temporal feature: recency
+2025-04-01 15:37:42,721 - data.preprocessor - INFO - Created binary temporal feature: is_new_release
+2025-04-01 15:37:42,721 - data.preprocessor - INFO - Created placeholder for interaction feature: age_genre_interaction
+2025-04-01 15:37:42,721 - data.preprocessor - INFO - Completed feature engineering
+2025-04-01 15:37:42,721 - data.preprocessor - INFO - Preparing target variable
+2025-04-01 15:37:42,733 - data.preprocessor - INFO - Created target variable: 39.30% positive rate
+2025-04-01 15:37:42,733 - data.preprocessor - INFO - Splitting data into train, validation, and test sets
+2025-04-01 15:37:43,298 - data.preprocessor - INFO - Split data: Train=6976 rows, Validation=1493 rows, Test=1531 rows
+2025-04-01 15:37:43,298 - data.preprocessor - INFO - Users: Train=3372, Validation=723, Test=723
+2025-04-01 15:38:08,086 - data.preprocessor - INFO - Saved preprocessor objects to data/spotify_10k_preprocessed\preprocessor.joblib
+2025-04-01 15:38:08,086 - data.preprocessor - INFO - Preprocessing complete
+2025-04-01 15:38:08,122 - __main__ - INFO - Preprocessing complete
+2025-04-01 15:38:08,122 - __main__ - INFO - Train set: 6976 rows
+2025-04-01 15:38:08,123 - __main__ - INFO - Validation set: 1493 rows
+2025-04-01 15:38:08,123 - __main__ - INFO - Test set: 1531 rows
+2025-04-01 15:38:08,137 - __main__ - INFO - Log file copied to: data/spotify_10k_preprocessed\preprocessing.log
