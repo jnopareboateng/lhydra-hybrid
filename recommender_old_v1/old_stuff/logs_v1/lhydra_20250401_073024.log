@@ -1,0 +1,59 @@
+[2025-04-01 07:30:24,214] [INFO] [logger:__init__:77] - Logger initialized. Log directory: C:\Users\mecha\Documents\lhydra-hybrid\logs
+[2025-04-01 07:30:24,214] [INFO] [generate_recommendations_v2:main:402] - ================================================================================
+[2025-04-01 07:30:24,214] [INFO] [generate_recommendations_v2:main:403] - Starting recommendation generation at 20250401_073024
+[2025-04-01 07:30:24,214] [INFO] [generate_recommendations_v2:main:404] - ================================================================================
+[2025-04-01 07:30:24,214] [INFO] [generate_recommendations_v2:main:414] - Using device: cpu
+[2025-04-01 07:30:24,214] [INFO] [generate_recommendations_v2:from_checkpoint:354] - Loading model from models/checkpoints/best_model.pt
+[2025-04-01 07:30:24,246] [INFO] [generate_recommendations_v2:from_checkpoint:358] - Loading user features from notebooks/shipping_10k_data/features/user_features.csv
+[2025-04-01 07:30:24,294] [INFO] [generate_recommendations_v2:from_checkpoint:361] - Loading item features from notebooks/shipping_10k_data/features/item_features.csv
+[2025-04-01 07:30:24,310] [INFO] [generate_recommendations_v2:__init__:66] - Model has feature manifest. Feature alignment will be used.
+[2025-04-01 07:30:24,310] [INFO] [generate_recommendations_v2:__init__:69] - Feature dimensions from manifest: user=115, item=65
+[2025-04-01 07:30:24,310] [INFO] [generate_recommendations_v2:__init__:92] - Recommendation engine initialized with 4818 users and 1415 items
+[2025-04-01 07:30:24,310] [INFO] [generate_recommendations_v2:main:432] - Recommendation engine initialized successfully
+[2025-04-01 07:30:24,310] [INFO] [generate_recommendations_v2:main:471] - Generating recommendations for all users
+[2025-04-01 07:30:24,484] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:24,653] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:25,092] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:25,268] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:25,520] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:25,707] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:26,003] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:26,170] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:26,460] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:26,635] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:26,887] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:27,044] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:27,344] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:27,505] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:27,773] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:27,959] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:28,215] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:28,397] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:28,686] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:28,850] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:29,109] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:29,304] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:29,551] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:29,694] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:30,016] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:30,167] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:30,429] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:30,587] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:30,825] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:30,979] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:31,228] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:31,385] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:31,690] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:31,861] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:32,143] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:32,301] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:32,572] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:32,723] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:32,980] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:33,138] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:33,410] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:33,589] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:33,854] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:34,013] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:34,309] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)
+[2025-04-01 07:30:34,466] [ERROR] [generate_recommendations_v2:predict_scores:192] - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x114650 and 81x128)

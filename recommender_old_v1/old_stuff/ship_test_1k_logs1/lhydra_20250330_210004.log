@@ -1,0 +1,21 @@
+[2025-03-30 21:00:04,926] [INFO] [logger:__init__:77] - Logger initialized. Log directory: c:\Users\mecha\Documents\lhydra-hybrid\ship_test_1k_logs1
+[2025-03-30 21:00:04,927] [INFO] [logger:info:172] - Starting 1k data preprocessing script
+[2025-03-30 21:00:19,501] [INFO] [logger:log_experiment_start:156] - EXPERIMENT START: Data Preprocessing
+[2025-03-30 21:00:19,503] [INFO] [logger:log_experiment_start:159] - Description: Processing data from spotify_1k_sample_data.csv
+[2025-03-30 21:00:19,503] [INFO] [logger:info:172] - Loading data from spotify_1k_sample_data.csv
+[2025-03-30 21:00:19,535] [INFO] [logger:log_data_stats:94] - DATASET: Raw Data - Shape: (1000, 43)
+[2025-03-30 21:00:19,536] [INFO] [logger:log_data_stats:100] - Missing values: {'track_id': 0, 'user_id': 0, 'playcount': 0, 'name': 0, 'artist': 0, 'spotify_preview_url': 0, 'spotify_id': 0, 'tags': 0, 'genre': 424, 'main_genre': 0, 'year': 0, 'duration_ms': 0, 'danceability': 0, 'energy': 0, 'key': 0, 'loudness': 0, 'mode': 0, 'speechiness': 0, 'acousticness': 0, 'instrumentalness': 0, 'liveness': 0, 'valence': 0, 'tempo': 0, 'time_signature': 0, 'age': 0, 'gender': 0, 'region': 0, 'country': 0, 'monthly_hours': 0, 'top_genre': 0, 'genre_diversity': 0, 'avg_danceability': 0, 'avg_energy': 0, 'avg_key': 0, 'avg_loudness': 0, 'avg_mode': 0, 'avg_speechiness': 0, 'avg_acousticness': 0, 'avg_instrumentalness': 0, 'avg_liveness': 0, 'avg_valence': 0, 'avg_tempo': 0, 'avg_time_signature': 0}
+[2025-03-30 21:00:19,557] [INFO] [logger:info:172] - Dropped 6 unused columns: {'tags', 'genre', 'spotify_id', 'region', 'name', 'spotify_preview_url'}
+[2025-03-30 21:00:19,575] [INFO] [logger:info:172] - Cleaning data
+[2025-03-30 21:00:19,636] [INFO] [logger:log_data_stats:94] - DATASET: Cleaned Data - Shape: (1000, 37)
+[2025-03-30 21:00:19,637] [INFO] [logger:log_data_stats:100] - Missing values: {'monthly_hours': 0, 'main_genre': 0, 'top_genre': 0, 'duration_ms': 0, 'avg_mode': 0, 'avg_acousticness': 0, 'avg_instrumentalness': 0, 'avg_key': 0, 'gender': 0, 'instrumentalness': 0, 'avg_time_signature': 0, 'key': 0, 'mode': 0, 'time_signature': 0, 'tempo': 0, 'year': 0, 'speechiness': 0, 'valence': 0, 'energy': 0, 'country': 0, 'track_id': 0, 'avg_valence': 0, 'artist': 0, 'avg_tempo': 0, 'avg_speechiness': 0, 'avg_liveness': 0, 'loudness': 0, 'avg_energy': 0, 'avg_danceability': 0, 'avg_loudness': 0, 'playcount': 0, 'liveness': 0, 'user_id': 0, 'genre_diversity': 0, 'danceability': 0, 'age': 0, 'acousticness': 0}
+[2025-03-30 21:00:19,652] [INFO] [logger:info:172] - Engineering features
+[2025-03-30 21:00:19,689] [INFO] [logger:info:172] - Created 37 new features: ['high_engagement', 'age_group', 'song_age', 'is_recent', 'duration_min', 'duration_category', 'energy_loudness', 'energy_loudness_ratio', 'valence_danceability', 'valence_danceability_diff', 'mood_category', 'danceability_diff', 'danceability_abs_diff', 'energy_diff', 'energy_abs_diff', 'key_diff', 'key_abs_diff', 'loudness_diff', 'loudness_abs_diff', 'mode_diff', 'mode_abs_diff', 'speechiness_diff', 'speechiness_abs_diff', 'acousticness_diff', 'acousticness_abs_diff', 'instrumentalness_diff', 'instrumentalness_abs_diff', 'liveness_diff', 'liveness_abs_diff', 'valence_diff', 'valence_abs_diff', 'tempo_diff', 'tempo_abs_diff', 'time_signature_diff', 'time_signature_abs_diff', 'age_group_genre', 'listening_depth']
+[2025-03-30 21:00:19,690] [INFO] [logger:log_data_stats:94] - DATASET: Engineered Data - Shape: (1000, 74)
+[2025-03-30 21:00:19,703] [INFO] [logger:info:172] - Encoding features (fit=True)
+[2025-03-30 21:00:19,754] [INFO] [logger:log_data_stats:94] - DATASET: Encoded Data - Shape: (1000, 211)
+[2025-03-30 21:00:19,770] [INFO] [logger:info:172] - Splitting data into train, validation, and test sets
+[2025-03-30 21:00:19,783] [INFO] [logger:info:172] - Data split: train=700, val=100, test=200
+[2025-03-30 21:00:20,059] [INFO] [logger:info:172] - Saving processed data to ship_test_1k_data
+[2025-03-30 21:00:20,415] [INFO] [logger:log_experiment_end:163] - EXPERIMENT END: Data Preprocessing
+[2025-03-30 21:00:20,416] [INFO] [logger:log_experiment_end:168] - Results: train_size: 700, val_size: 100, test_size: 200, num_features: 209

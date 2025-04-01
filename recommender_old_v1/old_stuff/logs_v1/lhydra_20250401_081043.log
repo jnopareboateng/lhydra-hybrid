@@ -1,0 +1,10 @@
+[2025-04-01 08:10:43,123] [INFO] [logger:__init__:77] - Logger initialized. Log directory: C:\Users\mecha\Documents\lhydra-hybrid\logs
+[2025-04-01 08:10:43,123] [ERROR] [logger:error:185] - Error in main: LhydraLogger.__new__() got an unexpected keyword argument 'filename'
+Traceback (most recent call last):
+  File "C:\Users\mecha\Documents\lhydra-hybrid\utils\logger.py", line 216, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mecha\Documents\lhydra-hybrid\scripts\generate_recommendations_v2.py", line 459, in main
+    lhydra_logger = LhydraLogger(log_dir="logs/recommendations", filename=f"recommendations_{timestamp}.log")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: LhydraLogger.__new__() got an unexpected keyword argument 'filename'

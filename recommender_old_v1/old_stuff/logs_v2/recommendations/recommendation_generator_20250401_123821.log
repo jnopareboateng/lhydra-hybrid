@@ -1,0 +1,283 @@
+2025-04-01 12:38:21,323 - recommendation_generator - INFO - Logging to logs/recommendations\recommendation_generator_20250401_123821.log
+2025-04-01 12:38:21,323 - recommendation_generator - INFO - 
+####################################################################################################
+2025-04-01 12:38:21,323 - recommendation_generator - INFO - RECOMMENDATION GENERATOR STARTED
+2025-04-01 12:38:21,323 - recommendation_generator - INFO - ####################################################################################################
+2025-04-01 12:38:21,323 - recommendation_generator - INFO - Command arguments:
+2025-04-01 12:38:21,323 - recommendation_generator - INFO -   model: models/checkpoints/best_model.pt
+2025-04-01 12:38:21,323 - recommendation_generator - INFO -   users: notebooks/shipping_10k_data/features/user_features.csv
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   items: notebooks/shipping_10k_data/features/item_features.csv
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   manifest: None
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   user: 75
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   users_file: None
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   all_users: False
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   item: None
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   output: recommendations/user75_recommendations.csv
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   top_k: 10
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   exclude_history: None
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   cuda: False
+2025-04-01 12:38:21,339 - recommendation_generator - INFO -   debug: True
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - ####################################################################################################
+
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - Using device: cpu
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - 
+****************************************************************************************************
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - RECOMMENDATION ENGINE INITIALIZATION FROM CHECKPOINT
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - ****************************************************************************************************
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - Model path: models/checkpoints/best_model.pt
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - User features path: notebooks/shipping_10k_data/features/user_features.csv
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - Item features path: notebooks/shipping_10k_data/features/item_features.csv
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - Feature manifest path: None
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - Device: cpu
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - Loading model from checkpoint...
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - Model loaded successfully with manifest
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - Model dimensions: user_input_dim=81, item_input_dim=25
+2025-04-01 12:38:21,339 - recommendation_generator - WARNING - Model does not have feature manifest information
+2025-04-01 12:38:21,339 - recommendation_generator - INFO - Loading user features from notebooks/shipping_10k_data/features/user_features.csv...
+2025-04-01 12:38:21,387 - recommendation_generator - INFO - Loaded user features, shape: (4818, 82)
+2025-04-01 12:38:21,387 - recommendation_generator - INFO - User features columns: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_key', 'avg_loudness', 'avg_mode', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'avg_time_signature', 'listening_depth', 'age_group_adult', 'age_group_middle_aged', 'age_group_senior', 'age_group_teen', 'age_group_young_adult', 'age_group_genre_adult_classical', 'age_group_genre_adult_country', 'age_group_genre_adult_electronic', 'age_group_genre_adult_folk', 'age_group_genre_adult_hip_hop', 'age_group_genre_adult_jazz', 'age_group_genre_adult_latin', 'age_group_genre_adult_other', 'age_group_genre_adult_pop', 'age_group_genre_adult_rb_soul', 'age_group_genre_adult_rock', 'age_group_genre_adult_unknown', 'age_group_genre_middle_aged_classical', 'age_group_genre_middle_aged_country', 'age_group_genre_middle_aged_electronic', 'age_group_genre_middle_aged_folk', 'age_group_genre_middle_aged_hip_hop', 'age_group_genre_middle_aged_jazz', 'age_group_genre_middle_aged_latin', 'age_group_genre_middle_aged_other', 'age_group_genre_middle_aged_pop', 'age_group_genre_middle_aged_rb_soul', 'age_group_genre_middle_aged_rock', 'age_group_genre_middle_aged_unknown', 'age_group_genre_senior_classical', 'age_group_genre_senior_country', 'age_group_genre_senior_electronic', 'age_group_genre_senior_folk', 'age_group_genre_senior_hip_hop', 'age_group_genre_senior_jazz', 'age_group_genre_senior_latin', 'age_group_genre_senior_other', 'age_group_genre_senior_pop', 'age_group_genre_senior_rb_soul', 'age_group_genre_senior_rock', 'age_group_genre_senior_unknown', 'age_group_genre_teen_classical', 'age_group_genre_teen_country', 'age_group_genre_teen_electronic', 'age_group_genre_teen_folk', 'age_group_genre_teen_hip_hop', 'age_group_genre_teen_jazz', 'age_group_genre_teen_latin', 'age_group_genre_teen_other', 'age_group_genre_teen_pop', 'age_group_genre_teen_rb_soul', 'age_group_genre_teen_rock', 'age_group_genre_teen_unknown', 'age_group_genre_young_adult_classical', 'age_group_genre_young_adult_country', 'age_group_genre_young_adult_electronic', 'age_group_genre_young_adult_folk', 'age_group_genre_young_adult_hip_hop', 'age_group_genre_young_adult_jazz', 'age_group_genre_young_adult_latin', 'age_group_genre_young_adult_other', 'age_group_genre_young_adult_pop', 'age_group_genre_young_adult_rb_soul', 'age_group_genre_young_adult_rock', 'age_group_genre_young_adult_unknown', 'user_id']
+2025-04-01 12:38:21,387 - recommendation_generator - INFO - User features types: age                                    float64
+monthly_hours                          float64
+genre_diversity                        float64
+avg_danceability                       float64
+avg_energy                             float64
+                                        ...   
+age_group_genre_young_adult_pop        float64
+age_group_genre_young_adult_rb_soul    float64
+age_group_genre_young_adult_rock       float64
+age_group_genre_young_adult_unknown    float64
+user_id                                  int64
+Length: 82, dtype: object
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - Loading item features from notebooks/shipping_10k_data/features/item_features.csv...
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - Loaded item features, shape: (1415, 26)
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - Item features columns: ['year', 'duration_ms', 'danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature', 'duration_ms.1', 'song_age', 'duration_min', 'duration_category_long', 'duration_category_medium', 'duration_category_short', 'duration_category_very_long', 'mood_category_angry', 'mood_category_happy', 'mood_category_peaceful', 'mood_category_sad', 'track_id']
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - Item features types: year                           float64
+duration_ms                    float64
+danceability                   float64
+energy                         float64
+key                            float64
+loudness                       float64
+mode                           float64
+speechiness                    float64
+acousticness                   float64
+instrumentalness               float64
+liveness                       float64
+valence                        float64
+tempo                          float64
+time_signature                 float64
+duration_ms.1                  float64
+song_age                       float64
+duration_min                   float64
+duration_category_long         float64
+duration_category_medium       float64
+duration_category_short        float64
+duration_category_very_long    float64
+mood_category_angry            float64
+mood_category_happy            float64
+mood_category_peaceful         float64
+mood_category_sad              float64
+track_id                         int64
+dtype: object
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - Creating recommendation engine...
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - 
+================================================================================
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - RECOMMENDATION ENGINE INITIALIZATION - DATA INSPECTION
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - ================================================================================
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - User features shape: (4818, 82)
+2025-04-01 12:38:21,403 - recommendation_generator - INFO - User features columns: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_key', 'avg_loudness', 'avg_mode', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'avg_time_signature', 'listening_depth', 'age_group_adult', 'age_group_middle_aged', 'age_group_senior', 'age_group_teen', 'age_group_young_adult', 'age_group_genre_adult_classical', 'age_group_genre_adult_country', 'age_group_genre_adult_electronic', 'age_group_genre_adult_folk', 'age_group_genre_adult_hip_hop', 'age_group_genre_adult_jazz', 'age_group_genre_adult_latin', 'age_group_genre_adult_other', 'age_group_genre_adult_pop', 'age_group_genre_adult_rb_soul', 'age_group_genre_adult_rock', 'age_group_genre_adult_unknown', 'age_group_genre_middle_aged_classical', 'age_group_genre_middle_aged_country', 'age_group_genre_middle_aged_electronic', 'age_group_genre_middle_aged_folk', 'age_group_genre_middle_aged_hip_hop', 'age_group_genre_middle_aged_jazz', 'age_group_genre_middle_aged_latin', 'age_group_genre_middle_aged_other', 'age_group_genre_middle_aged_pop', 'age_group_genre_middle_aged_rb_soul', 'age_group_genre_middle_aged_rock', 'age_group_genre_middle_aged_unknown', 'age_group_genre_senior_classical', 'age_group_genre_senior_country', 'age_group_genre_senior_electronic', 'age_group_genre_senior_folk', 'age_group_genre_senior_hip_hop', 'age_group_genre_senior_jazz', 'age_group_genre_senior_latin', 'age_group_genre_senior_other', 'age_group_genre_senior_pop', 'age_group_genre_senior_rb_soul', 'age_group_genre_senior_rock', 'age_group_genre_senior_unknown', 'age_group_genre_teen_classical', 'age_group_genre_teen_country', 'age_group_genre_teen_electronic', 'age_group_genre_teen_folk', 'age_group_genre_teen_hip_hop', 'age_group_genre_teen_jazz', 'age_group_genre_teen_latin', 'age_group_genre_teen_other', 'age_group_genre_teen_pop', 'age_group_genre_teen_rb_soul', 'age_group_genre_teen_rock', 'age_group_genre_teen_unknown', 'age_group_genre_young_adult_classical', 'age_group_genre_young_adult_country', 'age_group_genre_young_adult_electronic', 'age_group_genre_young_adult_folk', 'age_group_genre_young_adult_hip_hop', 'age_group_genre_young_adult_jazz', 'age_group_genre_young_adult_latin', 'age_group_genre_young_adult_other', 'age_group_genre_young_adult_pop', 'age_group_genre_young_adult_rb_soul', 'age_group_genre_young_adult_rock', 'age_group_genre_young_adult_unknown', 'user_id']
+2025-04-01 12:38:21,419 - recommendation_generator - INFO - User features dtypes:
+age                                    float64
+monthly_hours                          float64
+genre_diversity                        float64
+avg_danceability                       float64
+avg_energy                             float64
+                                        ...   
+age_group_genre_young_adult_pop        float64
+age_group_genre_young_adult_rb_soul    float64
+age_group_genre_young_adult_rock       float64
+age_group_genre_young_adult_unknown    float64
+user_id                                  int64
+Length: 82, dtype: object
+2025-04-01 12:38:21,435 - recommendation_generator - INFO - User features sample (first 3 rows):
+        age  monthly_hours  genre_diversity  avg_danceability  avg_energy   avg_key  avg_loudness  avg_mode  avg_speechiness  avg_acousticness  avg_instrumentalness  avg_liveness  avg_valence  avg_tempo  avg_time_signature  listening_depth  age_group_adult  age_group_middle_aged  age_group_senior  age_group_teen  age_group_young_adult  age_group_genre_adult_classical  age_group_genre_adult_country  age_group_genre_adult_electronic  age_group_genre_adult_folk  age_group_genre_adult_hip_hop  age_group_genre_adult_jazz  age_group_genre_adult_latin  age_group_genre_adult_other  age_group_genre_adult_pop  age_group_genre_adult_rb_soul  age_group_genre_adult_rock  age_group_genre_adult_unknown  age_group_genre_middle_aged_classical  age_group_genre_middle_aged_country  age_group_genre_middle_aged_electronic  age_group_genre_middle_aged_folk  age_group_genre_middle_aged_hip_hop  age_group_genre_middle_aged_jazz  age_group_genre_middle_aged_latin  age_group_genre_middle_aged_other  age_group_genre_middle_aged_pop  age_group_genre_middle_aged_rb_soul  age_group_genre_middle_aged_rock  age_group_genre_middle_aged_unknown  age_group_genre_senior_classical  age_group_genre_senior_country  age_group_genre_senior_electronic  age_group_genre_senior_folk  age_group_genre_senior_hip_hop  age_group_genre_senior_jazz  age_group_genre_senior_latin  age_group_genre_senior_other  age_group_genre_senior_pop  age_group_genre_senior_rb_soul  age_group_genre_senior_rock  age_group_genre_senior_unknown  age_group_genre_teen_classical  age_group_genre_teen_country  age_group_genre_teen_electronic  age_group_genre_teen_folk  age_group_genre_teen_hip_hop  age_group_genre_teen_jazz  age_group_genre_teen_latin  age_group_genre_teen_other  age_group_genre_teen_pop  age_group_genre_teen_rb_soul  age_group_genre_teen_rock  age_group_genre_teen_unknown  age_group_genre_young_adult_classical  age_group_genre_young_adult_country  age_group_genre_young_adult_electronic  age_group_genre_young_adult_folk  age_group_genre_young_adult_hip_hop  age_group_genre_young_adult_jazz  age_group_genre_young_adult_latin  age_group_genre_young_adult_other  age_group_genre_young_adult_pop  age_group_genre_young_adult_rb_soul  age_group_genre_young_adult_rock  age_group_genre_young_adult_unknown  user_id
+0 -1.245471       0.462032         0.820488          0.254657    0.516811 -0.638312      1.469966  1.207056         1.232577         -0.205346             -1.064706      0.718250    -0.531829   0.860737           -0.078877        -0.407109              0.0                    0.0               0.0             0.0                    1.0                              0.0                            0.0                               0.0                         0.0                            0.0                         0.0                          0.0                          0.0                        0.0                            0.0                         0.0                            0.0                                    0.0                                  0.0                                     0.0                               0.0                                  0.0                               0.0                                0.0                                0.0                              0.0                                  0.0                               0.0                                  0.0                               0.0                             0.0                                0.0                          0.0                             0.0                          0.0                           0.0                           0.0                         0.0                             0.0                          0.0                             0.0                             0.0                           0.0                              0.0                        0.0                           0.0                        0.0                         0.0                         0.0                       0.0                           0.0                        0.0                           0.0                                    0.0                                  0.0                                     0.0                               0.0                                  0.0                               0.0                                0.0                                0.0                              0.0                                  0.0                               1.0                                  0.0     3954
+1 -0.979005       1.168996         0.820488         -1.021574   -0.766459 -1.452319      0.691628  0.833718        -0.814644          0.439290             -0.561167      1.136262    -0.068724  -2.514090           -3.640159        -0.082599              0.0                    0.0               0.0             0.0                    1.0                              0.0                            0.0                               0.0                         0.0                            0.0                         0.0                          0.0                          0.0                        0.0                            0.0                         0.0                            0.0                                    0.0                                  0.0                                     0.0                               0.0                                  0.0                               0.0                                0.0                                0.0                              0.0                                  0.0                               0.0                                  0.0                               0.0                             0.0                                0.0                          0.0                             0.0                          0.0                           0.0                           0.0                         0.0                             0.0                          0.0                             0.0                             0.0                           0.0                              0.0                        0.0                           0.0                        0.0                         0.0                         0.0                       0.0                           0.0                        0.0                           0.0                                    0.0                                  0.0                                     0.0                               0.0                                  0.0                               0.0                                0.0                                0.0                              0.0                                  0.0                               1.0                                  0.0     4084
+2 -0.512688       0.148121         0.820488          2.121240    1.420093 -1.099048      0.461868 -0.148323         2.601773         -1.286526             -0.877375      1.080125     0.661002  -0.978833            0.751359        -0.551200              1.0                    0.0               0.0             0.0                    0.0                              0.0                            0.0                               0.0                         0.0                            0.0                         0.0                          0.0                          0.0                        1.0                            0.0                         0.0                            0.0                                    0.0                                  0.0                                     0.0                               0.0                                  0.0                               0.0                                0.0                                0.0                              0.0                                  0.0                               0.0                                  0.0                               0.0                             0.0                                0.0                          0.0                             0.0                          0.0                           0.0                           0.0                         0.0                             0.0                          0.0                             0.0                             0.0                           0.0                              0.0                        0.0                           0.0                        0.0                         0.0                         0.0                       0.0                           0.0                        0.0                           0.0                                    0.0                                  0.0                                     0.0                               0.0                                  0.0                               0.0                                0.0                                0.0                              0.0                                  0.0                               0.0                                  0.0     3280
+2025-04-01 12:38:21,435 - recommendation_generator - INFO - Item features shape: (1415, 26)
+2025-04-01 12:38:21,435 - recommendation_generator - INFO - Item features columns: ['year', 'duration_ms', 'danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature', 'duration_ms.1', 'song_age', 'duration_min', 'duration_category_long', 'duration_category_medium', 'duration_category_short', 'duration_category_very_long', 'mood_category_angry', 'mood_category_happy', 'mood_category_peaceful', 'mood_category_sad', 'track_id']
+2025-04-01 12:38:21,435 - recommendation_generator - INFO - Item features dtypes:
+year                           float64
+duration_ms                    float64
+danceability                   float64
+energy                         float64
+key                            float64
+loudness                       float64
+mode                           float64
+speechiness                    float64
+acousticness                   float64
+instrumentalness               float64
+liveness                       float64
+valence                        float64
+tempo                          float64
+time_signature                 float64
+duration_ms.1                  float64
+song_age                       float64
+duration_min                   float64
+duration_category_long         float64
+duration_category_medium       float64
+duration_category_short        float64
+duration_category_very_long    float64
+mood_category_angry            float64
+mood_category_happy            float64
+mood_category_peaceful         float64
+mood_category_sad              float64
+track_id                         int64
+dtype: object
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - Item features sample (first 3 rows):
+       year  duration_ms  danceability    energy       key  loudness      mode  speechiness  acousticness  instrumentalness  liveness   valence     tempo  time_signature  duration_ms.1  song_age  duration_min  duration_category_long  duration_category_medium  duration_category_short  duration_category_very_long  mood_category_angry  mood_category_happy  mood_category_peaceful  mood_category_sad  track_id
+0 -0.924737     1.354142     -0.791459  0.992329  1.084206  0.687860  0.731060    -0.472487     -0.668154         -0.539603  0.673052  0.181515  1.647526        0.289441       1.354142  0.924737      1.354142                     1.0                       0.0                      0.0                          0.0                  0.0                  1.0                     0.0                0.0        20
+1  0.654984     0.446307      0.174468  0.893462 -0.669889  1.279397  0.731060    -0.509508     -0.765071         -0.493547 -0.686074 -0.802973 -0.393427        0.289441       0.446307 -0.654984      0.446307                     1.0                       0.0                      0.0                          0.0                  1.0                  0.0                     0.0                0.0      1109
+2  0.497012    -0.572205      2.411351 -0.420650 -0.669889  0.391958 -1.367877    -0.013428     -0.749149         -0.521315  0.471700  0.745795 -0.670723        0.289441      -0.572205 -0.497012     -0.572205                     0.0                       1.0                      0.0                          0.0                  0.0                  1.0                     0.0                0.0       788
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - Model type: TwoTowerHybridModel
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - Model expected dimensions: user_input_dim=81, item_input_dim=25
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - ================================================================================
+
+2025-04-01 12:38:21,450 - recommendation_generator - WARNING - Model does not have feature manifest. Feature compatibility issues may occur.
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - Recommendation engine initialized with 4818 users and 1415 items
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - User ID field: user_id, Item ID field: track_id
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - Recommendation engine created successfully
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - Generating recommendations for user 75...
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - 
+================================================================================
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - PREDICTION REQUEST FOR USER 75
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - ================================================================================
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - Request details: user_id=75, top_k=10, exclude_items_count=0
+2025-04-01 12:38:21,450 - recommendation_generator - INFO - Found user 75 in user features
+2025-04-01 12:38:21,466 - recommendation_generator - DEBUG - User data: 
+          age  monthly_hours  genre_diversity  avg_danceability  avg_energy   avg_key  avg_loudness  avg_mode  avg_speechiness  avg_acousticness  avg_instrumentalness  avg_liveness  avg_valence  avg_tempo  avg_time_signature  listening_depth  age_group_adult  age_group_middle_aged  age_group_senior  age_group_teen  age_group_young_adult  age_group_genre_adult_classical  age_group_genre_adult_country  age_group_genre_adult_electronic  age_group_genre_adult_folk  age_group_genre_adult_hip_hop  age_group_genre_adult_jazz  age_group_genre_adult_latin  age_group_genre_adult_other  age_group_genre_adult_pop  age_group_genre_adult_rb_soul  age_group_genre_adult_rock  age_group_genre_adult_unknown  age_group_genre_middle_aged_classical  age_group_genre_middle_aged_country  age_group_genre_middle_aged_electronic  age_group_genre_middle_aged_folk  age_group_genre_middle_aged_hip_hop  age_group_genre_middle_aged_jazz  age_group_genre_middle_aged_latin  age_group_genre_middle_aged_other  age_group_genre_middle_aged_pop  age_group_genre_middle_aged_rb_soul  age_group_genre_middle_aged_rock  age_group_genre_middle_aged_unknown  age_group_genre_senior_classical  age_group_genre_senior_country  age_group_genre_senior_electronic  age_group_genre_senior_folk  age_group_genre_senior_hip_hop  age_group_genre_senior_jazz  age_group_genre_senior_latin  age_group_genre_senior_other  age_group_genre_senior_pop  age_group_genre_senior_rb_soul  age_group_genre_senior_rock  age_group_genre_senior_unknown  age_group_genre_teen_classical  age_group_genre_teen_country  age_group_genre_teen_electronic  age_group_genre_teen_folk  age_group_genre_teen_hip_hop  age_group_genre_teen_jazz  age_group_genre_teen_latin  age_group_genre_teen_other  age_group_genre_teen_pop  age_group_genre_teen_rb_soul  age_group_genre_teen_rock  age_group_genre_teen_unknown  age_group_genre_young_adult_classical  age_group_genre_young_adult_country  age_group_genre_young_adult_electronic  age_group_genre_young_adult_folk  age_group_genre_young_adult_hip_hop  age_group_genre_young_adult_jazz  age_group_genre_young_adult_latin  age_group_genre_young_adult_other  age_group_genre_young_adult_pop  age_group_genre_young_adult_rb_soul  age_group_genre_young_adult_rock  age_group_genre_young_adult_unknown  user_id
+375  0.020245      -0.417174         0.820488          0.737427    -0.42758 -0.730015     -0.406319  0.326628          0.01063          0.251277             -0.205571      0.096905     0.286387   0.239698            0.020751        -0.810682              0.0                    1.0               0.0             0.0                    0.0                              0.0                            0.0                               0.0                         0.0                            0.0                         0.0                          0.0                          0.0                        0.0                            0.0                         0.0                            0.0                                    0.0                                  0.0                                     0.0                               0.0                                  0.0                               0.0                                0.0                                0.0                              0.0                                  0.0                               1.0                                  0.0                               0.0                             0.0                                0.0                          0.0                             0.0                          0.0                           0.0                           0.0                         0.0                             0.0                          0.0                             0.0                             0.0                           0.0                              0.0                        0.0                           0.0                        0.0                         0.0                         0.0                       0.0                           0.0                        0.0                           0.0                                    0.0                                  0.0                                     0.0                               0.0                                  0.0                               0.0                                0.0                                0.0                              0.0                                  0.0                               0.0                                  0.0       75
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - 
+================================================================================
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - FEATURE PREPARATION - INPUT
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - ================================================================================
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - User features shape: (1, 82)
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - No item features provided, using all item features
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - ================================================================================
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - 
+================================================================================
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - RAW TENSORS BEFORE ALIGNMENT
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - ================================================================================
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - User features array shape: (1, 81)
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - Item features array shape: (1415, 25)
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - Raw user tensor shape: torch.Size([1, 81])
+2025-04-01 12:38:21,515 - recommendation_generator - DEBUG - Raw item tensor shape: torch.Size([1415, 25])
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - No feature manifest available, using raw tensors
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - ================================================================================
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - 
+================================================================================
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - FINAL TENSORS FOR MODEL INPUT
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - ================================================================================
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - Final user tensor shape: torch.Size([1, 81])
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - Final item tensor shape: torch.Size([1415, 25])
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - User tensor count: 81
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - Item tensor count: 25
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - Total user feature dimensions: 81
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - Total item feature dimensions: 25
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - Model expects: user_dim=81, item_dim=25
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - ================================================================================
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - Processing predictions in 15 chunks of 100 items
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - Processing chunk 1/15: items 0 to 100
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - 
+================================================================================
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - MODEL INPUT TENSOR SHAPES
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - ================================================================================
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - User tensor: shape=torch.Size([1, 81]), dtype=torch.float32
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - Item tensor: shape=torch.Size([100, 25]), dtype=torch.float32
+2025-04-01 12:38:21,531 - recommendation_generator - DEBUG - ================================================================================
+
+2025-04-01 12:38:21,539 - recommendation_generator - ERROR - Error in chunk 1/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,539 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,541 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,543 - recommendation_generator - DEBUG - Processing chunk 2/15: items 100 to 200
+2025-04-01 12:38:21,543 - recommendation_generator - ERROR - Error in chunk 2/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,543 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,543 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,543 - recommendation_generator - DEBUG - Processing chunk 3/15: items 200 to 300
+2025-04-01 12:38:21,545 - recommendation_generator - ERROR - Error in chunk 3/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,545 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,547 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,547 - recommendation_generator - DEBUG - Processing chunk 4/15: items 300 to 400
+2025-04-01 12:38:21,551 - recommendation_generator - ERROR - Error in chunk 4/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,551 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,551 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,551 - recommendation_generator - DEBUG - Processing chunk 5/15: items 400 to 500
+2025-04-01 12:38:21,553 - recommendation_generator - ERROR - Error in chunk 5/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,553 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,553 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,555 - recommendation_generator - DEBUG - Processing chunk 6/15: items 500 to 600
+2025-04-01 12:38:21,555 - recommendation_generator - ERROR - Error in chunk 6/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,555 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,557 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,557 - recommendation_generator - DEBUG - Processing chunk 7/15: items 600 to 700
+2025-04-01 12:38:21,557 - recommendation_generator - ERROR - Error in chunk 7/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,557 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,559 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,559 - recommendation_generator - DEBUG - Processing chunk 8/15: items 700 to 800
+2025-04-01 12:38:21,559 - recommendation_generator - ERROR - Error in chunk 8/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,559 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,561 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,561 - recommendation_generator - DEBUG - Processing chunk 9/15: items 800 to 900
+2025-04-01 12:38:21,562 - recommendation_generator - ERROR - Error in chunk 9/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Processing chunk 10/15: items 900 to 1000
+2025-04-01 12:38:21,562 - recommendation_generator - ERROR - Error in chunk 10/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Processing chunk 11/15: items 1000 to 1100
+2025-04-01 12:38:21,562 - recommendation_generator - ERROR - Error in chunk 11/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Processing chunk 12/15: items 1100 to 1200
+2025-04-01 12:38:21,562 - recommendation_generator - ERROR - Error in chunk 12/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Processing chunk 13/15: items 1200 to 1300
+2025-04-01 12:38:21,562 - recommendation_generator - ERROR - Error in chunk 13/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Processing chunk 14/15: items 1300 to 1400
+2025-04-01 12:38:21,562 - recommendation_generator - ERROR - Error in chunk 14/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 100 for tensor number 1 in the list.
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Processing chunk 15/15: items 1400 to 1415
+2025-04-01 12:38:21,562 - recommendation_generator - ERROR - Error in chunk 15/15: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 15 for tensor number 1 in the list.
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Trying alternative approach with explicit user tensor repetition
+2025-04-01 12:38:21,562 - recommendation_generator - DEBUG - Alternative approach succeeded
+2025-04-01 12:38:21,562 - recommendation_generator - INFO - 
+================================================================================
+2025-04-01 12:38:21,562 - recommendation_generator - INFO - RECOMMENDATION RESULTS
+2025-04-01 12:38:21,562 - recommendation_generator - INFO - ================================================================================
+2025-04-01 12:38:21,578 - recommendation_generator - INFO - Generated 10 recommendations for user 75
+2025-04-01 12:38:21,578 - recommendation_generator - INFO - Top 5 recommendations:
+  user_id  item_id     score  rank
+0      75      152  0.425123     1
+1      75     1042  0.424463     2
+2      75      258  0.421999     3
+3      75      394  0.421367     4
+4      75     1202  0.419840     5
+2025-04-01 12:38:21,578 - recommendation_generator - INFO - ================================================================================
+
+2025-04-01 12:38:21,578 - recommendation_generator - INFO - Saved 10 recommendations to recommendations/user75_recommendations.csv
+2025-04-01 12:38:21,578 - recommendation_generator - INFO - 
+Sample recommendations:
+2025-04-01 12:38:21,578 - recommendation_generator - INFO -   user_id  item_id     score  rank
+0      75      152  0.425123     1
+1      75     1042  0.424463     2
+2      75      258  0.421999     3
+3      75      394  0.421367     4
+4      75     1202  0.419840     5
+2025-04-01 12:38:21,578 - recommendation_generator - INFO - 
+####################################################################################################
+2025-04-01 12:38:21,578 - recommendation_generator - INFO - RECOMMENDATION GENERATION COMPLETED
+2025-04-01 12:38:21,578 - recommendation_generator - INFO - ####################################################################################################

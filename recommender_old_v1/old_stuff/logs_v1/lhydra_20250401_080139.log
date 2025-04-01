@@ -1,0 +1,27 @@
+[2025-04-01 08:01:39,789] [INFO] [logger:__init__:77] - Logger initialized. Log directory: C:\Users\mecha\Documents\lhydra-hybrid\logs
+[2025-04-01 08:01:39,789] [INFO] [generate_recommendations_v2:main:402] - ================================================================================
+[2025-04-01 08:01:39,789] [INFO] [generate_recommendations_v2:main:403] - Starting recommendation generation at 20250401_080139
+[2025-04-01 08:01:39,789] [INFO] [generate_recommendations_v2:main:404] - ================================================================================
+[2025-04-01 08:01:39,789] [INFO] [generate_recommendations_v2:main:414] - Using device: cpu
+[2025-04-01 08:01:39,789] [INFO] [generate_recommendations_v2:from_checkpoint:354] - Loading model from notebooks/shipping_1k_data/model.pt
+[2025-04-01 08:01:39,803] [ERROR] [generate_recommendations_v2:main:434] - Error initializing recommendation engine: [Errno 2] No such file or directory: 'notebooks/shipping_1k_data/model.pt'
+Traceback (most recent call last):
+  File "C:\Users\mecha\Documents\lhydra-hybrid\scripts\generate_recommendations_v2.py", line 424, in main
+    engine = RecommendationEngine.from_checkpoint(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mecha\Documents\lhydra-hybrid\scripts\generate_recommendations_v2.py", line 355, in from_checkpoint
+    model = TwoTowerHybridModel.load(model_path, device=device, manifest_path=manifest_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mecha\Documents\lhydra-hybrid\models\two_tower_model.py", line 328, in load
+    model_info = torch.load(path, map_location=device, weights_only=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mecha\anaconda3\Lib\site-packages\torch\serialization.py", line 1319, in load
+    with _open_file_like(f, "rb") as opened_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mecha\anaconda3\Lib\site-packages\torch\serialization.py", line 659, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mecha\anaconda3\Lib\site-packages\torch\serialization.py", line 640, in __init__
+    super().__init__(open(name, mode))
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'notebooks/shipping_1k_data/model.pt'

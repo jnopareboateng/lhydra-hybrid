@@ -1,0 +1,17 @@
+[2025-04-01 07:20:58,606] [INFO] [logger:__init__:77] - Logger initialized. Log directory: C:\Users\mecha\Documents\lhydra-hybrid\logs
+[2025-04-01 07:20:58,622] [INFO] [generate_recommendations_v2:main:402] - ================================================================================
+[2025-04-01 07:20:58,622] [INFO] [generate_recommendations_v2:main:403] - Starting recommendation generation at 20250401_072058
+[2025-04-01 07:20:58,623] [INFO] [generate_recommendations_v2:main:404] - ================================================================================
+[2025-04-01 07:20:58,624] [INFO] [generate_recommendations_v2:main:414] - Using device: cpu
+[2025-04-01 07:20:58,625] [INFO] [generate_recommendations_v2:from_checkpoint:354] - Loading model from models/checkpoints/best_model.pt
+[2025-04-01 07:20:58,625] [INFO] [generate_recommendations_v2:from_checkpoint:358] - Loading user features from notebooks/shipping_10k_data/features/user_features.csv
+[2025-04-01 07:20:58,669] [INFO] [generate_recommendations_v2:from_checkpoint:361] - Loading item features from notebooks/shipping_10k_data/features/item_features.csv
+[2025-04-01 07:20:58,685] [WARNING] [generate_recommendations_v2:__init__:71] - Model does not have feature manifest. Feature compatibility issues may occur.
+[2025-04-01 07:20:58,688] [INFO] [generate_recommendations_v2:__init__:92] - Recommendation engine initialized with 4818 users and 1415 items
+[2025-04-01 07:20:58,688] [INFO] [generate_recommendations_v2:main:432] - Recommendation engine initialized successfully
+[2025-04-01 07:20:58,688] [INFO] [generate_recommendations_v2:main:456] - Generating recommendations for user user290
+[2025-04-01 07:20:58,688] [WARNING] [generate_recommendations_v2:predict_scores:158] - User user290 not found in user features
+[2025-04-01 07:20:58,690] [WARNING] [generate_recommendations_v2:main:490] - No recommendations generated
+[2025-04-01 07:20:58,690] [INFO] [generate_recommendations_v2:main:492] - ================================================================================
+[2025-04-01 07:20:58,690] [INFO] [generate_recommendations_v2:main:493] - Recommendation generation completed at 20250401_072058
+[2025-04-01 07:20:58,690] [INFO] [generate_recommendations_v2:main:494] - ================================================================================

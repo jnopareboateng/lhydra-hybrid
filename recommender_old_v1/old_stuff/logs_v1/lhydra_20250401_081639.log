@@ -1,0 +1,64 @@
+[2025-04-01 08:16:39,790] [INFO] [logger:__init__:77] - Logger initialized. Log directory: C:\Users\mecha\Documents\lhydra-hybrid\logs
+[2025-04-01 08:16:39,794] [INFO] [generate_recommendations_v2:main:629] - ================================================================================
+[2025-04-01 08:16:39,794] [INFO] [generate_recommendations_v2:main:630] - Starting recommendation generation at 20250401_081639
+[2025-04-01 08:16:39,794] [INFO] [generate_recommendations_v2:main:631] - ================================================================================
+[2025-04-01 08:16:39,795] [INFO] [generate_recommendations_v2:main:638] - Using device: cpu
+[2025-04-01 08:16:39,795] [INFO] [generate_recommendations_v2:from_checkpoint:494] - Loading model from models/checkpoints/best_model.pt
+[2025-04-01 08:16:39,830] [INFO] [generate_recommendations_v2:from_checkpoint:507] - Loaded feature manifest from notebooks/shipping_10k_data/feature_manifest.yaml
+[2025-04-01 08:16:39,831] [INFO] [generate_recommendations_v2:from_checkpoint:546] - Using dimensions from checkpoint weights: user=81, item=25
+[2025-04-01 08:16:39,835] [INFO] [generate_recommendations_v2:from_checkpoint:563] - Created model with config: {'user_input_dim': 81, 'item_input_dim': 25}
+[2025-04-01 08:16:39,837] [WARNING] [generate_recommendations_v2:from_checkpoint:568] - Loaded model state with strict=False to handle dimension mismatches
+[2025-04-01 08:16:39,837] [INFO] [generate_recommendations_v2:from_checkpoint:581] - Loading user features from notebooks/shipping_10k_data/features/user_features.csv
+[2025-04-01 08:16:39,895] [INFO] [generate_recommendations_v2:from_checkpoint:585] - Loading item features from notebooks/shipping_10k_data/features/item_features.csv
+[2025-04-01 08:16:39,905] [INFO] [generate_recommendations_v2:__init__:66] - Model has feature manifest. Feature alignment will be used.
+[2025-04-01 08:16:39,905] [INFO] [generate_recommendations_v2:__init__:69] - Feature dimensions from manifest: user=115, item=65
+[2025-04-01 08:16:39,906] [INFO] [generate_recommendations_v2:__init__:92] - Recommendation engine initialized with 4818 users and 1415 items
+[2025-04-01 08:16:39,906] [INFO] [generate_recommendations_v2:main:650] - Recommendation engine initialized successfully
+[2025-04-01 08:16:39,906] [DEBUG] [generate_recommendations_v2:main:655] - User ID field: user_id
+[2025-04-01 08:16:39,907] [DEBUG] [generate_recommendations_v2:main:656] - Item ID field: track_id
+[2025-04-01 08:16:39,908] [DEBUG] [generate_recommendations_v2:main:660] - Sample user IDs (first 5): [3954 4084 3280 2879 2015]
+[2025-04-01 08:16:39,909] [DEBUG] [generate_recommendations_v2:main:661] - User IDs dtype: int64
+[2025-04-01 08:16:39,909] [DEBUG] [generate_recommendations_v2:main:665] - Sample item IDs (first 5): [  20 1109  788  646  538]
+[2025-04-01 08:16:39,910] [DEBUG] [generate_recommendations_v2:main:666] - Item IDs dtype: int64
+[2025-04-01 08:16:39,911] [DEBUG] [generate_recommendations_v2:main:695] - User 290 existence check:
+[2025-04-01 08:16:39,912] [DEBUG] [generate_recommendations_v2:main:696] -   - As string: found
+[2025-04-01 08:16:39,912] [DEBUG] [generate_recommendations_v2:main:697] -   - As integer: found
+[2025-04-01 08:16:39,913] [DEBUG] [generate_recommendations_v2:main:700] - First 10 user IDs for context: [3954 4084 3280 2879 2015 3658 2703 1114 2288  364]
+[2025-04-01 08:16:39,913] [INFO] [generate_recommendations_v2:main:702] - Generating recommendations for user 290
+[2025-04-01 08:16:39,913] [DEBUG] [logger:log_function_call:90] - FUNCTION CALL: predict_scores - Args: (<__main__.RecommendationEngine object at 0x00000252F4C9AFC0>, '290'), Kwargs: {'top_k': 10}
+[2025-04-01 08:16:39,915] [INFO] [generate_recommendations_v2:predict_scores:219] - Found user 290 in user features
+[2025-04-01 08:16:39,972] [DEBUG] [logger:log_function_call:90] - FUNCTION CALL: _prepare_features_for_prediction - Args: (<__main__.RecommendationEngine object at 0x00000252F4C9AFC0>,            age  monthly_hours  ...  age_group_genre_young_adult_unknown  user_id
+4003  0.553178      -1.538306  ...                                  0.0      290
+
+[1 rows x 82 columns]), Kwargs: None
+[2025-04-01 08:16:39,981] [DEBUG] [generate_recommendations_v2:_prepare_features_for_prediction:114] - Using model's align_features method for feature alignment
+[2025-04-01 08:16:40,011] [DEBUG] [generate_recommendations_v2:_prepare_features_for_prediction:131] - Feature alignment completed. User features: 116, Item features: 66
+[2025-04-01 08:16:40,012] [DEBUG] [logger:debug:176] - Function _prepare_features_for_prediction executed in 0.0394 seconds
+[2025-04-01 08:16:40,012] [DEBUG] [generate_recommendations_v2:predict_scores:249] - Processing predictions in 15 chunks of 100 items
+[2025-04-01 08:16:40,022] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 0/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,026] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 1/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,031] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 2/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,031] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 3/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,040] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 4/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,044] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 5/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,048] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 6/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,049] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 7/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,049] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 8/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,059] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 9/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,063] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 10/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,065] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 11/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,065] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 12/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,077] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 13/15: mat1 and mat2 shapes cannot be multiplied (1x11600 and 81x128)
+[2025-04-01 08:16:40,078] [ERROR] [generate_recommendations_v2:predict_scores:297] - Error in chunk 14/15: mat1 and mat2 shapes cannot be multiplied (1x1740 and 81x128)
+[2025-04-01 08:16:40,078] [DEBUG] [logger:debug:176] - Function predict_scores executed in 0.1639 seconds
+[2025-04-01 08:16:40,078] [INFO] [generate_recommendations_v2:main:728] - Saved 10 recommendations to recommendations/user290_recommendations.csv
+[2025-04-01 08:16:40,078] [DEBUG] [generate_recommendations_v2:main:733] - Sample recommendations (first 5):
+[2025-04-01 08:16:40,078] [DEBUG] [generate_recommendations_v2:main:736] -   user_id: 290, item_id: 20, score: 0.0, rank: 1
+[2025-04-01 08:16:40,078] [DEBUG] [generate_recommendations_v2:main:736] -   user_id: 290, item_id: 251, score: 0.0, rank: 2
+[2025-04-01 08:16:40,078] [DEBUG] [generate_recommendations_v2:main:736] -   user_id: 290, item_id: 1323, score: 0.0, rank: 3
+[2025-04-01 08:16:40,078] [DEBUG] [generate_recommendations_v2:main:736] -   user_id: 290, item_id: 499, score: 0.0, rank: 4
+[2025-04-01 08:16:40,078] [DEBUG] [generate_recommendations_v2:main:736] -   user_id: 290, item_id: 514, score: 0.0, rank: 5
+[2025-04-01 08:16:40,078] [INFO] [generate_recommendations_v2:main:741] - ================================================================================
+[2025-04-01 08:16:40,078] [INFO] [generate_recommendations_v2:main:742] - Recommendation generation completed at 20250401_081640
+[2025-04-01 08:16:40,078] [INFO] [generate_recommendations_v2:main:743] - ================================================================================
+[2025-04-01 08:16:40,090] [DEBUG] [logger:debug:176] - Function main executed in 0.3006 seconds

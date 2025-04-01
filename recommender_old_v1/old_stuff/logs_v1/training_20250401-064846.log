@@ -1,0 +1,32 @@
+2025-04-01 06:48:46,191 - root - INFO - Logging setup complete. Log file: logs\training_20250401-064846.log
+2025-04-01 06:48:46,191 - root - INFO - ================================================================================
+2025-04-01 06:48:46,191 - root - INFO - Starting recommendation generation at 2025-04-01 06:48:46
+2025-04-01 06:48:46,191 - root - INFO - ================================================================================
+2025-04-01 06:48:46,191 - root - INFO - Using device: cpu
+2025-04-01 06:48:46,191 - root - INFO - Loading data...
+2025-04-01 06:48:46,223 - utils.data_utils - INFO - Successfully loaded data from notebooks/shipping_10k_data/features/user_features.csv, shape: (4818, 82)
+2025-04-01 06:48:46,239 - utils.data_utils - INFO - Successfully loaded data from notebooks/shipping_10k_data/features/item_features.csv, shape: (1415, 26)
+2025-04-01 06:48:46,239 - root - INFO - Data loaded successfully: 4818 users, 1415 items
+2025-04-01 06:48:46,239 - root - DEBUG - User features columns: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_key', 'avg_loudness', 'avg_mode', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'avg_time_signature', 'listening_depth', 'age_group_adult', 'age_group_middle_aged', 'age_group_senior', 'age_group_teen', 'age_group_young_adult', 'age_group_genre_adult_classical', 'age_group_genre_adult_country', 'age_group_genre_adult_electronic', 'age_group_genre_adult_folk', 'age_group_genre_adult_hip_hop', 'age_group_genre_adult_jazz', 'age_group_genre_adult_latin', 'age_group_genre_adult_other', 'age_group_genre_adult_pop', 'age_group_genre_adult_rb_soul', 'age_group_genre_adult_rock', 'age_group_genre_adult_unknown', 'age_group_genre_middle_aged_classical', 'age_group_genre_middle_aged_country', 'age_group_genre_middle_aged_electronic', 'age_group_genre_middle_aged_folk', 'age_group_genre_middle_aged_hip_hop', 'age_group_genre_middle_aged_jazz', 'age_group_genre_middle_aged_latin', 'age_group_genre_middle_aged_other', 'age_group_genre_middle_aged_pop', 'age_group_genre_middle_aged_rb_soul', 'age_group_genre_middle_aged_rock', 'age_group_genre_middle_aged_unknown', 'age_group_genre_senior_classical', 'age_group_genre_senior_country', 'age_group_genre_senior_electronic', 'age_group_genre_senior_folk', 'age_group_genre_senior_hip_hop', 'age_group_genre_senior_jazz', 'age_group_genre_senior_latin', 'age_group_genre_senior_other', 'age_group_genre_senior_pop', 'age_group_genre_senior_rb_soul', 'age_group_genre_senior_rock', 'age_group_genre_senior_unknown', 'age_group_genre_teen_classical', 'age_group_genre_teen_country', 'age_group_genre_teen_electronic', 'age_group_genre_teen_folk', 'age_group_genre_teen_hip_hop', 'age_group_genre_teen_jazz', 'age_group_genre_teen_latin', 'age_group_genre_teen_other', 'age_group_genre_teen_pop', 'age_group_genre_teen_rb_soul', 'age_group_genre_teen_rock', 'age_group_genre_teen_unknown', 'age_group_genre_young_adult_classical', 'age_group_genre_young_adult_country', 'age_group_genre_young_adult_electronic', 'age_group_genre_young_adult_folk', 'age_group_genre_young_adult_hip_hop', 'age_group_genre_young_adult_jazz', 'age_group_genre_young_adult_latin', 'age_group_genre_young_adult_other', 'age_group_genre_young_adult_pop', 'age_group_genre_young_adult_rb_soul', 'age_group_genre_young_adult_rock', 'age_group_genre_young_adult_unknown', 'user_id']
+2025-04-01 06:48:46,239 - root - DEBUG - Item features columns: ['year', 'duration_ms', 'danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature', 'duration_ms.1', 'song_age', 'duration_min', 'duration_category_long', 'duration_category_medium', 'duration_category_short', 'duration_category_very_long', 'mood_category_angry', 'mood_category_happy', 'mood_category_peaceful', 'mood_category_sad', 'track_id']
+2025-04-01 06:48:46,239 - root - INFO - Loading model from models/checkpoints/best_model.pt...
+2025-04-01 06:48:46,239 - root - INFO - Using feature manifest from config: notebooks/shipping_10k_data/feature_manifest.yaml
+2025-04-01 06:48:46,239 - inference.recommendation_generator - INFO - Loading model from models/checkpoints/best_model.pt
+2025-04-01 06:48:46,239 - inference.recommendation_generator - INFO - Using feature manifest from notebooks/shipping_10k_data/feature_manifest.yaml
+2025-04-01 06:48:46,270 - models.two_tower_model - INFO - Loaded feature manifest from notebooks/shipping_10k_data/feature_manifest.yaml
+2025-04-01 06:48:46,270 - models.two_tower_model - WARNING - User input dimension mismatch: model=81, manifest=115
+2025-04-01 06:48:46,270 - models.two_tower_model - WARNING - Item input dimension mismatch: model=25, manifest=65
+2025-04-01 06:48:46,286 - models.two_tower_model - INFO - Initialized weights
+2025-04-01 06:48:46,286 - models.two_tower_model - INFO - Initialized Two-Tower model with user input dim: 81, item input dim: 25, embedding dim: 32
+2025-04-01 06:48:46,286 - models.two_tower_model - INFO - Model state dict loaded successfully
+2025-04-01 06:48:46,286 - models.two_tower_model - INFO - Model loaded from models/checkpoints/best_model.pt
+2025-04-01 06:48:46,286 - inference.recommendation_generator - INFO - Model has feature manifest. Feature alignment will be used during inference.
+2025-04-01 06:48:46,286 - inference.recommendation_generator - INFO - Recommendation generator initialized with 1415 items
+2025-04-01 06:48:46,286 - inference.recommendation_generator - INFO - Item features shape: 26 features
+2025-04-01 06:48:46,286 - root - INFO - Model loaded successfully
+2025-04-01 06:48:46,286 - root - INFO - Generating recommendations for user 290...
+2025-04-01 06:48:46,286 - inference.recommendation_generator - WARNING - User 290 not found in user features
+2025-04-01 06:48:46,286 - root - WARNING - No recommendations generated for user 290
+2025-04-01 06:48:46,286 - root - INFO - ================================================================================
+2025-04-01 06:48:46,286 - root - INFO - Recommendation generation completed at 2025-04-01 06:48:46
+2025-04-01 06:48:46,286 - root - INFO - ================================================================================

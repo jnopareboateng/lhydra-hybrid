@@ -1,0 +1,4 @@
+2025-04-01 05:37:28,283 - root - INFO - Logging setup complete. Log file: logs\training_20250401-053728.log
+2025-04-01 05:37:28,283 - root - INFO - Using device: cpu
+2025-04-01 05:37:28,297 - root - INFO - Using preprocessed data from notebooks/ship_test_10k_data
+2025-04-01 05:37:28,297 - utils.data_utils - ERROR - Error loading preprocessed data: [Errno 2] No such file or directory: 'notebooks/ship_test_10k_data\\train_data.csv'

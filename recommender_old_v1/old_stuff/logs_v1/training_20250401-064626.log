@@ -1,0 +1,1448 @@
+2025-04-01 06:46:26,589 - root - INFO - Logging setup complete. Log file: logs\training_20250401-064626.log
+2025-04-01 06:46:26,589 - root - INFO - ================================================================================
+2025-04-01 06:46:26,589 - root - INFO - Starting recommendation generation at 2025-04-01 06:46:26
+2025-04-01 06:46:26,589 - root - INFO - ================================================================================
+2025-04-01 06:46:26,589 - root - INFO - Using device: cpu
+2025-04-01 06:46:26,589 - root - INFO - Loading data...
+2025-04-01 06:46:26,639 - utils.data_utils - INFO - Successfully loaded data from notebooks/shipping_10k_data/features/user_features.csv, shape: (4818, 82)
+2025-04-01 06:46:26,656 - utils.data_utils - INFO - Successfully loaded data from notebooks/shipping_10k_data/features/item_features.csv, shape: (1415, 26)
+2025-04-01 06:46:26,656 - root - INFO - Data loaded successfully: 4818 users, 1415 items
+2025-04-01 06:46:26,656 - root - INFO - Loading model from models/checkpoints/best_model.pt...
+2025-04-01 06:46:26,656 - root - INFO - Using feature manifest from config: notebooks/shipping_10k_data/feature_manifest.yaml
+2025-04-01 06:46:26,656 - inference.recommendation_generator - INFO - Loading model from models/checkpoints/best_model.pt
+2025-04-01 06:46:26,656 - inference.recommendation_generator - INFO - Using feature manifest from notebooks/shipping_10k_data/feature_manifest.yaml
+2025-04-01 06:46:26,689 - models.two_tower_model - INFO - Loaded feature manifest from notebooks/shipping_10k_data/feature_manifest.yaml
+2025-04-01 06:46:26,689 - models.two_tower_model - WARNING - User input dimension mismatch: model=81, manifest=115
+2025-04-01 06:46:26,689 - models.two_tower_model - WARNING - Item input dimension mismatch: model=25, manifest=65
+2025-04-01 06:46:26,689 - models.two_tower_model - INFO - Initialized weights
+2025-04-01 06:46:26,689 - models.two_tower_model - INFO - Initialized Two-Tower model with user input dim: 81, item input dim: 25, embedding dim: 32
+2025-04-01 06:46:26,689 - models.two_tower_model - INFO - Model state dict loaded successfully
+2025-04-01 06:46:26,689 - models.two_tower_model - INFO - Model loaded from models/checkpoints/best_model.pt
+2025-04-01 06:46:26,689 - inference.recommendation_generator - INFO - Model has feature manifest. Feature alignment will be used during inference.
+2025-04-01 06:46:26,706 - inference.recommendation_generator - INFO - Recommendation generator initialized with 1415 items
+2025-04-01 06:46:26,706 - inference.recommendation_generator - INFO - Item features shape: 26 features
+2025-04-01 06:46:26,706 - root - INFO - Model loaded successfully
+2025-04-01 06:46:26,706 - root - INFO - Generating top-10 recommendations for all users...
+2025-04-01 06:46:26,706 - inference.recommendation_generator - INFO - Generating recommendations for 4818 users
+2025-04-01 06:46:26,706 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:26,706 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:26,721 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:26,721 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:26,721 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:26,721 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:26,721 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:26,721 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:26,721 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:26,723 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:26,723 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:26,723 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:26,723 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:26,723 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:26,725 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:26,726 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:26,726 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:26,727 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:26,727 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:26,727 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:26,727 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:26,728 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:26,728 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:26,729 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:26,729 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:26,729 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:26,729 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:26,730 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:26,730 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:26,731 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:26,731 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:26,731 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:26,732 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:26,732 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:26,732 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:26,732 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:26,733 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:26,733 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:26,734 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:26,734 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:26,734 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:26,735 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:26,735 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:26,736 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:26,736 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:26,736 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:26,736 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:26,737 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:26,737 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:26,737 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:26,737 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:26,738 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:26,738 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:26,738 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:26,738 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:26,739 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:26,739 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:26,740 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:26,740 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:26,740 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:26,740 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:26,741 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:26,742 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:26,742 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:26,742 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:26,742 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:26,743 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:26,743 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:26,743 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:26,743 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:26,744 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:26,744 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:26,744 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:26,744 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:26,744 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:26,745 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:26,745 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:26,746 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:26,855 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:26,855 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:26,856 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:26,856 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:26,856 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:26,856 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:26,879 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:26,880 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:26,880 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:26,880 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:26,881 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:26,881 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:26,881 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:26,881 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:26,881 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:26,881 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:26,881 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:26,881 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:26,881 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:26,883 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:26,883 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:26,883 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:26,883 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:26,883 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:26,883 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:26,885 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:26,885 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:26,885 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:26,885 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:26,885 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:26,885 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:26,885 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:26,887 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:26,887 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:26,887 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:26,888 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:26,888 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:26,888 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:26,888 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:26,889 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:26,889 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:26,890 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:26,890 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:26,891 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:26,891 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:26,891 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:26,892 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:26,892 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:26,892 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:26,893 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:26,893 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:26,893 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:26,893 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:26,894 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:26,894 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:26,894 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:26,895 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:26,895 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:26,895 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:26,896 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:26,896 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:26,896 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:26,897 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:26,897 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:26,897 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:26,897 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:26,898 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:26,898 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:26,898 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:26,898 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:26,899 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:26,899 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:26,899 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:26,900 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:26,900 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:26,900 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:26,900 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:26,901 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:26,901 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:26,901 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:26,902 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:26,902 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:26,902 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:26,902 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:26,973 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:26,973 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:26,973 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:26,973 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:26,973 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:26,973 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:26,989 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:26,989 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:27,005 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:27,009 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:27,009 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:27,009 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:27,009 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:27,009 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:27,009 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:27,009 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:27,009 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:27,011 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:27,084 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:27,084 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:27,084 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,084 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,084 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,084 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:27,164 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:27,164 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:27,179 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:27,181 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:27,182 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:27,182 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:27,182 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:27,182 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:27,183 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:27,183 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:27,183 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:27,183 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:27,183 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:27,183 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:27,184 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:27,184 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:27,184 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:27,184 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:27,184 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:27,185 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:27,185 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:27,307 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:27,307 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:27,309 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,309 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,310 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,310 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:27,322 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:27,322 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:27,337 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:27,337 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:27,337 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:27,338 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:27,338 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:27,338 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:27,338 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:27,423 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:27,423 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:27,425 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,425 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,425 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,425 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:27,523 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,525 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:27,525 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:27,525 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:27,525 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:27,525 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:27,527 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:27,527 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:27,527 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:27,527 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:27,527 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:27,527 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:27,527 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:27,529 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:27,529 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:27,529 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:27,529 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:27,529 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:27,529 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:27,529 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:27,531 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:27,531 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:27,531 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:27,531 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:27,531 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:27,531 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:27,531 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:27,533 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:27,533 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:27,533 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:27,533 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:27,533 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:27,533 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:27,533 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:27,535 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:27,535 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:27,535 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:27,535 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:27,535 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:27,535 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:27,537 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:27,537 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:27,537 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:27,537 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:27,537 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:27,537 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:27,537 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:27,539 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:27,539 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:27,539 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:27,539 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:27,539 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:27,539 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:27,539 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:27,541 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:27,541 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:27,541 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:27,541 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:27,541 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:27,541 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:27,541 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:27,543 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:27,543 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:27,543 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:27,543 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:27,543 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:27,543 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:27,543 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:27,543 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:27,545 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:27,545 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:27,545 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:27,545 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:27,545 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:27,545 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:27,545 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:27,547 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:27,547 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:27,656 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:27,656 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:27,656 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,658 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,658 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,658 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:27,666 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,666 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:27,668 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:27,670 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:27,672 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:27,674 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:27,676 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:27,678 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:27,678 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:27,678 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:27,678 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:27,678 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:27,678 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:27,743 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:27,743 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:27,743 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,743 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,743 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,759 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:27,856 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,856 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:27,856 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:27,856 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:27,856 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:27,856 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:27,856 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:27,858 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:27,858 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:27,858 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:27,858 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:27,858 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:27,858 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:27,858 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:27,858 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:27,858 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:27,860 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:27,860 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:27,860 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:27,860 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:27,860 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:27,860 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:27,860 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:27,860 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:27,862 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:27,862 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:27,862 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:27,862 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:27,862 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:27,862 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:27,862 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:27,862 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:27,862 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:27,864 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:27,864 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:27,864 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:27,864 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:27,864 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:27,864 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:27,864 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:27,864 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:27,864 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:27,866 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:27,868 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:27,871 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:27,872 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:27,872 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:27,872 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:27,872 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:27,872 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:27,872 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:27,872 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:27,872 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:27,872 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:27,874 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:27,874 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:27,874 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:27,874 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:27,874 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:27,874 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:27,972 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:27,972 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:27,972 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,972 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,972 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:27,972 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:27,991 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:27,991 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:28,005 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:28,005 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:28,005 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:28,006 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:28,090 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:28,090 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:28,090 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,090 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,090 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,090 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:28,189 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:28,189 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:28,204 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:28,204 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:28,204 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:28,204 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:28,204 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:28,205 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:28,205 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:28,206 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:28,306 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:28,306 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:28,306 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,306 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,306 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,306 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:28,323 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:28,323 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:28,338 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:28,338 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:28,339 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:28,339 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:28,339 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:28,339 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:28,340 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:28,340 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:28,340 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:28,340 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:28,341 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:28,341 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:28,341 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:28,341 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:28,341 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:28,342 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:28,342 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:28,342 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:28,342 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:28,342 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:28,342 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:28,343 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:28,343 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:28,343 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:28,343 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:28,343 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:28,344 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:28,344 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:28,344 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:28,344 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:28,344 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:28,345 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:28,345 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:28,345 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:28,345 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:28,345 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:28,345 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:28,346 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:28,422 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:28,422 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:28,422 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,422 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,422 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,422 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:28,523 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:28,523 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:28,538 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:28,538 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:28,538 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:28,539 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:28,540 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:28,686 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:28,686 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:28,686 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,686 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,686 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,686 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:28,765 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:28,765 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:28,781 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:28,907 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:28,907 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:28,910 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,910 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,910 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:28,910 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:28,922 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:28,922 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:28,938 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:28,938 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:28,938 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:28,938 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:28,938 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:28,938 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:28,938 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:28,938 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:28,940 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:28,940 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:28,940 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:28,940 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:28,940 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:29,015 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:29,015 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:29,017 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:29,017 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:29,017 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:29,017 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:29,096 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:29,096 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:29,105 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:29,105 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:29,105 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:29,105 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:29,105 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:29,105 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:29,105 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:29,105 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:29,107 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:29,109 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:29,111 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:29,112 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:29,112 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:29,112 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:29,112 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:29,112 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:29,112 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:29,207 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:29,207 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:29,207 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:29,207 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:29,207 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:29,207 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:29,223 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:29,223 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features
+2025-04-01 06:46:29,303 - inference.recommendation_generator - ERROR - Error during prediction: mat1 and mat2 shapes cannot be multiplied (1415x113235 and 81x128)
+2025-04-01 06:46:29,303 - inference.recommendation_generator - WARNING - Attempting to use feature concatenation as a fallback
+2025-04-01 06:46:29,303 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:29,303 - models.two_tower_model - WARNING - User features is already a tensor, cannot align with manifest
+2025-04-01 06:46:29,303 - models.two_tower_model - WARNING - Item features is already a tensor, cannot align with manifest
+2025-04-01 06:46:29,303 - models.two_tower_model - INFO - Feature alignment complete: 1415 user features, 1415 item features
+2025-04-01 06:46:29,398 - models.two_tower_model - INFO - Aligning features based on manifest
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Argentina
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Australia
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Brazil
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Canada
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Chile
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Colombia
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_France
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Germany
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_India
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Italy
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Japan
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Mexico
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Netherlands
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Poland
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_South Africa
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_South Korea
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Spain
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_Sweden
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_UAE
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_UK
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: country_USA
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: gender_Female
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: gender_Male
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_classical
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_country
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_electronic
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_folk
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_hip_hop
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_jazz
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_latin
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_other
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_pop
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rb_soul
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_rock
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected user feature: top_genre_unknown
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_classical
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_country
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_electronic
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_folk
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_hip_hop
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_jazz
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_latin
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_other
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_pop
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rb_soul
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_rock
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: main_genre_unknown
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: is_recent
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: energy_loudness_ratio
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: valence_danceability_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: danceability_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: danceability_abs_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: energy_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: energy_abs_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: key_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: key_abs_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: loudness_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: loudness_abs_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: mode_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: mode_abs_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: speechiness_abs_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: acousticness_abs_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: instrumentalness_abs_diff
+2025-04-01 06:46:29,400 - models.two_tower_model - WARNING - Missing expected item feature: liveness_diff
+2025-04-01 06:46:29,414 - models.two_tower_model - WARNING - Missing expected item feature: liveness_abs_diff
+2025-04-01 06:46:29,414 - models.two_tower_model - WARNING - Missing expected item feature: valence_diff
+2025-04-01 06:46:29,414 - models.two_tower_model - WARNING - Missing expected item feature: valence_abs_diff
+2025-04-01 06:46:29,414 - models.two_tower_model - WARNING - Missing expected item feature: tempo_diff
+2025-04-01 06:46:29,414 - models.two_tower_model - WARNING - Missing expected item feature: tempo_abs_diff
+2025-04-01 06:46:29,414 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_diff
+2025-04-01 06:46:29,414 - models.two_tower_model - WARNING - Missing expected item feature: time_signature_abs_diff
+2025-04-01 06:46:29,414 - models.two_tower_model - INFO - Feature alignment complete: 115 user features, 66 item features

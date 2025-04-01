@@ -1,0 +1,18 @@
+2025-04-01 09:07:25,352 - root - INFO - Logging setup complete. Log file: logs\training_20250401-090725.log
+2025-04-01 09:07:25,352 - root - INFO - 
+####################################################################################################
+2025-04-01 09:07:25,352 - root - INFO - LHYDRA MUSIC RECOMMENDER - DETAILED TRAINING DEBUG INFORMATION
+2025-04-01 09:07:25,352 - root - INFO - ####################################################################################################
+
+2025-04-01 09:07:25,352 - root - INFO - ================================================================================
+2025-04-01 09:07:25,352 - root - INFO - CONFIGURATION SUMMARY
+2025-04-01 09:07:25,352 - root - INFO - ================================================================================
+2025-04-01 09:07:25,352 - root - INFO - Data config: {'target_column': 'high_engagement', 'train_path': 'notebooks/shipping_10k_data/train_data.csv', 'preprocessed_data_dir': 'notebooks/shipping_10k_data', 'user_features_path': 'notebooks/shipping_10k_data/features/user_features.csv', 'item_features_path': 'notebooks/shipping_10k_data/features/item_features.csv', 'feature_manifest_path': 'notebooks/shipping_10k_data/feature_manifest.yaml', 'output_dir': 'notebooks/shipping_10k_data', 'user_demographic_features': ['age', 'gender', 'country'], 'user_listening_features': ['monthly_hours', 'genre_diversity', 'top_genre'], 'user_audio_preferences': ['avg_danceability', 'avg_energy', 'avg_key', 'avg_loudness', 'avg_mode', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'avg_time_signature'], 'track_metadata_features': ['artist', 'main_genre', 'year', 'duration_ms'], 'track_audio_features': ['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature'], 'categorical_features': ['gender', 'country', 'top_genre', 'main_genre', 'artist'], 'numerical_features': ['age', 'monthly_hours', 'genre_diversity', 'year', 'duration_ms'], 'target_threshold': 5, 'test_size': 0.2, 'validation_size': 0.1, 'random_seed': 42, 'embedding_dim': 32}
+2025-04-01 09:07:25,352 - root - INFO - Model config: {'embedding_dim': 32, 'hidden_dims': [128, 64], 'prediction_dims': [64, 32], 'dropout': 0.2, 'final_layer_size': 16, 'user_tower': {'hidden_layers': [128, 64], 'dropout': 0.2, 'activation': 'relu'}, 'item_tower': {'hidden_layers': [128, 64], 'dropout': 0.2, 'activation': 'relu'}}
+2025-04-01 09:07:25,352 - root - INFO - Training config: {'learning_rate': 0.001, 'weight_decay': '1e-4', 'num_epochs': 100, 'patience': 10, 'batch_size': 64, 'num_workers': 4, 'checkpoint_dir': 'models/checkpoints', 'log_dir': 'logs', 'optimizer': 'adam', 'loss_function': 'binary_cross_entropy', 'lr_scheduler': {'use': True, 'factor': 0.5, 'patience': 5}, 'early_stopping_patience': 10}
+2025-04-01 09:07:25,352 - root - INFO - Evaluation config: {'k_values': [5, 10, 20], 'save_predictions': True, 'save_metrics': True, 'cohort_analysis': True, 'metrics_dir': 'evaluation/metrics', 'predictions_dir': 'evaluation/predictions'}
+2025-04-01 09:07:25,352 - root - INFO - ================================================================================
+
+2025-04-01 09:07:25,352 - root - INFO - Using device: cpu
+2025-04-01 09:07:25,352 - root - INFO - Using preprocessed data from notebooks/ship_test_10k_data
+2025-04-01 09:07:25,352 - utils.data_utils - ERROR - Error loading preprocessed data: [Errno 2] No such file or directory: 'notebooks/ship_test_10k_data\\train_data.csv'
