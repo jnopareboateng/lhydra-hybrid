@@ -1,0 +1,13 @@
+2025-04-02 06:12:13,863 - extract_data - INFO - Starting data extraction
+2025-04-02 06:12:13,864 - extract_data - INFO - Loading dataset from data/spotify_1k_sample_data.csv
+2025-04-02 06:12:13,912 - extract_data - INFO - Loaded dataset with 1000 rows and 43 columns
+2025-04-02 06:12:13,912 - extract_data - INFO - Columns in dataset: track_id, user_id, playcount, name, artist, spotify_preview_url, spotify_id, tags, genre, main_genre, year, duration_ms, danceability, energy, key, loudness, mode, speechiness, acousticness, instrumentalness, liveness, valence, tempo, time_signature, age, gender, region, country, monthly_hours, top_genre, genre_diversity, avg_danceability, avg_energy, avg_key, avg_loudness, avg_mode, avg_speechiness, avg_acousticness, avg_instrumentalness, avg_liveness, avg_valence, avg_tempo, avg_time_signature
+2025-04-02 06:12:13,916 - extract_data - INFO - Extracting user data
+2025-04-02 06:12:15,035 - extract_data - INFO - Extracted 903 unique users
+2025-04-02 06:12:15,035 - extract_data - INFO - Extracting track data
+2025-04-02 06:12:15,035 - extract_data - INFO - Extracted 57 unique tracks
+2025-04-02 06:12:15,035 - extract_data - INFO - Extracting user-track interactions
+2025-04-02 06:12:15,035 - extract_data - INFO - Extracted 1000 user-track interactions
+2025-04-02 06:12:15,060 - extract_data - INFO - User data saved to data\users.csv
+2025-04-02 06:12:15,060 - extract_data - INFO - Track data saved to data\tracks.csv
+2025-04-02 06:12:15,060 - extract_data - INFO - Interaction data saved to data\interactions.csv

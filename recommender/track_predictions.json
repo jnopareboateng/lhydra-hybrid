@@ -1,0 +1,19 @@
+{
+  "user_id": "5349eae4c436a0c8e931d21b62540442451a9eb4",
+  "predictions": [
+    {
+      "track_id": "TRAABJS128F9325C99",
+      "score": 0.613591730594635,
+      "track_name": "Auburn and Ivory",
+      "artist": "Beach House",
+      "genre": "Rock"
+    },
+    {
+      "track_id": "TRAAGCZ128F93210FD",
+      "score": 0.0,
+      "track_name": "Let's Get It Started",
+      "artist": "Black Eyed Peas",
+      "genre": null
+    }
+  ]
+}
