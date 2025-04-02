@@ -14,7 +14,9 @@ import numpy as np
 import torch
 import yaml
 import json
+import _pickle
 from pathlib import Path
+import pandas as pd
 
 # Add parent directory to path to allow imports from recommender package
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -49,46 +51,49 @@ logging.basicConfig(
 logger = logging.getLogger('visualize')
 
 
-def load_model(model_path, device):
+def load_model_safely(model_path, device):
     """
-    Load a trained model from checkpoint.
+    Load model with proper handling of PyTorch weights_only security.
     
     Args:
         model_path: Path to the model checkpoint
         device: Device to load the model on
         
     Returns:
-        Loaded model
+        Loaded checkpoint dictionary
     """
     try:
-        checkpoint = torch.load(model_path, map_location=device)
-        
-        if 'config' in checkpoint:
-            config = checkpoint['config']
-            categorical_mappings = checkpoint.get('categorical_mappings', {})
+        # First try loading with weights_only=True (most secure)
+        try:
+            # Add numpy scalar to safe globals to handle common NumPy types
+            import torch.serialization
+            from numpy.core.multiarray import scalar
+            torch.serialization.add_safe_globals([scalar])
             
-            model = HybridRecommender(config, categorical_mappings)
+            # Also add common dtype classes to handle numpy dtype issues
+            import numpy as np
+            from numpy import dtype
+            torch.serialization.add_safe_globals([type(np.dtype(np.float32))])
+            torch.serialization.add_safe_globals([dtype])
             
-            # Load state dict
-            state_dict_key = 'state_dict' if 'state_dict' in checkpoint else 'model_state_dict'
+            # Try for numpy >= 1.25 (different class structure)
             try:
-                # First try strict loading
-                model.load_state_dict(checkpoint[state_dict_key])
-            except RuntimeError as e:
-                logger.warning(f"Strict loading failed: {str(e)}")
-                logger.warning("Attempting to load with strict=False to handle model architecture differences")
-                # Try non-strict loading to handle architecture changes
-                model.load_state_dict(checkpoint[state_dict_key], strict=False)
-                
-            model.to(device)
-            logger.info(f"Successfully loaded model from {model_path}")
-            return model, config, categorical_mappings
-        else:
-            logger.error(f"Checkpoint at {model_path} does not contain model config")
-            return None, None, None
+                from numpy.dtypes import Float32DType
+                torch.serialization.add_safe_globals([Float32DType])
+            except ImportError:
+                pass  # Older numpy version, ignore
+            
+            # Load with weights_only=True
+            return torch.load(model_path, map_location=device, weights_only=True)
+        except (ImportError, RuntimeError, _pickle.UnpicklingError, AttributeError) as e:
+            # If adding safe globals didn't work or other issues occur
+            logger.warning(f"Secure loading with weights_only=True failed: {str(e)}")
+            logger.warning("Falling back to standard loading. Make sure you trust this checkpoint source.")
+            return torch.load(model_path, map_location=device, weights_only=False)
     except Exception as e:
+        # If all loading attempts failed
         logger.error(f"Failed to load model from {model_path}: {str(e)}")
-        return None, None, None
+        raise
 
 
 def load_metrics_history(metrics_path):
@@ -125,10 +130,59 @@ def create_dataloader(data_path, config, categorical_mappings, batch_size=64):
         DataLoader object
     """
     try:
-        user_features = config['feature_sets']['user_features']
-        track_features = config['feature_sets']['track_features']
-        categorical_columns = config['feature_sets'].get('categorical_features', [])
-        target_col = config['feature_sets'].get('target_column', 'liked')
+        # Extract features based on config structure
+        user_features = []
+        track_features = []
+        categorical_columns = []
+        target_col = 'liked'  # Default target column
+        
+        # First try feature_sets structure
+        if 'feature_sets' in config:
+            user_features = config['feature_sets'].get('user_features', [])
+            track_features = config['feature_sets'].get('track_features', [])
+            categorical_columns = config['feature_sets'].get('categorical_features', [])
+            target_col = config['feature_sets'].get('target_column', 'liked')
+        # Alternative format: features structure 
+        elif 'features' in config:
+            # Extract user features
+            user_numerical = config['features'].get('user_features', {}).get('numerical', [])
+            user_categorical = config['features'].get('user_features', {}).get('categorical', [])
+            user_features = user_numerical + user_categorical
+            
+            # Extract track features
+            track_numerical = config['features'].get('track_features', {}).get('numerical', [])
+            track_categorical = config['features'].get('track_features', {}).get('categorical', [])
+            track_features = track_numerical + track_categorical
+            
+            # Combine categorical features
+            categorical_columns = user_categorical + track_categorical
+            
+            # Get target column
+            target_col = config.get('target_column', 'liked')
+        
+        # Check if we have any features
+        if not user_features and not track_features:
+            logger.error("No features found in the model configuration")
+            # Create some basic features as fallback
+            logger.warning("Using default feature lists as fallback")
+            # Read first row of CSV to get column names
+            df_sample = pd.read_csv(data_path, nrows=1)
+            columns = df_sample.columns.tolist()
+            # Filter out obvious user/track features
+            user_columns = [col for col in columns if col.startswith('user_') or col.startswith('u_')]
+            track_columns = [col for col in columns if col.startswith('track_') or col.startswith('t_') or col.startswith('song_')]
+            # If we couldn't identify, do a simple split
+            if not user_columns and not track_columns:
+                # Skip target column and split the rest
+                non_target = [col for col in columns if col != target_col]
+                middle = len(non_target) // 2
+                user_features = non_target[:middle]
+                track_features = non_target[middle:]
+            else:
+                user_features = user_columns
+                track_features = track_columns
+        
+        logger.info(f"Creating dataset with {len(user_features)} user features and {len(track_features)} track features")
         
         dataset = MusicRecommenderDataset(
             data_path=data_path,
@@ -150,6 +204,7 @@ def create_dataloader(data_path, config, categorical_mappings, batch_size=64):
         return dataloader
     except Exception as e:
         logger.error(f"Failed to create data loader: {str(e)}")
+        logger.exception("Detailed error traceback:")
         return None
 
 

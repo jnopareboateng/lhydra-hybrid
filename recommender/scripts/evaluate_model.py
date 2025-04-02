@@ -15,6 +15,8 @@ import yaml
 import torch
 import json
 import pandas as pd
+import _pickle
+import numpy as np
 from pathlib import Path
 
 # Add project root to path to allow imports
@@ -24,6 +26,50 @@ from data.dataset import create_dataloader
 from training.trainer import ModelTrainer
 from models.recommender import HybridRecommender
 from utils.logger import setup_logger
+
+def load_model_safely(model_path, device):
+    """
+    Load model with proper handling of PyTorch weights_only security.
+    
+    Args:
+        model_path: Path to the model checkpoint
+        device: Device to load the model on
+        
+    Returns:
+        Loaded checkpoint dictionary
+    """
+    try:
+        # First try loading with weights_only=True (most secure)
+        try:
+            # Add numpy scalar to safe globals to handle common NumPy types
+            import torch.serialization
+            from numpy.core.multiarray import scalar
+            torch.serialization.add_safe_globals([scalar])
+            
+            # Also add common dtype classes to handle numpy dtype issues
+            import numpy as np
+            from numpy import dtype
+            torch.serialization.add_safe_globals([type(np.dtype(np.float32))])
+            torch.serialization.add_safe_globals([dtype])
+            
+            # Try for numpy >= 1.25 (different class structure)
+            try:
+                from numpy.dtypes import Float32DType
+                torch.serialization.add_safe_globals([Float32DType])
+            except ImportError:
+                pass  # Older numpy version, ignore
+            
+            # Load with weights_only=True
+            return torch.load(model_path, map_location=device, weights_only=True)
+        except (ImportError, RuntimeError, _pickle.UnpicklingError, AttributeError) as e:
+            # If adding safe globals didn't work or other issues occur
+            logger.warning(f"Secure loading with weights_only=True failed: {str(e)}")
+            logger.warning("Falling back to standard loading. Make sure you trust this checkpoint source.")
+            return torch.load(model_path, map_location=device, weights_only=False)
+    except Exception as e:
+        # If all loading attempts failed
+        logger.error(f"Failed to load model from {model_path}: {str(e)}")
+        raise
 
 def main():
     """Main function to evaluate the model."""
@@ -49,6 +95,7 @@ def main():
     os.makedirs(args.output, exist_ok=True)
     
     # Set up logging
+    global logger
     logger = setup_logger(
         name="evaluate_model",
         log_file=os.path.join(log_dir, "evaluate_model.log"),
@@ -154,9 +201,32 @@ def main():
         logger.info("Initializing trainer")
         trainer = ModelTrainer(args.config)
         
+        # Load the model directly instead of using the patched evaluate method
+        logger.info(f"Loading model from {args.model} with enhanced security handling")
+        checkpoint = load_model_safely(args.model, device)
+        
+        # Create model using checkpoint configuration
+        trainer.model = HybridRecommender(
+            config_path=checkpoint.get('config'),
+            categorical_mappings=checkpoint.get('categorical_mappings')
+        )
+        
+        try:
+            # First try with strict loading
+            trainer.model.load_state_dict(checkpoint['model_state_dict'])
+        except RuntimeError as e:
+            logger.warning(f"Strict loading failed: {str(e)}")
+            logger.warning("Attempting to load with strict=False to handle model architecture differences")
+            # Try again with non-strict loading to handle architecture changes
+            trainer.model.load_state_dict(checkpoint['model_state_dict'], strict=False)
+            
+        trainer.model.to(device)
+        logger.info(f"Model loaded successfully from {args.model}")
+        
         # Evaluate model
         logger.info(f"Evaluating model from {args.model}")
-        metrics = trainer.evaluate(test_loader, model_path=args.model)
+        # Call evaluate with None to avoid reloading the model (we just loaded it)
+        metrics = trainer.evaluate(test_loader, model_path=None)
         
         # Print metrics
         logger.info("Evaluation Results:")
@@ -179,7 +249,7 @@ def main():
             
             # Load model directly (not through trainer) for generating recommendations
             logger.info("Generating per-user metrics")
-            checkpoint = torch.load(args.model, map_location=device)
+            checkpoint = load_model_safely(args.model, device)
             
             # Create a temporary config file if loading directly
             import tempfile
@@ -189,7 +259,7 @@ def main():
             config_file.close()
             
             model = HybridRecommender(config_path, checkpoint.get('categorical_mappings'))
-            model.load_state_dict(checkpoint['model_state_dict'])
+            model.load_state_dict(checkpoint['model_state_dict'], strict=False)
             model.to(device)
             model.eval()
             

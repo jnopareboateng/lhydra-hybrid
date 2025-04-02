@@ -74,7 +74,7 @@ evaluation:
 
 # Logging configuration
 logging:
-  log_dir: "logs"
-  tensorboard_dir: "logs/tensorboard"
+  log_dir: "logz"
+  tensorboard_dir: "logz/tensorboard"
   log_interval: 10 # Log every N batches
   val_interval: 1 # Validate every N epochs

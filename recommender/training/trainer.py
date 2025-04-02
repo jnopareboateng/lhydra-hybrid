@@ -18,6 +18,7 @@ from tqdm import tqdm
 import random
 import matplotlib.pyplot as plt
 from pathlib import Path
+import _pickle
 
 from models.recommender import HybridRecommender
 from training.metrics import calculate_metrics
@@ -175,7 +176,7 @@ class ModelTrainer:
                 factor=self.config['training']['scheduler_factor'],
                 patience=self.config['training']['scheduler_patience'],
                 min_lr=self.config['training']['scheduler_min_lr'],
-                verbose=True
+                # verbose=True
             )
         elif scheduler_type == 'cosine_annealing':
             self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
@@ -561,7 +562,15 @@ class ModelTrainer:
         # Load and return the best model
         best_model_path = self.config['model']['best_model_path']
         if os.path.exists(best_model_path):
-            checkpoint = torch.load(best_model_path, map_location=self.device)
+            try:
+                # Use weights_only=True for safer loading
+                checkpoint = torch.load(best_model_path, map_location=self.device, weights_only=True)
+            except Exception as e:
+                logger.warning(f"Failed to load with weights_only=True: {str(e)}")
+                logger.warning("Falling back to standard loading. Make sure you trust this checkpoint source.")
+                checkpoint = torch.load(best_model_path, map_location=self.device, weights_only=False)
+                
+            # load_state_dict does not accept weights_only parameter, so remove it
             self.model.load_state_dict(checkpoint['model_state_dict'])
             logger.info(f"Loaded best model from {best_model_path}")
             
@@ -599,9 +608,42 @@ class ModelTrainer:
         Returns:
             dict: Dictionary of test metrics
         """
+        # Import torch at the top of the function to ensure it's in scope
+        import torch
+        import numpy as np
+        
         # Load the model if path is provided
         if model_path:
-            checkpoint = torch.load(model_path, map_location=self.device)
+            try:
+                # Add numpy scalar to safe globals to handle common NumPy types
+                try:
+                    import torch.serialization
+                    from numpy.core.multiarray import scalar
+                    torch.serialization.add_safe_globals([scalar])
+                    
+                    # Also add common dtype classes to handle numpy dtype issues
+                    import numpy as np
+                    from numpy import dtype
+                    torch.serialization.add_safe_globals([type(np.dtype(np.float32))])
+                    torch.serialization.add_safe_globals([dtype])
+                    
+                    # Try for numpy >= 1.25 (different class structure)
+                    try:
+                        from numpy.dtypes import Float32DType
+                        torch.serialization.add_safe_globals([Float32DType])
+                    except ImportError:
+                        pass  # Older numpy version, ignore
+                    
+                    # Try loading with weights_only=True (most secure)
+                    checkpoint = torch.load(model_path, map_location=self.device, weights_only=True)
+                except (ImportError, RuntimeError, _pickle.UnpicklingError, AttributeError) as e:
+                    # If adding safe globals didn't work or other issues occur
+                    logger.warning(f"Secure loading with weights_only=True failed: {str(e)}")
+                    logger.warning("Falling back to standard loading. Make sure you trust this checkpoint source.")
+                    checkpoint = torch.load(model_path, map_location=self.device, weights_only=False)
+            except Exception as e:
+                logger.error(f"Failed to load model from {model_path}: {str(e)}")
+                raise
             
             # Create model using checkpoint configuration
             self.model = HybridRecommender(
@@ -750,9 +792,41 @@ class ModelTrainer:
         Returns:
             numpy.ndarray: Predicted scores
         """
+        # Import torch at the top of the function to ensure it's in scope
+        import torch
+        
         # Load the model if path is provided
         if model_path:
-            checkpoint = torch.load(model_path, map_location=self.device)
+            try:
+                # Add numpy scalar to safe globals to handle common NumPy types
+                try:
+                    import torch.serialization
+                    from numpy.core.multiarray import scalar
+                    torch.serialization.add_safe_globals([scalar])
+                    
+                    # Also add common dtype classes to handle numpy dtype issues
+                    import numpy as np
+                    from numpy import dtype
+                    torch.serialization.add_safe_globals([type(np.dtype(np.float32))])
+                    torch.serialization.add_safe_globals([dtype])
+                    
+                    # Try for numpy >= 1.25 (different class structure)
+                    try:
+                        from numpy.dtypes import Float32DType
+                        torch.serialization.add_safe_globals([Float32DType])
+                    except ImportError:
+                        pass  # Older numpy version, ignore
+                    
+                    # Try loading with weights_only=True (most secure)
+                    checkpoint = torch.load(model_path, map_location=self.device, weights_only=True)
+                except (ImportError, RuntimeError, _pickle.UnpicklingError, AttributeError) as e:
+                    # If adding safe globals didn't work or other issues occur
+                    logger.warning(f"Secure loading with weights_only=True failed: {str(e)}")
+                    logger.warning("Falling back to standard loading. Make sure you trust this checkpoint source.")
+                    checkpoint = torch.load(model_path, map_location=self.device, weights_only=False)
+            except Exception as e:
+                logger.error(f"Failed to load model from {model_path}: {str(e)}")
+                raise
             
             # Create model using checkpoint configuration
             self.model = HybridRecommender(

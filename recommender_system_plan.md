@@ -212,13 +212,13 @@ recommender/
    - Feature extraction and engineering
    - Train-validation split implementation
 
-2. **Model Architecture**:
+2. **Model Architecture**✅:
 
    - User tower implementation
    - Item tower implementation
    - Combined model creation
 
-3. **Training Pipeline**:
+3. **Training Pipeline**✅:
 
    - Loss function implementation
    - Evaluation metrics
