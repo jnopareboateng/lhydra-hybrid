@@ -45,3 +45,258 @@ Check the documentation of torch.load to learn more about types accepted by defa
 2025-04-02 08:48:52,512 - predict_tracks - INFO - Predicting for 2 tracks
 2025-04-02 08:48:52,529 - predict_tracks - WARNING - Handling batch normalization for single sample by duplicating input
 2025-04-02 08:48:52,547 - predict_tracks - INFO - Predictions saved to track_predictions.json
+2025-04-02 09:15:26,965 - predict_tracks - INFO - Starting track prediction
+2025-04-02 09:15:26,965 - predict_tracks - INFO - Using device: cpu
+2025-04-02 09:15:26,965 - predict_tracks - INFO - Loading model from checkpoints/best_model.pt
+2025-04-02 09:15:26,997 - predict_tracks - WARNING - Secure loading with weights_only=True failed: Weights only load failed. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+Please file an issue with the following so that we can make `weights_only=True` compatible with your use case: WeightsUnpickler error: Can only build Tensor, Parameter, OrderedDict or types allowlisted via `add_safe_globals`, but got <class 'numpy.dtypes.Float64DType'>
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2025-04-02 09:15:26,997 - predict_tracks - WARNING - Falling back to standard loading. Make sure you trust this checkpoint source.
+2025-04-02 09:15:27,066 - predict_tracks - WARNING - Strict loading failed: Error(s) in loading state_dict for HybridRecommender:
+	Unexpected key(s) in state_dict: "prediction_layers.0.weight", "prediction_layers.0.bias", "prediction_layers.3.weight", "prediction_layers.3.bias", "prediction_layers.6.weight", "prediction_layers.6.bias", "user_tower.layers.0.weight", "user_tower.layers.0.bias", "user_tower.layers.2.weight", "user_tower.layers.2.bias", "user_tower.layers.2.running_mean", "user_tower.layers.2.running_var", "user_tower.layers.2.num_batches_tracked", "user_tower.layers.3.weight", "user_tower.layers.3.bias", "user_tower.layers.5.weight", "user_tower.layers.5.bias", "user_tower.layers.5.running_mean", "user_tower.layers.5.running_var", "user_tower.layers.5.num_batches_tracked", "item_tower.layers.0.weight", "item_tower.layers.0.bias", "item_tower.layers.2.weight", "item_tower.layers.2.bias", "item_tower.layers.2.running_mean", "item_tower.layers.2.running_var", "item_tower.layers.2.num_batches_tracked", "item_tower.layers.3.weight", "item_tower.layers.3.bias", "item_tower.layers.5.weight", "item_tower.layers.5.bias", "item_tower.layers.5.running_mean", "item_tower.layers.5.running_var", "item_tower.layers.5.num_batches_tracked". 
+2025-04-02 09:15:27,066 - predict_tracks - WARNING - Attempting to load with strict=False to handle model architecture differences
+2025-04-02 09:15:27,072 - predict_tracks - INFO - User features: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_loudness', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'gender', 'country', 'top_genre']
+2025-04-02 09:15:27,072 - predict_tracks - INFO - Track features: ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'recency', 'artist_id', 'main_genre', 'year_bin']
+2025-04-02 09:15:27,072 - predict_tracks - INFO - Loading user data from data/preprocessed_1k_data/users.csv
+2025-04-02 09:15:27,084 - predict_tracks - ERROR - Error making predictions: [Errno 2] No such file or directory: 'data/preprocessed_1k_data/users.csv'
+Traceback (most recent call last):
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 278, in main
+    user_df = pd.read_csv(args.user_data)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'data/preprocessed_1k_data/users.csv'
+2025-04-02 09:16:03,899 - predict_tracks - INFO - Starting track prediction
+2025-04-02 09:16:03,899 - predict_tracks - INFO - Using device: cpu
+2025-04-02 09:16:03,902 - predict_tracks - INFO - Loading model from checkpoints/best_model.pt
+2025-04-02 09:16:03,922 - predict_tracks - WARNING - Secure loading with weights_only=True failed: Weights only load failed. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+Please file an issue with the following so that we can make `weights_only=True` compatible with your use case: WeightsUnpickler error: Can only build Tensor, Parameter, OrderedDict or types allowlisted via `add_safe_globals`, but got <class 'numpy.dtypes.Float64DType'>
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2025-04-02 09:16:03,922 - predict_tracks - WARNING - Falling back to standard loading. Make sure you trust this checkpoint source.
+2025-04-02 09:16:03,983 - predict_tracks - WARNING - Strict loading failed: Error(s) in loading state_dict for HybridRecommender:
+	Unexpected key(s) in state_dict: "prediction_layers.0.weight", "prediction_layers.0.bias", "prediction_layers.3.weight", "prediction_layers.3.bias", "prediction_layers.6.weight", "prediction_layers.6.bias", "user_tower.layers.0.weight", "user_tower.layers.0.bias", "user_tower.layers.2.weight", "user_tower.layers.2.bias", "user_tower.layers.2.running_mean", "user_tower.layers.2.running_var", "user_tower.layers.2.num_batches_tracked", "user_tower.layers.3.weight", "user_tower.layers.3.bias", "user_tower.layers.5.weight", "user_tower.layers.5.bias", "user_tower.layers.5.running_mean", "user_tower.layers.5.running_var", "user_tower.layers.5.num_batches_tracked", "item_tower.layers.0.weight", "item_tower.layers.0.bias", "item_tower.layers.2.weight", "item_tower.layers.2.bias", "item_tower.layers.2.running_mean", "item_tower.layers.2.running_var", "item_tower.layers.2.num_batches_tracked", "item_tower.layers.3.weight", "item_tower.layers.3.bias", "item_tower.layers.5.weight", "item_tower.layers.5.bias", "item_tower.layers.5.running_mean", "item_tower.layers.5.running_var", "item_tower.layers.5.num_batches_tracked". 
+2025-04-02 09:16:03,983 - predict_tracks - WARNING - Attempting to load with strict=False to handle model architecture differences
+2025-04-02 09:16:03,986 - predict_tracks - INFO - User features: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_loudness', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'gender', 'country', 'top_genre']
+2025-04-02 09:16:03,986 - predict_tracks - INFO - Track features: ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'recency', 'artist_id', 'main_genre', 'year_bin']
+2025-04-02 09:16:03,987 - predict_tracks - INFO - Loading user data from data/users.csv
+2025-04-02 09:16:04,005 - predict_tracks - INFO - Loading track data from data/tracks.csv
+2025-04-02 09:16:04,014 - predict_tracks - INFO - Predicting for 3 tracks
+2025-04-02 09:16:04,029 - predict_tracks - WARNING - Handling batch normalization for single sample by duplicating input
+2025-04-02 09:16:04,038 - predict_tracks - ERROR - Error making predictions: Sizes of tensors must match except in dimension 1. Expected size 2 but got size 3 for tensor number 1 in the list.
+Traceback (most recent call last):
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 145, in predict_user_track_affinity
+    outputs = model(user_tensors, track_tensors)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\recommender.py", line 145, in forward
+    user_embedding = self.user_tower(user_features)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\user_tower.py", line 193, in forward
+    x = layer(x)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\batchnorm.py", line 193, in forward
+    return F.batch_norm(
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\functional.py", line 2810, in batch_norm
+    _verify_batch_size(input.size())
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\functional.py", line 2776, in _verify_batch_size
+    raise ValueError(
+ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 128])
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 308, in main
+    predictions = predict_user_track_affinity(model, user_tensors, track_tensors)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 156, in predict_user_track_affinity
+    duplicated_outputs = model(duplicated_user_tensors, track_tensors)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\recommender.py", line 157, in forward
+    combined = torch.cat([user_embedding, item_embedding], dim=1)
+RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 2 but got size 3 for tensor number 1 in the list.
+2025-04-02 09:17:23,202 - predict_tracks - INFO - Starting track prediction
+2025-04-02 09:17:23,204 - predict_tracks - INFO - Using device: cpu
+2025-04-02 09:17:23,205 - predict_tracks - INFO - Loading model from checkpoints/best_model.pt
+2025-04-02 09:17:23,219 - predict_tracks - WARNING - Secure loading with weights_only=True failed: Weights only load failed. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+Please file an issue with the following so that we can make `weights_only=True` compatible with your use case: WeightsUnpickler error: Can only build Tensor, Parameter, OrderedDict or types allowlisted via `add_safe_globals`, but got <class 'numpy.dtypes.Float64DType'>
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2025-04-02 09:17:23,221 - predict_tracks - WARNING - Falling back to standard loading. Make sure you trust this checkpoint source.
+2025-04-02 09:17:23,259 - predict_tracks - WARNING - Strict loading failed: Error(s) in loading state_dict for HybridRecommender:
+	Unexpected key(s) in state_dict: "prediction_layers.0.weight", "prediction_layers.0.bias", "prediction_layers.3.weight", "prediction_layers.3.bias", "prediction_layers.6.weight", "prediction_layers.6.bias", "user_tower.layers.0.weight", "user_tower.layers.0.bias", "user_tower.layers.2.weight", "user_tower.layers.2.bias", "user_tower.layers.2.running_mean", "user_tower.layers.2.running_var", "user_tower.layers.2.num_batches_tracked", "user_tower.layers.3.weight", "user_tower.layers.3.bias", "user_tower.layers.5.weight", "user_tower.layers.5.bias", "user_tower.layers.5.running_mean", "user_tower.layers.5.running_var", "user_tower.layers.5.num_batches_tracked", "item_tower.layers.0.weight", "item_tower.layers.0.bias", "item_tower.layers.2.weight", "item_tower.layers.2.bias", "item_tower.layers.2.running_mean", "item_tower.layers.2.running_var", "item_tower.layers.2.num_batches_tracked", "item_tower.layers.3.weight", "item_tower.layers.3.bias", "item_tower.layers.5.weight", "item_tower.layers.5.bias", "item_tower.layers.5.running_mean", "item_tower.layers.5.running_var", "item_tower.layers.5.num_batches_tracked". 
+2025-04-02 09:17:23,259 - predict_tracks - WARNING - Attempting to load with strict=False to handle model architecture differences
+2025-04-02 09:17:23,262 - predict_tracks - INFO - User features: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_loudness', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'gender', 'country', 'top_genre']
+2025-04-02 09:17:23,262 - predict_tracks - INFO - Track features: ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'recency', 'artist_id', 'main_genre', 'year_bin']
+2025-04-02 09:17:23,262 - predict_tracks - INFO - Loading user data from data/users.csv
+2025-04-02 09:17:23,273 - predict_tracks - INFO - Loading track data from data/tracks.csv
+2025-04-02 09:17:23,276 - predict_tracks - INFO - Predicting for 3 tracks
+2025-04-02 09:17:23,287 - predict_tracks - ERROR - Error making predictions: Expected more than 1 value per channel when training, got input size torch.Size([1, 128])
+Traceback (most recent call last):
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 283, in main
+    predictions = predict_user_track_affinity(model, user_tensors, track_tensors)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 137, in predict_user_track_affinity
+    outputs = model(user_tensors, track_tensors)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\recommender.py", line 145, in forward
+    user_embedding = self.user_tower(user_features)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\user_tower.py", line 193, in forward
+    x = layer(x)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\batchnorm.py", line 193, in forward
+    return F.batch_norm(
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\functional.py", line 2810, in batch_norm
+    _verify_batch_size(input.size())
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\functional.py", line 2776, in _verify_batch_size
+    raise ValueError(
+ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 128])
+2025-04-02 09:17:47,922 - predict_tracks - INFO - Starting track prediction
+2025-04-02 09:17:47,923 - predict_tracks - INFO - Using device: cpu
+2025-04-02 09:17:47,923 - predict_tracks - INFO - Loading model from checkpoints/best_model.pt
+2025-04-02 09:17:47,940 - predict_tracks - WARNING - Secure loading with weights_only=True failed: Weights only load failed. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+Please file an issue with the following so that we can make `weights_only=True` compatible with your use case: WeightsUnpickler error: Can only build Tensor, Parameter, OrderedDict or types allowlisted via `add_safe_globals`, but got <class 'numpy.dtypes.Float64DType'>
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2025-04-02 09:17:47,940 - predict_tracks - WARNING - Falling back to standard loading. Make sure you trust this checkpoint source.
+2025-04-02 09:17:47,991 - predict_tracks - WARNING - Strict loading failed: Error(s) in loading state_dict for HybridRecommender:
+	Unexpected key(s) in state_dict: "prediction_layers.0.weight", "prediction_layers.0.bias", "prediction_layers.3.weight", "prediction_layers.3.bias", "prediction_layers.6.weight", "prediction_layers.6.bias", "user_tower.layers.0.weight", "user_tower.layers.0.bias", "user_tower.layers.2.weight", "user_tower.layers.2.bias", "user_tower.layers.2.running_mean", "user_tower.layers.2.running_var", "user_tower.layers.2.num_batches_tracked", "user_tower.layers.3.weight", "user_tower.layers.3.bias", "user_tower.layers.5.weight", "user_tower.layers.5.bias", "user_tower.layers.5.running_mean", "user_tower.layers.5.running_var", "user_tower.layers.5.num_batches_tracked", "item_tower.layers.0.weight", "item_tower.layers.0.bias", "item_tower.layers.2.weight", "item_tower.layers.2.bias", "item_tower.layers.2.running_mean", "item_tower.layers.2.running_var", "item_tower.layers.2.num_batches_tracked", "item_tower.layers.3.weight", "item_tower.layers.3.bias", "item_tower.layers.5.weight", "item_tower.layers.5.bias", "item_tower.layers.5.running_mean", "item_tower.layers.5.running_var", "item_tower.layers.5.num_batches_tracked". 
+2025-04-02 09:17:47,991 - predict_tracks - WARNING - Attempting to load with strict=False to handle model architecture differences
+2025-04-02 09:17:47,996 - predict_tracks - INFO - User features: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_loudness', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'gender', 'country', 'top_genre']
+2025-04-02 09:17:47,996 - predict_tracks - INFO - Track features: ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'recency', 'artist_id', 'main_genre', 'year_bin']
+2025-04-02 09:17:47,996 - predict_tracks - INFO - Loading user data from data/users.csv
+2025-04-02 09:17:48,015 - predict_tracks - INFO - Loading track data from data/tracks.csv
+2025-04-02 09:17:48,021 - predict_tracks - INFO - Predicting for 2 tracks
+2025-04-02 09:17:48,036 - predict_tracks - ERROR - Error making predictions: Expected more than 1 value per channel when training, got input size torch.Size([1, 128])
+Traceback (most recent call last):
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 283, in main
+    predictions = predict_user_track_affinity(model, user_tensors, track_tensors)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 137, in predict_user_track_affinity
+    outputs = model(user_tensors, track_tensors)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\recommender.py", line 145, in forward
+    user_embedding = self.user_tower(user_features)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\user_tower.py", line 193, in forward
+    x = layer(x)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\batchnorm.py", line 193, in forward
+    return F.batch_norm(
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\functional.py", line 2810, in batch_norm
+    _verify_batch_size(input.size())
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\functional.py", line 2776, in _verify_batch_size
+    raise ValueError(
+ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 128])
+2025-04-02 09:18:32,335 - predict_tracks - INFO - Starting track prediction
+2025-04-02 09:18:32,335 - predict_tracks - INFO - Using device: cpu
+2025-04-02 09:18:32,335 - predict_tracks - INFO - Loading model from checkpoints/best_model.pt
+2025-04-02 09:18:32,359 - predict_tracks - WARNING - Secure loading with weights_only=True failed: Weights only load failed. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+Please file an issue with the following so that we can make `weights_only=True` compatible with your use case: WeightsUnpickler error: Can only build Tensor, Parameter, OrderedDict or types allowlisted via `add_safe_globals`, but got <class 'numpy.dtypes.Float64DType'>
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2025-04-02 09:18:32,359 - predict_tracks - WARNING - Falling back to standard loading. Make sure you trust this checkpoint source.
+2025-04-02 09:18:32,408 - predict_tracks - WARNING - Strict loading failed: Error(s) in loading state_dict for HybridRecommender:
+	Unexpected key(s) in state_dict: "prediction_layers.0.weight", "prediction_layers.0.bias", "prediction_layers.3.weight", "prediction_layers.3.bias", "prediction_layers.6.weight", "prediction_layers.6.bias", "user_tower.layers.0.weight", "user_tower.layers.0.bias", "user_tower.layers.2.weight", "user_tower.layers.2.bias", "user_tower.layers.2.running_mean", "user_tower.layers.2.running_var", "user_tower.layers.2.num_batches_tracked", "user_tower.layers.3.weight", "user_tower.layers.3.bias", "user_tower.layers.5.weight", "user_tower.layers.5.bias", "user_tower.layers.5.running_mean", "user_tower.layers.5.running_var", "user_tower.layers.5.num_batches_tracked", "item_tower.layers.0.weight", "item_tower.layers.0.bias", "item_tower.layers.2.weight", "item_tower.layers.2.bias", "item_tower.layers.2.running_mean", "item_tower.layers.2.running_var", "item_tower.layers.2.num_batches_tracked", "item_tower.layers.3.weight", "item_tower.layers.3.bias", "item_tower.layers.5.weight", "item_tower.layers.5.bias", "item_tower.layers.5.running_mean", "item_tower.layers.5.running_var", "item_tower.layers.5.num_batches_tracked". 
+2025-04-02 09:18:32,408 - predict_tracks - WARNING - Attempting to load with strict=False to handle model architecture differences
+2025-04-02 09:18:32,419 - predict_tracks - INFO - User features: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_loudness', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'gender', 'country', 'top_genre']
+2025-04-02 09:18:32,421 - predict_tracks - INFO - Track features: ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'recency', 'artist_id', 'main_genre', 'year_bin']
+2025-04-02 09:18:32,421 - predict_tracks - INFO - Loading user data from data/users.csv
+2025-04-02 09:18:32,437 - predict_tracks - INFO - Loading track data from data/tracks.csv
+2025-04-02 09:18:32,446 - predict_tracks - INFO - Predicting for 2 tracks
+2025-04-02 09:18:32,460 - predict_tracks - WARNING - Handling batch normalization for single sample by duplicating input
+2025-04-02 09:18:32,476 - predict_tracks - INFO - Predictions saved to track_predictions.json
+2025-04-02 09:19:07,376 - predict_tracks - INFO - Starting track prediction
+2025-04-02 09:19:07,376 - predict_tracks - INFO - Using device: cpu
+2025-04-02 09:19:07,376 - predict_tracks - INFO - Loading model from checkpoints/best_model.pt
+2025-04-02 09:19:07,376 - predict_tracks - WARNING - Secure loading with weights_only=True failed: Weights only load failed. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+Please file an issue with the following so that we can make `weights_only=True` compatible with your use case: WeightsUnpickler error: Can only build Tensor, Parameter, OrderedDict or types allowlisted via `add_safe_globals`, but got <class 'numpy.dtypes.Float64DType'>
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2025-04-02 09:19:07,376 - predict_tracks - WARNING - Falling back to standard loading. Make sure you trust this checkpoint source.
+2025-04-02 09:19:07,423 - predict_tracks - WARNING - Strict loading failed: Error(s) in loading state_dict for HybridRecommender:
+	Unexpected key(s) in state_dict: "prediction_layers.0.weight", "prediction_layers.0.bias", "prediction_layers.3.weight", "prediction_layers.3.bias", "prediction_layers.6.weight", "prediction_layers.6.bias", "user_tower.layers.0.weight", "user_tower.layers.0.bias", "user_tower.layers.2.weight", "user_tower.layers.2.bias", "user_tower.layers.2.running_mean", "user_tower.layers.2.running_var", "user_tower.layers.2.num_batches_tracked", "user_tower.layers.3.weight", "user_tower.layers.3.bias", "user_tower.layers.5.weight", "user_tower.layers.5.bias", "user_tower.layers.5.running_mean", "user_tower.layers.5.running_var", "user_tower.layers.5.num_batches_tracked", "item_tower.layers.0.weight", "item_tower.layers.0.bias", "item_tower.layers.2.weight", "item_tower.layers.2.bias", "item_tower.layers.2.running_mean", "item_tower.layers.2.running_var", "item_tower.layers.2.num_batches_tracked", "item_tower.layers.3.weight", "item_tower.layers.3.bias", "item_tower.layers.5.weight", "item_tower.layers.5.bias", "item_tower.layers.5.running_mean", "item_tower.layers.5.running_var", "item_tower.layers.5.num_batches_tracked". 
+2025-04-02 09:19:07,423 - predict_tracks - WARNING - Attempting to load with strict=False to handle model architecture differences
+2025-04-02 09:19:07,423 - predict_tracks - INFO - User features: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_loudness', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'gender', 'country', 'top_genre']
+2025-04-02 09:19:07,423 - predict_tracks - INFO - Track features: ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'recency', 'artist_id', 'main_genre', 'year_bin']
+2025-04-02 09:19:07,423 - predict_tracks - INFO - Loading user data from data/users.csv
+2025-04-02 09:19:07,441 - predict_tracks - INFO - Loading track data from data/tracks.csv
+2025-04-02 09:19:07,446 - predict_tracks - INFO - Predicting for 3 tracks
+2025-04-02 09:19:07,452 - predict_tracks - WARNING - Handling batch normalization for single sample by duplicating input
+2025-04-02 09:19:07,464 - predict_tracks - ERROR - Error making predictions: Sizes of tensors must match except in dimension 1. Expected size 2 but got size 3 for tensor number 1 in the list.
+Traceback (most recent call last):
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 145, in predict_user_track_affinity
+    outputs = model(user_tensors, track_tensors)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\recommender.py", line 145, in forward
+    user_embedding = self.user_tower(user_features)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\user_tower.py", line 193, in forward
+    x = layer(x)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\batchnorm.py", line 193, in forward
+    return F.batch_norm(
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\functional.py", line 2810, in batch_norm
+    _verify_batch_size(input.size())
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\functional.py", line 2776, in _verify_batch_size
+    raise ValueError(
+ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 128])
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 308, in main
+    predictions = predict_user_track_affinity(model, user_tensors, track_tensors)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\scripts\predict_tracks.py", line 156, in predict_user_track_affinity
+    duplicated_outputs = model(duplicated_user_tensors, track_tensors)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\mecha\anaconda3\envs\sophia-dl\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\mecha\Documents\lhydra-hybrid\recommender\models\recommender.py", line 157, in forward
+    combined = torch.cat([user_embedding, item_embedding], dim=1)
+RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 2 but got size 3 for tensor number 1 in the list.

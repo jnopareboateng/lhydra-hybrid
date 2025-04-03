@@ -1,0 +1,69 @@
+{
+    "user_profile": {
+        "age": 28,
+        "gender": "Male",
+        "country": "Canada"
+    },
+    "recommendations": [
+        {
+            "track_id": "TRAAZVF128F145BFED",
+            "track_name": "I Want a New Drug",
+            "artist": "Huey Lewis & The News",
+            "score": 0.6489930748939514
+        },
+        {
+            "track_id": "TRABJSS12903CA735D",
+            "track_name": "Introduction",
+            "artist": "Panic! at the Disco",
+            "score": 0.6470528244972229
+        },
+        {
+            "track_id": "TRAAIUW128F4290B94",
+            "track_name": "These Days",
+            "artist": "Foo Fighters",
+            "score": 0.6460212469100952
+        },
+        {
+            "track_id": "TRAAXPX128F42AA93D",
+            "track_name": "Letter Read",
+            "artist": "Rachael Yamagata",
+            "score": 0.6446784734725952
+        },
+        {
+            "track_id": "TRAAKRN128F92FF8D0",
+            "track_name": "Come On You Slags",
+            "artist": "Aphex Twin",
+            "score": 0.6416616439819336
+        },
+        {
+            "track_id": "TRABOVH128F427D3B4",
+            "track_name": "Fancy Footwork",
+            "artist": "Chromeo",
+            "score": 0.6414868235588074
+        },
+        {
+            "track_id": "TRAAWPB128F932A8DE",
+            "track_name": "Man On Your Mind",
+            "artist": "Little River Band",
+            "score": 0.6346634030342102
+        },
+        {
+            "track_id": "TRABLUU128F1463532",
+            "track_name": "Unbelievable",
+            "artist": "EMF",
+            "score": 0.6339936256408691
+        },
+        {
+            "track_id": "TRAAYVI128F4286706",
+            "track_name": "The Trial",
+            "artist": "Pink Floyd",
+            "score": 0.628755509853363
+        },
+        {
+            "track_id": "TRAAVRU128F423EAE2",
+            "track_name": "No Aloha",
+            "artist": "The Breeders",
+            "score": 0.6272790431976318
+        }
+    ]
+}
