@@ -1,0 +1,26 @@
+track_id,user_id,playcount,name,artist,spotify_preview_url,spotify_id,tags,genre,main_genre,year,duration_ms,danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,time_signature,age,gender,region,country,monthly_hours,top_genre,genre_diversity,avg_danceability,avg_energy,avg_key,avg_loudness,avg_mode,avg_speechiness,avg_acousticness,avg_instrumentalness,avg_liveness,avg_valence,avg_tempo,avg_time_signature
+TRAABJS128F9325C99,20df1e067326287dc211d2f59aa4e4dd48ea4459,2,Auburn and Ivory,Beach House,https://p.scdn.co/mp3-preview/b3583a8703729f6a8d3ec5620c7c25cd257448ec?cid=774b29d4f13844c495f206cafdad9c86,0r8EsO3ylF81gjbFFVlSwX,"indie, downtempo",Rock,other,2006,270026,0.438,0.285,5,-14.96,0,0.0265,0.866,2.88e-06,0.0696,0.366,145.601,3,28,Female,North America,USA,19.45065363066962,rock,4,0.4848064516129032,0.610941935483871,5.0,-9.621806451612903,0.5483870967741935,0.05,0.42414632258064516,0.26076532193548385,0.2127016129032258,0.4149983870967742,118.93043548387097,3.7580645161290325
+TRAABJS128F9325C99,20df79d250123f4ba5601283b77b53d4e84756a0,2,Auburn and Ivory,Beach House,https://p.scdn.co/mp3-preview/b3583a8703729f6a8d3ec5620c7c25cd257448ec?cid=774b29d4f13844c495f206cafdad9c86,0r8EsO3ylF81gjbFFVlSwX,"indie, downtempo",Rock,other,2006,270026,0.438,0.285,5,-14.96,0,0.0265,0.866,2.88e-06,0.0696,0.366,145.601,3,28,Male,Europe,Germany,25.322670526732203,rock,1,0.555925,0.6714749999999999,6.0,-7.4632249999999996,0.6,0.0447625,0.37096575,0.11174775349999999,0.2145375,0.570585,126.83144999999999,3.95
+
+
+
+**Analysis**
+
+- **Averages of the audio features**  
+  The code calculates weighted averages for each audio feature. Each feature value is multiplied by the playcount so that users who listened to a track more frequently have that track’s features reflected more strongly.
+
+- **Playcounts**  
+  In the final dataset, the `playcount` column is summed per `(track_id, user_id)` pair before merging with track details. So, you’re already seeing the aggregated playcounts in the final table.
+
+- **Overall Quality Checks**  
+  1. The merge uses `how="innera"`, which appears to be a typo. It should likely be `"inner"`.  
+  2. The code effectively filters songs and users, but it might be beneficial to log how many records were dropped at each filtering stage to validate data coverage.  
+  3. There is a robust demographic assignment implemented, but consider verifying that final distributions match expected probabilities.
+
+**Recommendations**
+
+- Fix the `how="innera"` parameter in the merge call.  
+- Add explicit logging on how many rows remain after each filter step.  
+- Confirm that each demographic probability distribution is tested to ensure realistic user segmentation.  
+- Continue verifying that all numeric columns (e.g., playcounts, audio features) remain within the expected range.
+

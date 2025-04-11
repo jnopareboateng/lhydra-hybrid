@@ -172,6 +172,11 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-
-# 
+*.csv
+*.html
+*.joblib
+*.6B.100.*
+*.6B.100.txt
 data/kaagle
+models/glove.6B.100*
+data/03_*

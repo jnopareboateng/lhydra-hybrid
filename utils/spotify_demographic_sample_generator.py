@@ -97,7 +97,7 @@ logger.info("Merging user history with music info...")
 full_user_tracks = sampled_history.merge(
     music_info,
     on="track_id",
-    how="innera"
+    how="inner"
 )
 
 # Create user preference profile based on genres and all audio features
@@ -411,7 +411,7 @@ final_dataset = playcount_agg.merge(unique_tracks, on='track_id', how='left')
 final_dataset = final_dataset.merge(
     user_demographics, 
     on='user_id', 
-    how='left',
+    how='inner',
     suffixes=('', '_user_avg')
 )
 
@@ -457,3 +457,71 @@ for feature in available_features:
         logger.info(f"{feature}: Mean={user_demographics[f'avg_{feature}'].mean():.4f}")
 
 logger.info("\nProcess complete!")
+
+# Calculate additional quality metrics for final dataset
+logger.info("\nPerforming quality checks on final dataset...")
+
+# Check for missing values in the final dataset
+missing_values_final = final_dataset.isnull().sum()
+logger.info(f"Missing values in final dataset:\n{missing_values_final[missing_values_final > 0]}")
+
+# Check for numerical outliers in key columns
+for feature in available_features:
+    if feature in final_dataset.columns:
+        q1 = final_dataset[feature].quantile(0.25)
+        q3 = final_dataset[feature].quantile(0.75)
+        iqr = q3 - q1
+        lower_bound = q1 - 1.5 * iqr
+        upper_bound = q3 + 1.5 * iqr
+        outliers = final_dataset[(final_dataset[feature] < lower_bound) | (final_dataset[feature] > upper_bound)]
+        if len(outliers) > 0:
+            outlier_pct = (len(outliers) / len(final_dataset)) * 100
+            logger.info(f"Outliers in {feature}: {len(outliers)} records ({outlier_pct:.2f}%)")
+
+# Check demographic distribution matches our expected probabilities
+logger.info("\nVerifying demographic distributions match expected probabilities...")
+
+# Age distribution check
+age_group_data = []
+for i, (min_age, max_age) in enumerate(age_groups):
+    group_name = f"{min_age}-{max_age}"
+    actual_count = len(user_demographics[(user_demographics['age'] >= min_age) & (user_demographics['age'] <= max_age)])
+    actual_pct = (actual_count / len(user_demographics)) * 100
+    
+    # Calculate expected percentages (average across all genres)
+    expected_pcts = [genre_age_map[genre][i] for genre in genre_age_map.keys()]
+    expected_pct = np.mean(expected_pcts) * 100
+    
+    age_group_data.append({
+        'group': group_name,
+        'actual_pct': actual_pct,
+        'expected_pct': expected_pct,
+        'difference': actual_pct - expected_pct
+    })
+
+age_distribution_check = pd.DataFrame(age_group_data)
+logger.info(f"Age distribution check:\n{age_distribution_check}")
+
+# Gender distribution check
+gender_actual = user_demographics['gender'].value_counts(normalize=True) * 100
+gender_expected = {gender: np.mean([probs[gender] for probs in genre_gender_map.values()]) * 100 
+                  for gender in ['Male', 'Female']}
+logger.info(f"Gender distribution - Actual vs Expected:")
+for gender in gender_expected:
+    logger.info(f"{gender}: Actual {gender_actual.get(gender, 0):.2f}% vs Expected {gender_expected[gender]:.2f}%")
+
+# Additional playcount analysis
+logger.info("\nPlaycount Statistics:")
+logger.info(f"Mean playcount per user-track: {final_dataset['playcount'].mean():.2f}")
+logger.info(f"Median playcount per user-track: {final_dataset['playcount'].median():.2f}")
+logger.info(f"Min playcount: {final_dataset['playcount'].min()}")
+logger.info(f"Max playcount: {final_dataset['playcount'].max()}")
+
+# Check for users with unusually high playcounts
+user_total_plays = final_dataset.groupby('user_id')['playcount'].sum()
+high_playcount_users = user_total_plays[user_total_plays > user_total_plays.quantile(0.95)]
+if len(high_playcount_users) > 0:
+    logger.info(f"Users with unusually high playcounts (top 5%):")
+    logger.info(f"{high_playcount_users.sort_values(ascending=False).head()}")
+
+logger.info("Quality checks complete!")

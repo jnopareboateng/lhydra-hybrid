@@ -161,7 +161,6 @@ graph TB
 - Two-tower neural network architecture
 - Support for both classification and regression tasks
 - Efficient batch prediction with caching
-- ONNX export support for production deployment
 - Comprehensive test suite
 - Distributed training support
 - Robust Training and Validation:
@@ -174,7 +173,7 @@ graph TB
   - Cohort analysis for user segments
   - Model explainability with Captum
   - Automated evaluation reports
-- High-Performance Search:
+- High-Performance Search with Spotify Voyager (https://):
   - HNSW-based similarity search
   - Efficient batch indexing
   - Memory-optimized persistence

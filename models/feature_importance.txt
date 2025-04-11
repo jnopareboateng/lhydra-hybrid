@@ -1,0 +1,132 @@
+
+Top 10 features for danceability:
+1. has_rock_related: 0.1537
+2. tag_emb_2: 0.0557
+3. tag_emb_20: 0.0423
+4. tag_emb_65: 0.0286
+5. tag_emb_97: 0.0147
+6. tag_emb_91: 0.0136
+7. tag_emb_31: 0.0105
+8. tag_emb_3: 0.0089
+9. tag_emb_47: 0.0087
+10. tag_emb_94: 0.0079
+
+Top 10 features for energy:
+1. tag_emb_37: 0.1204
+2. tag_emb_20: 0.0681
+3. tag_emb_85: 0.0591
+4. tag_emb_72: 0.0298
+5. tag_emb_22: 0.0286
+6. tag_emb_97: 0.0157
+7. tag_emb_98: 0.0153
+8. tag_emb_90: 0.0142
+9. has_rock_related: 0.0134
+10. tag_emb_35: 0.0132
+
+Top 10 features for acousticness:
+1. tag_emb_37: 0.1447
+2. tag_emb_85: 0.0505
+3. tag_emb_63: 0.0418
+4. tag_emb_72: 0.0373
+5. tag_emb_95: 0.0233
+6. tag_emb_20: 0.0232
+7. tag_emb_26: 0.0192
+8. has_rock_related: 0.0176
+9. tag_emb_47: 0.0117
+10. tag_emb_90: 0.0116
+
+Top 10 features for instrumentalness:
+1. tag_emb_86: 0.1466
+2. tag_emb_85: 0.0594
+3. tag_emb_4: 0.0225
+4. tag_emb_10: 0.0200
+5. tag_emb_56: 0.0194
+6. tag_emb_3: 0.0164
+7. tag_emb_19: 0.0163
+8. tag_emb_34: 0.0151
+9. tag_emb_47: 0.0127
+10. tag_emb_15: 0.0102
+
+Top 10 features for valence:
+1. tag_emb_50: 0.1252
+2. tag_emb_86: 0.0437
+3. tag_emb_74: 0.0327
+4. tag_emb_85: 0.0212
+5. tag_emb_31: 0.0135
+6. tag_emb_21: 0.0128
+7. has_rock_related: 0.0106
+8. tag_emb_72: 0.0102
+9. tag_emb_82: 0.0087
+10. tag_emb_59: 0.0086
+
+Top 10 features for loudness:
+1. tag_emb_85: 0.1401
+2. tag_emb_20: 0.0574
+3. tag_emb_76: 0.0498
+4. tag_emb_8: 0.0277
+5. tag_emb_30: 0.0165
+6. tag_emb_22: 0.0161
+7. tag_emb_3: 0.0123
+8. tag_emb_97: 0.0116
+9. tag_emb_72: 0.0116
+10. tag_emb_43: 0.0089
+
+Top 10 features for tempo:
+1. tag_emb_97: 0.0094
+2. tag_emb_34: 0.0081
+3. tag_emb_98: 0.0060
+4. name_emb_90: 0.0056
+5. name_emb_52: 0.0056
+6. name_emb_68: 0.0055
+7. name_emb_33: 0.0055
+8. name_emb_77: 0.0055
+9. name_emb_42: 0.0055
+10. name_emb_48: 0.0055
+
+Top 10 features for speechiness:
+1. has_rap_related: 0.1150
+2. tag_emb_17: 0.0242
+3. tag_emb_52: 0.0162
+4. tag_emb_39: 0.0161
+5. artist_emb_93: 0.0145
+6. tag_emb_19: 0.0103
+7. name_emb_23: 0.0099
+8. tag_emb_35: 0.0085
+9. name_emb_84: 0.0083
+10. tag_emb_76: 0.0080
+
+Top 10 features for liveness:
+1. tag_emb_20: 0.0081
+2. artist_emb_97: 0.0069
+3. name_emb_3: 0.0062
+4. name_emb_58: 0.0062
+5. name_emb_51: 0.0062
+6. name_emb_86: 0.0062
+7. name_emb_98: 0.0060
+8. name_emb_66: 0.0060
+9. name_emb_38: 0.0059
+10. name_emb_34: 0.0058
+
+Top 10 features for key:
+1. artist_emb_97: 0.0075
+2. name_emb_77: 0.0065
+3. name_emb_69: 0.0064
+4. name_emb_71: 0.0063
+5. name_emb_38: 0.0062
+6. name_emb_52: 0.0060
+7. name_emb_23: 0.0060
+8. name_emb_56: 0.0059
+9. name_emb_14: 0.0058
+10. name_emb_99: 0.0057
+
+Top 10 features for mode:
+1. tag_emb_15: 0.1290
+2. has_acoustic_related: 0.0320
+3. tag_emb_46: 0.0208
+4. tag_emb_21: 0.0142
+5. tag_emb_25: 0.0131
+6. tag_emb_51: 0.0105
+7. artist_emb_3: 0.0095
+8. tag_emb_0: 0.0078
+9. tag_emb_7: 0.0076
+10. artist_emb_55: 0.0060
