@@ -185,4 +185,7 @@ scripts/generate_sample_data.py
 data/dataset.py
 evaluation_old/
 logs_old/
-
+*.csv
+glove.6B.100d.txt
+*.joblib
+*.html
