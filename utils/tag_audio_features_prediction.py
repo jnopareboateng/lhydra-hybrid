@@ -11,6 +11,7 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
+import lightgbm as lgbm
 # Replace gensim with this simpler approach
 import requests
 from zipfile import ZipFile
@@ -34,14 +35,22 @@ class TagBasedAudioFeaturePredictor:
         'liveness', 'valence', 'tempo'
     ]
     
-    def __init__(self, model_dir="models", use_pretrained=True, include_metadata=True):
-        """Initialize the predictor with model directory."""
+    def __init__(self, model_dir="models", use_pretrained=True, include_metadata=True, use_gpu=False):
+        """Initialize the predictor with model directory.
+        
+        Args:
+            model_dir (str): Directory to save/load models and artifacts
+            use_pretrained (bool): Whether to use pretrained word embeddings
+            include_metadata (bool): Whether to include artist and track name features
+            use_gpu (bool): Whether to use GPU acceleration for LightGBM models if available
+        """
         self.model_dir = model_dir
         self.model = None
         self.vectorizer = None
         self.feature_columns = None
         self.use_pretrained = use_pretrained
         self.include_metadata = include_metadata
+        self.use_gpu = use_gpu
         self.embedding_model = {}  # Dictionary to store word vectors
         self.embedding_dim = 100  # Default dimension
         self.feature_names = []
@@ -362,44 +371,87 @@ class TagBasedAudioFeaturePredictor:
         
         # Create base models with different parameters for each feature type
         models = {}
+          # GPU configuration
+        lgbm_params = {'device': 'gpu', 'gpu_platform_id': 0, 'gpu_device_id': 0} if self.use_gpu else {}
         
-        # For musical features - use standard RandomForest
-        musical_model = RandomForestRegressor(
-            n_estimators=200, 
-            max_depth=15,
-            min_samples_split=5,
-            n_jobs=-1,
-            random_state=42,
-            verbose=0  # Set to 1 for progress info within sklearn
-        )
+        # For musical features - use LightGBM with GPU if available
+        if self.use_gpu:
+            musical_model = lgbm.LGBMRegressor(
+                n_estimators=200,
+                max_depth=15,
+                learning_rate=0.05,
+                random_state=42,
+                n_jobs=-1,
+                **lgbm_params
+            )
+        else:
+            # Fallback to RandomForest
+            musical_model = RandomForestRegressor(
+                n_estimators=200, 
+                max_depth=15,
+                min_samples_split=5,
+                n_jobs=-1,
+                random_state=42,
+                verbose=0
+            )
         
-        # For rhythm features - deeper trees
-        rhythm_model = RandomForestRegressor(
-            n_estimators=250, 
-            max_depth=30,
-            min_samples_split=3,
-            n_jobs=-1,
-            random_state=42,
-            verbose=0
-        )
+        # For rhythm features - deeper trees or LightGBM
+        if self.use_gpu:
+            rhythm_model = lgbm.LGBMRegressor(
+                n_estimators=250,
+                max_depth=25,
+                learning_rate=0.05,
+                random_state=42,
+                n_jobs=-1,
+                **lgbm_params
+            )
+        else:
+            rhythm_model = RandomForestRegressor(
+                n_estimators=250, 
+                max_depth=30,
+                min_samples_split=3,
+                n_jobs=-1,
+                random_state=42,
+                verbose=0
+            )
         
-        # For technical features - use gradient boosting
-        technical_model = GradientBoostingRegressor(
-            n_estimators=150,
-            max_depth=10,
-            learning_rate=0.05,
-            random_state=42,
-            verbose=0
-        )
+        # For technical features - use gradient boosting or LightGBM
+        if self.use_gpu:
+            technical_model = lgbm.LGBMRegressor(
+                n_estimators=150,
+                max_depth=10,
+                learning_rate=0.05,
+                random_state=42,
+                n_jobs=-1,
+                **lgbm_params
+            )
+        else:
+            technical_model = GradientBoostingRegressor(
+                n_estimators=150,
+                max_depth=10,
+                learning_rate=0.05,
+                random_state=42,
+                verbose=0
+            )
         
-        # For categorical features - use shallow forest
-        categorical_model = RandomForestRegressor(
-            n_estimators=100,
-            max_depth=8,
-            min_samples_leaf=10,
-            random_state=42,
-            verbose=0
-        )
+        # For categorical features - use shallow forest or LightGBM
+        if self.use_gpu:
+            categorical_model = lgbm.LGBMRegressor(
+                n_estimators=100,
+                max_depth=8,
+                learning_rate=0.05,
+                random_state=42,
+                n_jobs=-1,
+                **lgbm_params
+            )
+        else:
+            categorical_model = RandomForestRegressor(
+                n_estimators=100,
+                max_depth=8,
+                min_samples_leaf=10,
+                random_state=42,
+                verbose=0
+            )
         
         # Train MultiOutputRegressor for each feature group
         self.model = {}

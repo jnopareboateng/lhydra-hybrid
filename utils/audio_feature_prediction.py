@@ -361,40 +361,4 @@ if track_id_field in old_df.columns and track_id_field in new_df.columns and eng
         print("Saving dataset with engagement mapping...")
         old_df.to_csv('old_dataset_with_engagement_mapping.csv', index=False)
 
-# Add a solution for the GitHub large file error
-print("\nChecking for large files that may cause GitHub upload issues...")
-try:
-    large_files = []
-    for root, dirs, files in os.walk('.'):
-        for file in files:
-            if file.endswith('.csv') or file.endswith('.joblib') or file.endswith('.txt'):
-                file_path = os.path.join(root, file)
-                size_mb = os.path.getsize(file_path) / (1024 * 1024)  # Size in MB
-                if size_mb > 90:  # GitHub has a 100MB limit, warn at 90MB
-                    large_files.append((file_path, size_mb))
-    
-    if large_files:
-        print("\nWARNING: The following files exceed GitHub's file size limit (100MB):")
-        for file_path, size_mb in large_files:
-            print(f"- {file_path}: {size_mb:.2f} MB")
-        
-        print("\nSolutions to handle large files:")
-        print("1. Add these files to .gitignore to prevent commits")
-        print("2. Use Git LFS (Large File Storage): https://git-lfs.github.com")
-        print("3. Split large datasets into smaller chunks")
-        print("4. Create a data download script instead of committing data")
-        
-        # Automatically create gitignore entries
-        with open('.gitignore', 'a+') as f:
-            f.seek(0)
-            content = f.read()
-            for file_path, _ in large_files:
-                rel_path = os.path.normpath(file_path)
-                if rel_path not in content:
-                    f.write(f"\n# Large file exceeding GitHub limits\n{rel_path}")
-        
-        print("\nAdded large files to .gitignore to prevent git push errors")
-except Exception as e:
-    print(f"Error checking for large files: {e}")
-
 print("Processing complete. Audio features predicted and datasets enhanced.")
