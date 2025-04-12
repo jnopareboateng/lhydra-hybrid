@@ -1,69 +1,69 @@
 {
     "user_profile": {
         "age": 28,
-        "gender": "Male",
-        "country": "Canada"
+        "gender": "Female",
+        "country": "USA"
     },
     "recommendations": [
         {
-            "track_id": "TRAAZVF128F145BFED",
-            "track_name": "I Want a New Drug",
-            "artist": "Huey Lewis & The News",
-            "score": 0.6489930748939514
+            "track_id": "TRAAHDK128F423BB26",
+            "track_name": "Folding Stars",
+            "artist": "Biffy Clyro",
+            "score": 0.6753047108650208
         },
         {
-            "track_id": "TRABJSS12903CA735D",
-            "track_name": "Introduction",
-            "artist": "Panic! at the Disco",
-            "score": 0.6470528244972229
+            "track_id": "TRAACPH12903CF5F14",
+            "track_name": "Double Feature",
+            "artist": "Camera Obscura",
+            "score": 0.6644634008407593
         },
         {
-            "track_id": "TRAAIUW128F4290B94",
-            "track_name": "These Days",
-            "artist": "Foo Fighters",
-            "score": 0.6460212469100952
-        },
-        {
-            "track_id": "TRAAXPX128F42AA93D",
-            "track_name": "Letter Read",
-            "artist": "Rachael Yamagata",
-            "score": 0.6446784734725952
-        },
-        {
-            "track_id": "TRAAKRN128F92FF8D0",
-            "track_name": "Come On You Slags",
-            "artist": "Aphex Twin",
-            "score": 0.6416616439819336
+            "track_id": "TRAAXOW128F931C2DC",
+            "track_name": "Another Day",
+            "artist": "Air",
+            "score": 0.6623207926750183
         },
         {
             "track_id": "TRABOVH128F427D3B4",
             "track_name": "Fancy Footwork",
             "artist": "Chromeo",
-            "score": 0.6414868235588074
+            "score": 0.6595081686973572
         },
         {
-            "track_id": "TRAAWPB128F932A8DE",
-            "track_name": "Man On Your Mind",
-            "artist": "Little River Band",
-            "score": 0.6346634030342102
+            "track_id": "TRAAIUW128F4290B94",
+            "track_name": "These Days",
+            "artist": "Foo Fighters",
+            "score": 0.6579011678695679
         },
         {
-            "track_id": "TRABLUU128F1463532",
-            "track_name": "Unbelievable",
-            "artist": "EMF",
-            "score": 0.6339936256408691
+            "track_id": "TRAADQW128F427CE68",
+            "track_name": "Prophecy",
+            "artist": "Soulfly",
+            "score": 0.6560024619102478
         },
         {
-            "track_id": "TRAAYVI128F4286706",
-            "track_name": "The Trial",
-            "artist": "Pink Floyd",
-            "score": 0.628755509853363
+            "track_id": "TRAADCQ128F932EC14",
+            "track_name": "The Beacon",
+            "artist": "Enslaved",
+            "score": 0.6543190479278564
         },
         {
-            "track_id": "TRAAVRU128F423EAE2",
-            "track_name": "No Aloha",
-            "artist": "The Breeders",
-            "score": 0.6272790431976318
+            "track_id": "TRABJWA128F9309C09",
+            "track_name": "Warrior's Quest",
+            "artist": "Ensiferum",
+            "score": 0.6490833759307861
+        },
+        {
+            "track_id": "TRABJZT128F425C8DC",
+            "track_name": "Hustle and Cuss",
+            "artist": "The Dead Weather",
+            "score": 0.6469182372093201
+        },
+        {
+            "track_id": "TRAAXPX128F42AA93D",
+            "track_name": "Letter Read",
+            "artist": "Rachael Yamagata",
+            "score": 0.6467839479446411
         }
     ]
 }

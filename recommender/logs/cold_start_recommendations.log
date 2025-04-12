@@ -25,3 +25,30 @@ Check the documentation of torch.load to learn more about types accepted by defa
 2025-04-03 04:23:38,470 - cold_start_recommendations - WARNING - First workaround failed: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 57 for tensor number 1 in the list.
 2025-04-03 04:23:38,472 - cold_start_recommendations - ERROR - All batch norm workarounds failed, using simpler approach
 2025-04-03 04:23:38,531 - cold_start_recommendations - INFO - Recommendations saved to data/tests/recommendations.json
+2025-04-03 20:42:31,650 - cold_start_recommendations - INFO - Starting cold start recommendation generation
+2025-04-03 20:42:31,660 - cold_start_recommendations - INFO - Using device: cpu
+2025-04-03 20:42:31,660 - cold_start_recommendations - INFO - Loading model from checkpoints/best_model.pt
+2025-04-03 20:42:31,732 - cold_start_recommendations - WARNING - Secure loading with weights_only=True failed: Weights only load failed. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+Please file an issue with the following so that we can make `weights_only=True` compatible with your use case: WeightsUnpickler error: Can only build Tensor, Parameter, OrderedDict or types allowlisted via `add_safe_globals`, but got <class 'numpy.dtypes.Float64DType'>
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2025-04-03 20:42:31,732 - cold_start_recommendations - WARNING - Falling back to standard loading. Make sure you trust this checkpoint source.
+2025-04-03 20:42:31,839 - cold_start_recommendations - WARNING - Strict loading failed: Error(s) in loading state_dict for HybridRecommender:
+	Unexpected key(s) in state_dict: "prediction_layers.0.weight", "prediction_layers.0.bias", "prediction_layers.3.weight", "prediction_layers.3.bias", "prediction_layers.6.weight", "prediction_layers.6.bias", "user_tower.layers.0.weight", "user_tower.layers.0.bias", "user_tower.layers.2.weight", "user_tower.layers.2.bias", "user_tower.layers.2.running_mean", "user_tower.layers.2.running_var", "user_tower.layers.2.num_batches_tracked", "user_tower.layers.3.weight", "user_tower.layers.3.bias", "user_tower.layers.5.weight", "user_tower.layers.5.bias", "user_tower.layers.5.running_mean", "user_tower.layers.5.running_var", "user_tower.layers.5.num_batches_tracked", "item_tower.layers.0.weight", "item_tower.layers.0.bias", "item_tower.layers.2.weight", "item_tower.layers.2.bias", "item_tower.layers.2.running_mean", "item_tower.layers.2.running_var", "item_tower.layers.2.num_batches_tracked", "item_tower.layers.3.weight", "item_tower.layers.3.bias", "item_tower.layers.5.weight", "item_tower.layers.5.bias", "item_tower.layers.5.running_mean", "item_tower.layers.5.running_var", "item_tower.layers.5.num_batches_tracked". 
+2025-04-03 20:42:31,839 - cold_start_recommendations - WARNING - Attempting to load with strict=False to handle model architecture differences
+2025-04-03 20:42:31,899 - cold_start_recommendations - INFO - User features: ['age', 'monthly_hours', 'genre_diversity', 'avg_danceability', 'avg_energy', 'avg_loudness', 'avg_speechiness', 'avg_acousticness', 'avg_instrumentalness', 'avg_liveness', 'avg_valence', 'avg_tempo', 'gender', 'country', 'top_genre']
+2025-04-03 20:42:31,899 - cold_start_recommendations - INFO - Track features: ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'recency', 'artist_id', 'main_genre', 'year_bin']
+2025-04-03 20:42:31,899 - cold_start_recommendations - INFO - Loading demographic data from data/tests/user_demographics.json
+2025-04-03 20:42:31,899 - cold_start_recommendations - INFO - Loading preference data from data/tests/user_preferences.json
+2025-04-03 20:42:31,899 - cold_start_recommendations - INFO - Loading track data from data/tracks.csv
+2025-04-03 20:42:31,917 - cold_start_recommendations - INFO - Filtering tracks based on user preferences
+2025-04-03 20:42:31,922 - cold_start_recommendations - WARNING - Genre filtering returned only 26 tracks. Using all tracks instead.
+2025-04-03 20:42:31,922 - cold_start_recommendations - WARNING - Artist filtering returned only 4 tracks. Using genre filtering only.
+2025-04-03 20:42:31,927 - cold_start_recommendations - INFO - Selected 57 tracks based on preferences
+2025-04-03 20:42:31,927 - cold_start_recommendations - INFO - Creating user profile from demographics
+2025-04-03 20:42:31,927 - cold_start_recommendations - INFO - Preparing track features
+2025-04-03 20:42:31,938 - cold_start_recommendations - INFO - Generating cold start recommendations
+2025-04-03 20:42:32,001 - cold_start_recommendations - WARNING - Handling batch normalization for single sample...
+2025-04-03 20:42:32,045 - cold_start_recommendations - WARNING - First workaround failed: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 57 for tensor number 1 in the list.
+2025-04-03 20:42:32,048 - cold_start_recommendations - ERROR - All batch norm workarounds failed, using simpler approach
+2025-04-03 20:42:32,088 - cold_start_recommendations - INFO - Recommendations saved to data/tests/recommendations.json
