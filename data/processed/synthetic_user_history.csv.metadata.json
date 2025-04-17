@@ -1,0 +1,15 @@
+{
+  "script": "/mnt/c/Users/fsnko/Downloads/dev/lhydra-hybrid/utils/generate_synthetic_interactions.py",
+  "version": "1.0.0",
+  "generated_at": "2025-04-17T00:26:45.443625Z",
+  "args": {
+    "input_track_file": "data/processed/spotify_streams_data.csv",
+    "output_interaction_file": "data/processed/synthetic_user_history.csv",
+    "output_track_file": "data/processed/spotify_tracks_with_ids.csv",
+    "num_users": 10000,
+    "min_songs": 50,
+    "max_songs": 100,
+    "playcount_lambda": 1.5,
+    "seed": 42
+  }
+}

@@ -180,3 +180,14 @@ cython_debug/
 data/kaagle
 models/glove.6B.100*
 data/03_*
+# Ignore processed CSV data outputs
+data/processed/*.csv
+# Ignore metadata JSON for processed data
+data/processed/*.json
+# Ignore report outputs
+reports_and_results/*.csv
+# Ignore large model files
+recommender/models/glove.6B*.txt
+recommender/models/*.joblib
+models/*.joblib
+models/*.txt
