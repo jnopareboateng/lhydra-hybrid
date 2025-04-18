@@ -13,8 +13,8 @@ logger.info("Starting demographic generation process using synthetic interaction
 # --- Configuration ---
 USER_HISTORY_FILE = 'data/processed/synthetic_user_history.csv'
 MUSIC_INFO_FILE = 'data/processed/spotify_tracks_with_ids.csv'
-OUTPUT_COMPLETE_DATASET = 'reports_and_results/spotify_complete_dataset.csv'
-OUTPUT_USER_DEMOGRAPHICS = 'reports_and_results/spotify_user_demographics.csv'
+OUTPUT_COMPLETE_DATASET = 'data/processed/spotify_complete_dataset.csv'
+OUTPUT_USER_DEMOGRAPHICS = 'data/processed/spotify_user_demographics.csv'
 # ---------------------
 
 def parse_args():
@@ -402,11 +402,23 @@ else:
 # Create final demographics dataframe
 user_demographics = pd.DataFrame(demographics)
 
+# Add numeric age column (midpoint of age range)
+if not user_demographics.empty:
+    # Extract min and max age from age_group and calculate mid-point
+    user_demographics['age'] = user_demographics['age_group'].str.split('-').apply(
+        lambda x: (int(x[0]) + int(x[1])) / 2 if isinstance(x, list) and len(x) == 2 else np.nan)
+    
+    # Merge with user_features to get the 'top_genre' column
+    user_demographics = user_demographics.merge(
+        user_features[['user_id', 'top_genre']], 
+        on='user_id', 
+        how='left'
+    )
+
 # Ensure output directories exist
 os.makedirs(os.path.dirname(OUTPUT_USER_DEMOGRAPHICS), exist_ok=True)
-user_demographics.to_csv(OUTPUT_USER_DEMOGRAPHICS, index=False)
 
-# Also save the user demographics separately for reference
+# Save the user demographics only once
 logger.info(f"Saving demographic file to {OUTPUT_USER_DEMOGRAPHICS}...")
 if not user_demographics.empty:
     user_demographics.to_csv(OUTPUT_USER_DEMOGRAPHICS, index=False)
@@ -447,6 +459,21 @@ if not user_demographics.empty:
         if f"avg_{feature}" in user_demographics.columns:
             logger.info(f"{feature}: Mean={user_demographics[f'avg_{feature}'].mean():.4f}")
 
+# Create and save the complete dataset by joining full_user_tracks with demographics
+if not user_demographics.empty and not full_user_tracks.empty:
+    logger.info("\nCreating complete dataset with user demographics...")
+    final_complete_data = full_user_tracks.merge(
+        user_demographics,
+        on="user_id",
+        how="left"
+    )
+    
+    logger.info(f"Complete dataset shape: {final_complete_data.shape}")
+    logger.info(f"Saving complete dataset to {OUTPUT_COMPLETE_DATASET}...")
+    final_complete_data.to_csv(OUTPUT_COMPLETE_DATASET, index=False)
+else:
+    logger.warning("Cannot create complete dataset due to missing data.")
+
 logger.info("\nProcess complete!")
 
 # Calculate additional quality metrics for final dataset (only if data exists)
@@ -472,13 +499,13 @@ if not final_dataset.empty:
 
     # Check demographic distribution matches our expected probabilities (only if data exists)
     if not user_demographics.empty:
-        logger.info("\nVerifying demographic distributions match expected probabilities...")
-
-        # Age distribution check
+        logger.info("\nVerifying demographic distributions match expected probabilities...")        # Age distribution check
         age_group_data = []
         for i, (min_age, max_age) in enumerate(age_groups):
             group_name = f"{min_age}-{max_age}"
-            actual_count = len(user_demographics[(user_demographics['age'] >= min_age) & (user_demographics['age'] <= max_age)])
+            # Match the string format in age_group column instead of using numeric comparison
+            age_group_match = f"{min_age}-{max_age}"
+            actual_count = len(user_demographics[user_demographics['age_group'] == age_group_match])
             actual_pct = (actual_count / len(user_demographics)) * 100
             
             # Calculate expected percentages (average across all genres)

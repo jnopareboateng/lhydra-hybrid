@@ -156,7 +156,7 @@ else:
     old_df_enriched = extract_genre_features(old_df_enriched)
     
     # Define the audio features to predict
-    categorical_features = ['key', 'mode']
+    categorical_features = ['key', 'mode', 'time_signature']
     continuous_features = ['danceability', 'energy', 'loudness', 'speechiness', 
                           'acousticness', 'instrumentalness', 'liveness', 
                           'valence', 'tempo']
