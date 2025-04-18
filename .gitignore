@@ -191,3 +191,6 @@ recommender/models/glove.6B*.txt
 recommender/models/*.joblib
 models/*.joblib
 models/*.txt
+.gitignore
+*music_data*
+
